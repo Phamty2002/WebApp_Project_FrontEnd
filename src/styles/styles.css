@@ -1,0 +1,751 @@
+/* styles.css */
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #f0f0f0;
+}
+
+header{
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 20px 30px;
+}
+
+h1{
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.search{
+    display: flex;
+    justify-content: center;
+}
+
+.search input{
+    padding: 10px;
+    border: none;
+    width: 40%;
+    font-size: 15px;
+    outline: none;
+    border-radius: 10px 0 0 10px;
+}
+
+.search button{
+    padding: 10px 20px;
+    background-color: #ff5722;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+    font-size: 15px;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0 10px 10px 0;
+    transition: all 0.3s ease;
+}
+
+.search button:hover{
+    background-color: #e64a19;
+}
+
+.meal-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px;
+}
+
+.meal-item {
+    flex-basis: calc(25% - 20px);
+    max-width: calc(25% - 20px);
+    margin: 10px;
+    padding: 20px 20px 10px;
+    box-shadow: 0 8px 24px rgba(149, 157, 165, 0.2);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.meal-item:hover{
+    transform: scale(1.05);
+}
+
+.meal-item img{
+    width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.meal-item h3{
+    text-align: center;
+    margin: 10px 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.modal-container{
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    max-width: 90%;
+    overflow: auto;
+    border-radius: 10px;
+}
+
+.modal-container .close-button{
+    font-size: 42px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #333;
+    width: 100%;
+    text-align: right;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.modal-container .close-button:hover{
+    color: #ff5722;
+}
+
+.meal-details-content{
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.recipe-title{
+    font-size: 22px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.recipe-category{
+    font-size: 18px;
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.recipe-instruct h3{
+    font-size: 18px;
+    font-weight: 600;
+    margin-top: 10px;
+}
+
+.recipe-instruct p{
+    font-size: 16px;
+    margin-bottom: 10px;
+    text-align: justify;
+    padding: 18px;
+}
+
+.recipe-img img{
+    max-width: 50%;
+    display: block;
+    margin: 0 auto 40px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: rgba(100, 100, 111, 0.2) 0 7px 29px 0;
+}
+
+.recipe-video{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.recipe-video a{
+    padding: 10px 20px;
+    background-color: #ff5722;
+    border: none;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+}
+
+.recipe-video a:hover{
+    background-color: #e64a19;
+}
+
+@media screen and (max-width: 980px) {
+    .meal-item{
+        flex-basis: calc(50% - 20px);
+        max-width: calc(50% - 20px);
+        margin: 0;
+    }
+
+    .search input{
+        width: 80%;
+    }
+
+    .search button{
+        width: 20%;
+    }
+}
+
+@media screen and (max-width: 540px) {
+    .meal-item{
+        flex-basis: calc(100% - 20px);
+        max-width: calc(100% - 20px);
+    }
+}
+
+/* Styles */
+
+.contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  .contact-form h3 {
+    text-align: center;  
+    margin-bottom: 30px;
+  }
+  
+  .form-group {
+    margin-bottom: 20px;
+  }
+  
+  label {
+    display: block;
+    font-weight: 500;
+  }
+  
+  input, 
+  textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+  }
+  
+  textarea {
+    height: 150px;
+  }
+  
+  button[type="submit"] {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #0069d9;
+  }
+
+  /* Contact.css */
+
+.contact-container {
+    display: flex;
+    align-items: center; /* Vertically center align */
+    justify-content: center; /* Horizontally center align */
+    height: 200vh; /* Center in the middle of the viewport */  
+    margin-right: 70px;
+}
+  
+  .location-form {
+    flex: 1;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 5px;
+    margin-right: 150px; /* Add spacing between location and contact form */
+  }
+  
+  .contact-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 40px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: #f2f2f2;
+  }
+  .form-header {
+    display: flex;
+    align-items: center;  
+    margin-bottom: 20px;
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+    margin-right: 20px; 
+  }
+
+  .location-details {
+    text-align: center;
+  }
+  
+  .location-details img {
+    max-width: 80%;
+    height: auto;
+  }
+  
+  .location-details p {
+    font-size: 16px;
+    margin: 10px 0;
+  }
+
+/* Login */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #a471a5;
+}
+
+.login-form {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 110px;
+  text-align: center;
+  max-width: 500px;
+}
+
+.login-form h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.forgot-password-link {
+  font-size: 1rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.signup-link {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.signup-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/*Sign up */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  background-color: #a471a5;
+}
+
+.signup-form {
+  background: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 110px;
+  text-align: center;
+  max-width: 500px;
+}
+
+.signup-form h2 {
+  margin: 0;
+  font-size: 1.8rem;
+  margin-bottom: 30px;
+}
+
+.form-group {
+  text-align: left;
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.login-link {
+  font-size: 1rem;
+  color: #555555;
+  text-decoration: none;
+}
+
+button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.login-link {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+
+/*Pop Up */
+.modal {
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6); /* Slightly darker background for better contrast */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: auto;
+  padding: 50px; /* Increased padding for a more spacious look */
+  border: none; /* Removed border for a cleaner look */
+  width: 180%;
+  max-width: 500px; /* Optimal reading width */
+  box-shadow: 0 12px 24px 0 rgba(0,0,0,0.2); /* Softer shadow for depth */
+  border-radius: 10px; /* Rounded corners for a friendlier feel */
+  overflow: hidden; /* Ensures nothing spills out of the container */
+}
+
+.close {
+  color: #1c1818;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #ff5f5f; /* A hint of color on hover for feedback */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.error-message {
+  color: #D8000C; /* Standard color for error messages */
+  background-color: #FFD2D2; /* Light background to highlight error */
+  padding: 10px; /* Space around the text */
+  margin: 10px 0;
+  border-radius: 5px; /* Rounded corners for the error message */
+  border: 1px solid #D8000C; /* Border color same as text to tie design together */
+  text-align: left; /* Align text to start for better readability */
+}
+
+/* Additional styles for the modal text to enhance readability */
+.modal-text {
+  font-size: 16px; /* Adequate font size for readability */
+  line-height: 1.6; /* Line height for reading comfort */
+  color: #333333; /* Darker text for better contrast */
+  margin-bottom: 20px; /* Space before the close button or any other content */
+}
+
+/* CRUD Products */
+/* CrudOperations.css */
+
+.container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.button-group {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.button-group button {
+  margin-right: 10px;
+  padding: 10px 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.form-group button {
+  width: 100%;
+  padding: 10px 0;
+  border: none;
+  background-color: #5cb85c;
+  color: white;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.product-list {
+  margin-bottom: 20px;
+}
+
+.product-item {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.action-buttons {
+  text-align: right;
+}
+
+.action-buttons button {
+  margin-left: 10px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.action-buttons button.update-button {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.action-buttons button.delete-button {
+  background-color: #d9534f;
+  color: white;
+}
+
+.bold-label {
+  font-weight: bold;
+}
+
+/* Menu page */
+/* Styles for the search input */
+/* Style for the search input */
+.search-input {
+  margin: 20px 0;
+}
+
+/* General styling for the menu item card */
+.menu-item-card {
+  margin: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.menu-item-card:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Styling for the image inside the card */
+.menu-item-image {
+  max-width: 150%;
+  max-height: 180px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+/* Styling for the item name */
+.menu-item-name {
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+/* Styling for the item description */
+.menu-item-description {
+  margin-top: 5px;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+/* Styling for the item price */
+.menu-item-price {
+  margin-top: 5px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Styling for the order button */
+.order-button {
+  background-color: #007bff;
+  color: white;
+}
+
+.order-button:hover {
+  background-color: #0056b3;
+}
+/* Modal of Sign Up */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.2);
+  position: relative;
+  width: 80%;
+  max-width: 400px;
+  color: #333;
+}
+
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #777;
+  transition: color 0.3s ease;
+}
+
+.close:hover {
+  color: #333;
+}
+
+h2 {
+  font-size: 26px;
+  margin: 0 0 20px;
+  color: #333;
+}
+
+p {
+  font-size: 16px;
+  color: #555;
+  margin: 20px 0;
+}
+
+button {
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+
+
+
+
+
+
+

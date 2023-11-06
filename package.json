@@ -23,5 +23,6 @@
   "devDependencies": {
     "react-scripts": "^5.0.1"
   },
-  "browserslist": "last 2 Chrome versions"
+  "browserslist": "last 2 Chrome versions",
+  "proxy":"http://localhost:3001"
 }

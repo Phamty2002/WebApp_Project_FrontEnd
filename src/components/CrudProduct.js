@@ -276,15 +276,14 @@ function CrudOperations() {
     <div>
       <Header />
       <div className="container">
-        <div className="button-group">
-          <button onClick={() => setAction('insert')}>Insert Products</button>
-          <button onClick={() => setAction('see')}>View Products</button>
-          <button onClick={() => setAction('update')}>Update Products</button>
-          <button onClick={() => setAction('delete')}>Delete Products</button>
-          
-        </div>
-        {renderBox()}
-      </div>
+  <div className="button-group" style={{ display: 'flex', justifyContent: 'start', gap: '10px' }}>
+    <button onClick={() => setAction('insert')}>Insert Products</button>
+    <button onClick={() => setAction('see')}>View Products</button>
+    <button onClick={() => setAction('update')}>Update Products</button>
+    <button onClick={() => setAction('delete')}>Delete Products</button>
+  </div>
+  {renderBox()}
+</div>
     </div>
   );
   }

@@ -147,14 +147,19 @@ function CrudOperations() {
   return (
     <div>
       <h3>Product List</h3>
-      <div style={{ marginBottom: '20px' }}>
-        <input
-          type="text"
-          placeholder="Enter product name to view"
-          value={specificProductName}
-          onChange={(e) => setSpecificProductName(e.target.value)}
-        />
-        <button onClick={() => fetchSpecificProduct(specificProductName)}>Get Specific Product</button>
+     <div style={{ marginBottom: '20px' }}>
+    <input
+      type="text"
+      placeholder="Enter product name to view"
+      value={specificProductName}
+      onChange={(e) => setSpecificProductName(e.target.value)}
+    />
+    <button
+      onClick={() => fetchSpecificProduct(specificProductName)}
+      style={{ marginTop: '15px' }}
+    >
+      Get Specific Product
+     </button>
       </div>
       {/* Display the specific product */}
       {specificProduct && (

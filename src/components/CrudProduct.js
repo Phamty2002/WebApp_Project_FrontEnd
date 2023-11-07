@@ -2,11 +2,17 @@ import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header';
 import { ProductsContext } from '../context/ProductsContext';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+
 function CrudOperations() {
   const { products, setProducts } = useContext(ProductsContext);
 
+  // State for specific product retrieval
   const [specificProductName, setSpecificProductName] = useState('');
   const [specificProduct, setSpecificProduct] = useState(null);
+
+
   const [action, setAction] = useState(null);
   const [product, setProduct] = useState({
     id: '',
@@ -23,20 +29,10 @@ function CrudOperations() {
     image_path: ''
   });
 
-  // Helper function to get the image URL
-const getImageUrl = (imagePath) => {
-  // Check if imagePath is a full URL
-  if (/^https?:\/\//i.test(imagePath)) {
-    return imagePath;
-  } else {
-    // If imagePath is a relative path, prepend the backend URL
-    return `${process.env.REACT_APP_BACKEND_URL}/images/${imagePath}`;
-  }
-};
 
   useEffect(() => {
     if (action === 'see') {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`)
+      fetch(`${backendUrl}/products`) // Correct usage of template literals
         .then(response => response.json())
         .then(data => setProducts(data))
         .catch(error => console.error('Error fetching products:', error));
@@ -54,7 +50,8 @@ const getImageUrl = (imagePath) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`, {
+    console.log('Submitting product:', product); // Log the product object
+    fetch(`${backendUrl}/products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -72,40 +69,45 @@ const getImageUrl = (imagePath) => {
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/update/${currentProduct.name}`, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        price: currentProduct.price,
-        description: currentProduct.description,
-        image_path: currentProduct.image_path,
-      })
+    fetch(`${backendUrl}/products/update/${currentProduct.name}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            price: currentProduct.price,
+            description: currentProduct.description,
+            image_path: currentProduct.image_path, // Include the image_path in the update
+        })
     })
     .then(response => response.json())
     .then(data => {
-      console.log('Product updated:', data);
-      setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...currentProduct } : p)));
-      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' });
+        console.log('Product updated:', data);
+        // Here you should also update the product list with the new image path
+        setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...currentProduct } : p)));
+        // Reset the current product
+        setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' });
     })
     .catch(error => console.error('Error updating product:', error));
-  };
+};
 
   const handleDelete = (productName) => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/delete/${productName}`, {
+    fetch(`${backendUrl}/products/delete/${productName}`, {
       method: 'DELETE'
     })
-    .then(response => response.json())
-    .then(data => {
-      console.log('Product deleted:', data);
-      setProducts(products.filter(product => product.name !== productName));
-    })
-    .catch(error => console.error('Error deleting product:', error));
+      .then(response => response.json())
+      .then(data => {
+        console.log('Product deleted:', data);
+        setProducts(products.filter(product => product.name !== productName));      })
+      .catch(error => console.error('Error deleting product:', error));
   };
 
+  const [deleteProductName, setDeleteProductName] = useState('');
+
+  // Function to fetch a specific product by name
   const fetchSpecificProduct = (productName) => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productName}`)
+    // API call to fetch the specific product by name
+    fetch(`${backendUrl}/products/${productName}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Product not found');
@@ -185,8 +187,8 @@ const getImageUrl = (imagePath) => {
           <p><strong>Price:</strong> {specificProduct.price}</p>
           <p><strong>Description:</strong> {specificProduct.description}</p>
           {specificProduct.image_path && (
-              <img src={getImageUrl(specificProduct.image_path)} alt={specificProduct.name} style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '10px' }} />
-            )}
+            <img src={specificProduct.image_path} alt={specificProduct.name} style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '10px' }} />
+          )}
         </div>
       )}
 
@@ -198,8 +200,8 @@ const getImageUrl = (imagePath) => {
           <p><strong>Price:</strong> {product.price}</p>
           <p><strong>Description:</strong> {product.description}</p>
           {product.image_path && (
-              <img src={getImageUrl(product.image_path)} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
-            )}
+            <img src={product.image_path} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
+          )}
           <div style={{ marginTop: '10px' }}>
             <button onClick={() => {
               setCurrentProduct(product);
@@ -277,14 +279,15 @@ const getImageUrl = (imagePath) => {
     <div>
       <Header />
       <div className="container">
-  <div className="button-group" style={{ display: 'flex', justifyContent: 'start', gap: '10px' }}>
-    <button onClick={() => setAction('insert')}>Insert Products</button>
-    <button onClick={() => setAction('see')}>View Products</button>
-    <button onClick={() => setAction('update')}>Update Products</button>
-    <button onClick={() => setAction('delete')}>Delete Products</button>
-  </div>
-  {renderBox()}
-</div>
+        <div className="button-group">
+          <button onClick={() => setAction('insert')}>Insert Products</button>
+          <button onClick={() => setAction('see')}>View Products</button>
+          <button onClick={() => setAction('update')}>Update Products</button>
+          <button onClick={() => setAction('delete')}>Delete Products</button>
+          
+        </div>
+        {renderBox()}
+      </div>
     </div>
   );
   }

@@ -143,22 +143,44 @@ function CrudOperations() {
             <button type="submit">Insert Product</button>
           </form>
         );
-      case 'see':
-        return (
-          <div>
-            <h3>Product List</h3>
-            {products.map((product, index) => (
-              <div key={index}>
-                <p>{product.name} - {product.price}</p>
-                <button onClick={() => {
-                  setCurrentProduct(product);
-                  setAction('update');
-                }}>Edit</button>
-                <button onClick={() => handleDelete(product.name)}>Delete</button>
-              </div>
-            ))}
+        case 'see':
+  return (
+    <div>
+      <h3>Product List</h3>
+      <div style={{ marginBottom: '20px' }}>
+        <input
+          type="text"
+          placeholder="Enter product name to view"
+          value={specificProductName}
+          onChange={(e) => setSpecificProductName(e.target.value)}
+        />
+        <button onClick={() => fetchSpecificProduct(specificProductName)}>Get Specific Product</button>
+      </div>
+      {specificProduct && (
+        <div>
+          <h3>Specific Product Details</h3>
+          <p>Name: {specificProduct.name}</p>
+          <p>Price: {specificProduct.price}</p>
+          <p>Description: {specificProduct.description}</p>
+          <img src={specificProduct.image_path} alt={specificProduct.name} style={{ maxWidth: '100px' }} />
+        </div>
+      )}
+      {products.map((product, index) => (
+        <div key={index} style={{ marginBottom: '10px' }}>
+          <p>{product.name} - {product.price}</p>
+          <div style={{ display: 'inline' }}> {/* Container to hold buttons inline */}
+            <button onClick={() => {
+              setCurrentProduct(product);
+              setAction('update');
+            }}>Edit</button>
+            <button onClick={() => handleDelete(product.name)} style={{ marginLeft: '10px' }}>Delete</button>
           </div>
-        );
+        </div>
+      ))}
+    </div>
+  );
+
+        
       case 'update':
         return (
           <form onSubmit={handleUpdateSubmit}>

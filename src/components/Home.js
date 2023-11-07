@@ -11,6 +11,7 @@ function Home() {
 
   return (
     <div style={containerStyle}>
+      <AvatarButton/>
       <Header />
       <Slider />
       <Contact />

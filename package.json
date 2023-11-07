@@ -12,6 +12,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/compat-data": "^7.23.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.14.17",
@@ -19,7 +20,7 @@
     "react-dom": "^18.2.0",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.18.0",
-    "semver": "^6.0.0",
+    "semver": "^6.3.1",
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {

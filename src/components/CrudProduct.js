@@ -181,18 +181,13 @@ function CrudOperations() {
 
       {/* List all products */}
       {products.map((product, index) => (
-       <div key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-        <p><strong>ID:</strong> {product.id}</p>
-         <p><strong>Name:</strong> {product.name}</p>
-        <p><strong>Price:</strong> {product.price}</p>
-        <p><strong>Description:</strong> {product.description}</p>
-      {product.image_path && (
-      <img
-        src={`${process.env.REACT_APP_BACKEND_URL}/images/${product.image_path}`} // Use the environment variable
-        alt={product.name}
-        style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '15px', marginTop: '10px' }}
-        onError={(e) => { e.target.onerror = null; e.target.src = 'path_to_default_image.jpg'; }} // Fallback image
-      />
+        <div key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+          <p><strong>ID:</strong> {product.id}</p>
+          <p><strong>Name:</strong> {product.name}</p>
+          <p><strong>Price:</strong> {product.price}</p>
+          <p><strong>Description:</strong> {product.description}</p>
+          {product.image_path && (
+            <img src={product.image_path} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
           )}
           <div style={{ marginTop: '10px' }}>
             <button onClick={() => {

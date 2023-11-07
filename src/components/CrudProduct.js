@@ -61,6 +61,13 @@ function CrudOperations() {
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
+    // Ensure that the currentProduct object contains the necessary data
+  
+    if (!currentProduct.name) {
+      console.error('Product name is required for update.');
+      return;
+    }
+  
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/update/${currentProduct.name}`, {
       method: 'PUT',
       headers: {
@@ -72,13 +79,23 @@ function CrudOperations() {
         image_path: currentProduct.image_path,
       })
     })
-    .then(response => response.json())
-    .then(data => {
-      setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...currentProduct } : p)));
-      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' }); // Reset form
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+      }
+      return response.json();
     })
-    .catch(error => console.error('Error updating product:', error));
+    .then(data => {
+      // Assuming the response contains the updated product data
+      setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...data } : p)));
+      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' }); // Reset the form
+    })
+    .catch(error => {
+      console.error('Error updating product:', error);
+      // Handle the error, e.g., display an error message to the user
+    });
   };
+  
 
   const handleDelete = (productName) => {
     fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/delete/${productName}`, {

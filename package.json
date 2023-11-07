@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -21,8 +22,9 @@
     "web-vitals": "^3.5.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "react-scripts": "^5.0.1"
   },
   "browserslist": "last 2 Chrome versions",
-  "proxy":"http://localhost:3001"
+  "proxy": "http://localhost:3001"
 }

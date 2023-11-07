@@ -7,7 +7,7 @@ export const ProductsProvider = ({ children }) => {
 
   useEffect(() => {
     const backendUrl = process.env.REACT_APP_BACKEND_URL; // Ensure this is set in your environment variables
-    fetch(`${backendUrl}/api/products`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');

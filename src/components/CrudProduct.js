@@ -205,7 +205,7 @@ function CrudOperations() {
               placeholder="Name"
               value={currentProduct.name}
               onChange={handleInputChange}
-              disabled
+              
             />
             <input
               type="text"

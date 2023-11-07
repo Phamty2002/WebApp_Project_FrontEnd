@@ -156,25 +156,35 @@ function CrudOperations() {
         />
         <button onClick={() => fetchSpecificProduct(specificProductName)}>Get Specific Product</button>
       </div>
+      {/* Display the specific product */}
       {specificProduct && (
-        <div>
-          <h3>Specific Product Details</h3>
-          <p>Name: {specificProduct.name}</p>
-          <p>Price: {specificProduct.price}</p>
-          <p>Description: {specificProduct.description}</p>
-          <img src={specificProduct.image_path} alt={specificProduct.name} style={{ maxWidth: '100px' }} />
-        </div>
-      )}
-      {products.map((product, index) => (
-        <div key={index} style={{ marginBottom: '10px' }}>
-          <p>{product.name} - {product.price}</p>
-          <div style={{ display: 'inline' }}> {/* Container to hold buttons inline */}
-            <button onClick={() => {
-              setCurrentProduct(product);
-              setAction('update');
-            }}>Edit</button>
-            <button onClick={() => handleDelete(product.name)} style={{ marginLeft: '10px' }}>Delete</button>
+       <div style={{ border: '1px solid #ccc', padding: '10px', marginTop: '10px' }}>
+       <p><strong>ID:</strong> {specificProduct.id}</p>
+       <p><strong>Name:</strong> {specificProduct.name}</p>
+       <p><strong>Price:</strong> {specificProduct.price}</p>
+       <p><strong>Description:</strong> {specificProduct.description}</p>
+       {specificProduct.image_path && (
+          <img src={specificProduct.image_path} alt={specificProduct.name} style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '10px' }} />
+       )}
           </div>
+      )}
+      {/* List all products */}
+      {products.map((product, index) => (
+        <div key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+        <p><strong>ID:</strong> {product.id}</p>
+        <p><strong>Name:</strong> {product.name}</p>
+        <p><strong>Price:</strong> {product.price}</p>
+        <p><strong>Description:</strong> {product.description}</p>
+        {product.image_path && (
+          <img src={product.image_path} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
+        )}
+        <div style={{ marginTop: '10px' }}>
+          <button onClick={() => {
+            setCurrentProduct(product);
+            setAction('update');
+          }} style={{ marginRight: '10px' }}>Update</button>
+          <button onClick={() => handleDelete(product.name)}>Delete</button>
+        </div>
         </div>
       ))}
     </div>

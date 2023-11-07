@@ -7,7 +7,7 @@ function CrudOperations() {
 
   const [specificProductName, setSpecificProductName] = useState('');
   const [specificProduct, setSpecificProduct] = useState(null);
-  const [action, setAction] = useState(null);
+  const [action, setAction] = useState('');
   const [product, setProduct] = useState({
     id: '',
     name: '',
@@ -22,6 +22,7 @@ function CrudOperations() {
     description: '',
     image_path: ''
   });
+  const [deleteProductName, setDeleteProductName] = useState('');
 
   useEffect(() => {
     if (action === 'see') {
@@ -53,7 +54,7 @@ function CrudOperations() {
     .then(response => response.json())
     .then(data => {
       setProducts([...products, data]);
-      setProduct({ id: '', name: '', price: '', description: '', image_path: '' });
+      setProduct({ id: '', name: '', price: '', description: '', image_path: '' }); // Reset form
     })
     .catch(error => console.error('Error creating product:', error));
   };
@@ -74,7 +75,7 @@ function CrudOperations() {
     .then(response => response.json())
     .then(data => {
       setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...currentProduct } : p)));
-      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' });
+      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' }); // Reset form
     })
     .catch(error => console.error('Error updating product:', error));
   };
@@ -107,29 +108,89 @@ function CrudOperations() {
       });
   };
 
-  const handleDeleteByName = () => {
-    handleDelete(deleteProductName);
-    setDeleteProductName('');
-  };
-
   const renderBox = () => {
     switch (action) {
       case 'insert':
         return (
           <form onSubmit={handleSubmit}>
-            {/* ... inputs and button for 'insert' action */}
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={product.name}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              name="price"
+              placeholder="Price"
+              value={product.price}
+              onChange={handleInputChange}
+            />
+            <textarea
+              name="description"
+              placeholder="Description"
+              value={product.description}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              name="image_path"
+              placeholder="Image Path"
+              value={product.image_path}
+              onChange={handleInputChange}
+            />
+            <button type="submit">Insert Product</button>
           </form>
         );
       case 'see':
         return (
           <div>
-            {/* ... form, product details and list for 'see' action */}
+            <h3>Product List</h3>
+            {products.map((product, index) => (
+              <div key={index}>
+                <p>{product.name} - {product.price}</p>
+                <button onClick={() => {
+                  setCurrentProduct(product);
+                  setAction('update');
+                }}>Edit</button>
+                <button onClick={() => handleDelete(product.name)}>Delete</button>
+              </div>
+            ))}
           </div>
         );
       case 'update':
         return (
           <form onSubmit={handleUpdateSubmit}>
-            {/* ... inputs and button for 'update' action */}
+            <input
+              type="text"
+              name="name"
+              placeholder="Name"
+              value={currentProduct.name}
+              onChange={handleInputChange}
+              disabled
+            />
+            <input
+              type="text"
+              name="price"
+              placeholder="Price"
+              value={currentProduct.price}
+              onChange={handleInputChange}
+            />
+            <textarea
+              name="description"
+              placeholder="Description"
+              value={currentProduct.description}
+              onChange={handleInputChange}
+            />
+            <input
+              type="text"
+              name="image_path"
+              placeholder="Image Path"
+              value={currentProduct.image_path}
+              onChange={handleInputChange}
+            />
+            <button type="submit">Update Product</button>
           </form>
         );
       case 'delete':
@@ -141,7 +202,7 @@ function CrudOperations() {
               value={deleteProductName}
               onChange={(e) => setDeleteProductName(e.target.value)}
             />
-            <button onClick={handleDeleteByName}>Delete Product</button>
+            <button onClick={() => handleDelete(deleteProductName)}>Delete Product</button>
           </div>
         );
       default:

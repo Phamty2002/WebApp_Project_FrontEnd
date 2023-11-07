@@ -25,6 +25,18 @@ function Menu() {
   const totalItems = filteredItems.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
+  // Helper function to get the image URL
+  const getImageUrl = (imagePath) => {
+    // Check if imagePath is a full URL
+    if (/^https?:\/\//i.test(imagePath)) {
+      return imagePath;
+    } else {
+      // If imagePath is a relative path, prepend the backend URL
+      return `${process.env.REACT_APP_BACKEND_URL}/images/${imagePath}`;
+    }
+  };
+  
+
   const handleOrder = (item) => {
     console.log("Ordering", item);
   };
@@ -66,34 +78,29 @@ function Menu() {
         onChange={(e) => setSearchTerm(e.target.value)}
         className="search-input"
       />
-      <Grid container className="menu-items">
+      <Grid container spacing={2} className="menu-items">
         {itemsToDisplay.map((item) => (
           <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
             <Card className="menu-item-card">
               <CardContent>
-              <img
-               src={item.image_path || item.image}
-               alt={item.name}
-               className="menu-item-image"
-               style={imageStyle}
-               loading="lazy"
-               />
-                <Typography variant="h6" className="menu-item-name">
+                <img
+                  src={getImageUrl(item.image_path)}
+                  alt={item.name}
+                  style={imageStyle}
+                  loading="lazy"
+                />
+                <Typography variant="h6" component="div">
                   {item.name}
                 </Typography>
-                <Typography className="menu-item-description">
+                <Typography variant="body2" color="text.secondary">
                   {item.description}
                 </Typography>
-                <Typography className="menu-item-price">
+                <Typography variant="body1">
                   Price: ${item.price}
                 </Typography>
               </CardContent>
               <CardActions>
-                <Button
-                  variant="contained"
-                  className="order-button"
-                  onClick={() => handleOrder(item)}
-                >
+                <Button size="small" onClick={() => handleOrder(item)}>
                   Order
                 </Button>
               </CardActions>
@@ -101,13 +108,12 @@ function Menu() {
           </Grid>
         ))}
       </Grid>
-      <div>
-        <Pagination
-          count={totalPages}
-          page={currentPage}
-          onChange={handleChangePage}
-        />
-      </div>
+      <Pagination
+        count={totalPages}
+        page={currentPage}
+        onChange={handleChangePage}
+        className="pagination"
+      />
     </div>
   );
 }

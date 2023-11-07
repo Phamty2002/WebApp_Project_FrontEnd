@@ -23,6 +23,17 @@ function CrudOperations() {
     image_path: ''
   });
 
+  // Helper function to get the image URL
+const getImageUrl = (imagePath) => {
+  // Check if imagePath is a full URL
+  if (/^https?:\/\//i.test(imagePath)) {
+    return imagePath;
+  } else {
+    // If imagePath is a relative path, prepend the backend URL
+    return `${process.env.REACT_APP_BACKEND_URL}/images/${imagePath}`;
+  }
+};
+
   useEffect(() => {
     if (action === 'see') {
       fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`)
@@ -174,8 +185,8 @@ function CrudOperations() {
           <p><strong>Price:</strong> {specificProduct.price}</p>
           <p><strong>Description:</strong> {specificProduct.description}</p>
           {specificProduct.image_path && (
-            <img src={specificProduct.image_path} alt={specificProduct.name} style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '10px' }} />
-          )}
+              <img src={getImageUrl(specificProduct.image_path)} alt={specificProduct.name} style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '10px' }} />
+            )}
         </div>
       )}
 
@@ -187,8 +198,8 @@ function CrudOperations() {
           <p><strong>Price:</strong> {product.price}</p>
           <p><strong>Description:</strong> {product.description}</p>
           {product.image_path && (
-            <img src={product.image_path} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
-          )}
+              <img src={getImageUrl(product.image_path)} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
+            )}
           <div style={{ marginTop: '10px' }}>
             <button onClick={() => {
               setCurrentProduct(product);

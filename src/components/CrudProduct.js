@@ -5,11 +5,8 @@ import { ProductsContext } from '../context/ProductsContext';
 function CrudOperations() {
   const { products, setProducts } = useContext(ProductsContext);
 
-  // State for specific product retrieval
   const [specificProductName, setSpecificProductName] = useState('');
   const [specificProduct, setSpecificProduct] = useState(null);
-
-
   const [action, setAction] = useState(null);
   const [product, setProduct] = useState({
     id: '',
@@ -26,10 +23,9 @@ function CrudOperations() {
     image_path: ''
   });
 
-
   useEffect(() => {
     if (action === 'see') {
-      fetch('/api/products')
+      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`)
         .then(response => response.json())
         .then(data => setProducts(data))
         .catch(error => console.error('Error fetching products:', error));
@@ -47,8 +43,7 @@ function CrudOperations() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Submitting product:', product); // Log the product object
-    fetch('/api/products', {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -66,45 +61,40 @@ function CrudOperations() {
 
   const handleUpdateSubmit = (e) => {
     e.preventDefault();
-    fetch(`/api/products/update/${currentProduct.name}`, {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            price: currentProduct.price,
-            description: currentProduct.description,
-            image_path: currentProduct.image_path, // Include the image_path in the update
-        })
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/update/${currentProduct.name}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        price: currentProduct.price,
+        description: currentProduct.description,
+        image_path: currentProduct.image_path,
+      })
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Product updated:', data);
-        // Here you should also update the product list with the new image path
-        setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...currentProduct } : p)));
-        // Reset the current product
-        setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' });
+      console.log('Product updated:', data);
+      setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...currentProduct } : p)));
+      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' });
     })
     .catch(error => console.error('Error updating product:', error));
-};
-
-  const handleDelete = (productName) => {
-    fetch(`/api/products/delete/${productName}`, {
-      method: 'DELETE'
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log('Product deleted:', data);
-        setProducts(products.filter(product => product.name !== productName));      })
-      .catch(error => console.error('Error deleting product:', error));
   };
 
-  const [deleteProductName, setDeleteProductName] = useState('');
+  const handleDelete = (productName) => {
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/delete/${productName}`, {
+      method: 'DELETE'
+    })
+    .then(response => response.json())
+    .then(data => {
+      console.log('Product deleted:', data);
+      setProducts(products.filter(product => product.name !== productName));
+    })
+    .catch(error => console.error('Error deleting product:', error));
+  };
 
-  // Function to fetch a specific product by name
   const fetchSpecificProduct = (productName) => {
-    // API call to fetch the specific product by name
-    fetch(`/api/products/${productName}`)
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productName}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Product not found');

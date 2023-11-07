@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import '../styles/styles.css';
 
 function Modal({ message, onClose }) {
-  console.log('Modal rendering with message:', message); // Log to see if this component renders
+  // Log to see if this component renders
+  console.log('Modal rendering with message:', message);
+
   // Now, the modal visibility is controlled by inline style based on the `message`.
   return (
     <div className="modal" style={{ display: message ? 'flex' : 'none' }}>
@@ -20,19 +22,22 @@ function Login() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
+  // Construct the URL from the environment variable or default to a local URL
+  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+
   async function handleLogin(event) {
     event.preventDefault();
     console.log('Handle login called'); // Log to see if the function is called
-  
+
     try {
-      const response = await fetch('/api/login/login', {
+      const response = await fetch(`${backendUrl}/api/login/login`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ username, password }),
       });
-  
+
       if (response.ok) {
         console.log('Login successful, setting message'); // Log on success
         setMessage('Login successful! Redirecting...');
@@ -94,7 +99,7 @@ function Login() {
         </div>
         <button type="submit">Sign In</button>
         <p className="signup-link">
-          Don't have an account ? <a href="/sign-up">Sign-Up</a>
+          Don't have an account? <a href="/sign-up">Sign-Up</a>
         </p>
       </form>
     </div>

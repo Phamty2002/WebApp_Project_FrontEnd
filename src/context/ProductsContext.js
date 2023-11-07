@@ -1,18 +1,23 @@
-// ProductsContext.js
-import React, { createContext, useState, useEffect } from 'react'; // Add useEffect here
-// Create a context for the products
+import React, { createContext, useState, useEffect } from 'react';
+
 export const ProductsContext = createContext();
 
-// A component that provides the products state to its children
 export const ProductsProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
 
-  // Fetch products when the component mounts
   useEffect(() => {
-    fetch('/api/products')
-      .then(response => response.json())
+    const backendUrl = process.env.REACT_APP_BACKEND_URL; // Ensure this is set in your environment variables
+    fetch(`${backendUrl}/api/products`)
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
       .then(setProducts)
-      .catch(console.error);
+      .catch(error => {
+        console.error('Error fetching products:', error);
+      });
   }, []);
 
   const contextValue = {

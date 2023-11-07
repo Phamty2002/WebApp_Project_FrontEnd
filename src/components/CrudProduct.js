@@ -248,9 +248,9 @@ function CrudOperations() {
       <div className="container">
         <div className="button-group">
           <button onClick={() => setAction('insert')}>Insert Products</button>
+          <button onClick={() => setAction('see')}>View Products</button>
           <button onClick={() => setAction('update')}>Update Products</button>
           <button onClick={() => setAction('delete')}>Delete Products</button>
-          <button onClick={() => setAction('see')}>View Products</button> {/* Moved "View Products" button to the right */}
         </div>
         {renderBox()}
       </div>

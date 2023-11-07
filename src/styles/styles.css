@@ -543,9 +543,11 @@ button:hover {
   margin-bottom: 20px;
 }
 
+/* Remove the margin-right and padding for buttons in the button-group */
 .button-group button {
-  margin-right: 10px;
+  margin-right: 0; /* Remove the margin-right */
   padding: 10px 20px;
+  display: inline-block; /* Display the buttons in a line */
 }
 
 .form-group {
@@ -618,6 +620,7 @@ button:hover {
 .bold-label {
   font-weight: bold;
 }
+
 
 /* Menu page */
 /* Styles for the search input */

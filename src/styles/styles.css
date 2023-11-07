@@ -545,7 +545,7 @@ button:hover {
 
 /* Remove the margin-right and padding for buttons in the button-group */
 .button-group button {
-  margin-right: 0; /* Remove the margin-right */
+  margin-right: 15px; /* Remove the margin-right */
   padding: 10px 20px;
   display: inline-block; /* Display the buttons in a line */
 }

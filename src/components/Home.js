@@ -1,5 +1,4 @@
 import React from 'react';
-import AvatarButton from './AvatarButton';
 import Slider from './Slider';
 import Header from './Header';
 import Contact from './contact';
@@ -11,7 +10,6 @@ function Home() {
 
   return (
     <div style={containerStyle}>
-      <AvatarButton/>
       <Header />
       <Slider />
       <Contact />

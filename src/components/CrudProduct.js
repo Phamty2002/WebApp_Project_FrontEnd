@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Header from './Header';
+import Header from './Header/Header';
 import { ProductsContext } from '../context/ProductsContext';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;

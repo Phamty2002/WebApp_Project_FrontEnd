@@ -53,7 +53,7 @@ function Slider() {
   };
 
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', marginTop: '20px' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', minHeight: '100vh', marginTop: '20px', marginBottom: '-270px' }}>
       <Carousel
         selectedItem={selectedSlide}
         autoPlay
@@ -67,29 +67,47 @@ function Slider() {
         onClickThumb={() => {}}
       >
         {items.map((item, index) => (
-          <Paper key={index} style={{ padding: '10px', width: '480px', display: 'flex', flexDirection: 'column', height: '100%',marginLeft: '-185px'  }}>
+          <Paper
+            key={index}
+            style={{
+              padding: '10px',
+              width: '480px',
+              display: 'flex',
+              flexDirection: 'column',
+              height: '100%',
+              marginLeft: '-185px',
+              border: '5px solid orange' // Added black border here
+            }}
+          >
             <img src={item.image} alt={item.name} style={{ maxWidth: '100%' }} />
-            <div style={{ padding: '10px', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+            <div style={{
+              padding: '10px',
+              height: '100%',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'space-between'
+            }}>
               <div>
                 <h2>{item.name}</h2>
                 <p>{item.description}</p>
               </div>
               <div style={{ height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Button variant="contained" color="primary" component={Link} to="/menu">
-                  Go to Menu
+                <Button variant="contained" color="primary" component={Link} to="/menu">
+                  Order
                 </Button>
               </div>
             </div>
           </Paper>
         ))}
       </Carousel>
-      <div style={{ marginTop: '20px', textAlign: 'center', marginLeft: '0px' }}>
-        <Button variant="contained" color="primary" onClick={handlePrev} style={{ marginRight: '10px' }}>
-          Previous
-        </Button>
-        <Button variant="contained" color="primary" onClick={handleNext} style={{ marginLeft: '10px' }}>
-          Next
-        </Button>
+      <div className="buttonContainer"></div>
+      <div style={{ marginTop: '25px', textAlign: 'center' }}> {/* Adjusted margin-top to 10px */}
+  <Button variant="contained" color="primary" onClick={handlePrev} style={{ marginRight: '10px' }}>
+    Previous
+  </Button>
+  <Button variant="contained" color="primary" onClick={handleNext} style={{ marginLeft: '10px' }}>
+    Next
+  </Button>
       </div>
     </div>
   );

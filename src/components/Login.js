@@ -27,8 +27,8 @@ function Login() {
 
   async function handleLogin(event) {
     event.preventDefault();
-    console.log('Handle login called'); // Log to see if the function is called
-
+    console.log('Handle login called');
+  
     try {
       const response = await fetch(`${backendUrl}/api/login/login`, {
         method: 'POST',
@@ -37,32 +37,42 @@ function Login() {
         },
         body: JSON.stringify({ username, password }),
       });
-
+  
+      const data = await response.json();
+  
       if (response.ok) {
-        console.log('Login successful, setting message'); // Log on success
+        console.log('Login successful, setting message');
         setMessage('Login successful! Redirecting...');
+  
+        // Save the token to localStorage or sessionStorage
+        localStorage.setItem('token', data.token);
+  
+        // Redirect to the home page after a delay
         setTimeout(() => {
-          setMessage(''); // Clear message before redirect
-          window.location.href = '/home'; // Redirect to the home page after a delay
-        }, 3000); // Delay the redirect to allow the user to see the message
+          setMessage('');
+  
+          // Redirect based on the user's role
+          const userRole = data.user.role;
+          if (userRole === 'admin') {
+            window.location.href = '/home-emp'; // Redirect to the employee homepage
+          } else {
+            window.location.href = '/home-user'; // Redirect to the customer homepage
+          }
+        }, 3000);
+  
       } else {
-        console.log('Login failed, setting error message'); // Log on failure
-        let errorMessage = 'Login Failed: username or password is not correct'; // Default error message
-        try {
-          const errorData = await response.json();
-          errorMessage = errorData.message || errorMessage;
-        } catch (e) {
-          console.error('Error parsing JSON:', e);
-        }
+        console.log('Login failed, setting error message');
+        let errorMessage = data.message || 'Login Failed: username or password is not correct';
         setError(errorMessage);
-        setMessage(errorMessage); // Set the error message
+        setMessage(errorMessage);
       }
     } catch (error) {
-      console.log('An error occurred, setting error message'); // Log on catch
+      console.error('An error occurred:', error);
       setError('An error occurred');
-      setMessage('An error occurred: ' + error.message); // Set the network error message
+      setMessage('An error occurred: ' + error.message);
     }
-  }  
+  }
+  
 
   return (
     <div className="login-container">

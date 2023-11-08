@@ -4,7 +4,6 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import AvatarButton from '../AvatarButton';
 import avatar from '../../images/logo.jpg';
 import { Link } from 'react-router-dom';
 
@@ -34,7 +33,7 @@ function Header() {
     <AppBar position="static" sx={appBarStyle}>
       <Toolbar>
         <Box display="flex" alignItems="center">
-          <Link to="/home" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+          <Link to="/home-user" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <img src={avatar} alt="Logo" width="70" height="70" />
             <Typography
   variant="h6"
@@ -55,7 +54,7 @@ function Header() {
           </Link>
         </Box>
         <Box display="flex" flexGrow={1} justifyContent="flex-end">
-          <Link to="/home" style={linkStyle}>
+          <Link to="/home-user" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               Home
             </Button>
@@ -81,7 +80,11 @@ function Header() {
               Testimontials
             </Button>
           </Link>
-          <AvatarButton />
+          <Link to="/sign-in" style={linkStyle}>
+            <Button color="inherit" sx={buttonStyle}>
+              Sign Out
+            </Button>
+          </Link>
         </Box>
       </Toolbar>
     </AppBar>

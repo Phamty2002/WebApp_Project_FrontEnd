@@ -189,7 +189,7 @@ function CrudOperations() {
        <p><strong>Price:</strong> {specificProduct.price}</p>
        <p><strong>Description:</strong> {specificProduct.description}</p>
        {specificProduct.image_path && (
-          <img src={specificProduct.image_path} alt={specificProduct.name} style={{ width: '100%', height: 'auto', display: 'block', marginBottom: '10px' }} />
+          <img src={specificProduct.image_path} alt={specificProduct.name} style={{ width: '50%', height: 'auto', display: 'block', marginBottom: '10px' }} />
        )}
           </div>
       )}

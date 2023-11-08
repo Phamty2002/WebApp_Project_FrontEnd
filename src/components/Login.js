@@ -23,7 +23,7 @@ function Login() {
   const [message, setMessage] = useState('');
 
   // Construct the URL from the environment variable or default to a local URL
-  const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   async function handleLogin(event) {
     event.preventDefault();

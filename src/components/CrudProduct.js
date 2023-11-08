@@ -2,6 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header';
 import { ProductsContext } from '../context/ProductsContext';
 
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
+
 function CrudOperations() {
   const { products, setProducts } = useContext(ProductsContext);
 
@@ -26,7 +29,7 @@ function CrudOperations() {
 
   useEffect(() => {
     if (action === 'see') {
-      fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`)
+      fetch(`${backendUrl}/api/products`)
         .then(response => response.json())
         .then(data => setProducts(data))
         .catch(error => console.error('Error fetching products:', error));
@@ -44,7 +47,7 @@ function CrudOperations() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products`, {
+    fetch(`${backendUrl}/api/products`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -68,7 +71,7 @@ function CrudOperations() {
       return;
     }
   
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/update/${currentProduct.name}`, {
+    fetch(`${backendUrl}/api/products/update/${currentProduct.name}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -98,7 +101,7 @@ function CrudOperations() {
   
 
   const handleDelete = (productName) => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/delete/${productName}`, {
+    fetch(`${backendUrl}/api/products/delete/${productName}`, {
       method: 'DELETE'
     })
     .then(response => response.json())
@@ -109,7 +112,7 @@ function CrudOperations() {
   };
 
   const fetchSpecificProduct = (productName) => {
-    fetch(`${process.env.REACT_APP_BACKEND_URL}/api/products/${productName}`)
+    fetch(`${backendUrl}/api/products/${productName}`)
       .then(response => {
         if (!response.ok) {
           throw new Error('Product not found');

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import { ProductsContext } from '../context/ProductsContext';
-import Header from './Header/Header-Emp';
-import TheFooter from './Footer/Thefooter';
+import { ProductsContext } from '../../context/ProductsContext';
+import Header from '../Header/Header-Emp';
+import TheFooter from '../Footer/Thefooter';
 
 
 

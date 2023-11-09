@@ -4,7 +4,7 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
-import AvatarButton from '../AvatarButton';
+import AvatarButton from '../AvatarButton/AvatarButton';
 import avatar from '../../images/logo.jpg';
 import { Link } from 'react-router-dom';
 

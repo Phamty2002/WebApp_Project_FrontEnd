@@ -1,11 +1,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import SignIn from './components/Login';
-import SignUp from './components/Signup';
-import HomeEmp from './components/Home-Emp';
-import HomeUser from './components/Home-User';
-import MenuUser from './components/Menu-User';
-import MenuEmp from './components/Menu-Emp';
+import SignIn from './components/Authentication/Login';
+import SignUp from './components/Authentication/Signup';
+import HomeEmp from './components/HomePage/Home-Emp';
+import HomeUser from './components/HomePage/Home-User';
+import MenuUser from './components/Menu/Menu-User';
+import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CrudProduct';
 import { ProductsProvider } from './context/ProductsContext';
 import Profile from './components/profile/PageProfile';

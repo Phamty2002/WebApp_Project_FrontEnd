@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import { ProductsContext } from '../context/ProductsContext';
-import Header from './Header/Header-User';
+import { ProductsContext } from '../../context/ProductsContext';
+import Header from '../Header/Header-User';
 
 
 import {

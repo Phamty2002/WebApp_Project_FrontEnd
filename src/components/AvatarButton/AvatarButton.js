@@ -4,8 +4,8 @@ import IconButton from '@mui/material/IconButton';
 import Avatar from '@mui/material/Avatar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import '../styles/styles.css';
-import avatar from '../images/avatar.jpg';
+import '../../styles/styles.css';
+import avatar from '../../images/avatar.jpg';
 
 function AvatarButton() {
   const [anchorEl, setAnchorEl] = useState(null);

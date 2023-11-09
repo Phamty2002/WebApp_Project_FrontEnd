@@ -1,9 +1,9 @@
 import React from 'react';
-import Slider from './Slider';
-import Header from './Header/Header-User';
-import Contact from './contact';
-import TheFooter from './Footer/Thefooter';
-import Sections from './Sections/Sections';
+import Slider from '../Slider';
+import Header from '../Header/Header-User';
+import Contact from '../contact';
+import TheFooter from '../Footer/Thefooter';
+import Sections from '../Sections/Sections';
 
 function Home() {
   const containerStyle = {

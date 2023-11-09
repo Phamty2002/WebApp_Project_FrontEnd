@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../styles/styles.css';
+import '../../styles/styles.css';
 
 function Modal({ message, onClose }) {
   // Log to see if this component renders

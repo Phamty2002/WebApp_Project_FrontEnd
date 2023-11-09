@@ -533,6 +533,7 @@ button:hover {
   max-width: 800px;
   margin: auto;
   padding: 20px;
+  margin-bottom: 100px;
 }
 
 .header {

@@ -1,0 +1,109 @@
+/* PageProfile.css */
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  gap: 20px;
+}
+
+.card-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 50px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px); /* Adjust width to fit 3 cards with spacing */
+  margin: 0 10px; /* Add spacing between cards */
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.action-button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.action-button:hover {
+  background-color: #0056b3;
+}
+
+.error-message {
+  color: #ff3860;
+}
+
+.success-message {
+  color: #2c9e54;
+}
+
+.card.list-users-card {
+  margin-bottom: 0; /* Remove excessive margin */
+}
+
+.card.list-users-card button {
+  margin-bottom: 10px; /* Add some spacing below the "List Users" button */
+}
+
+/* Style the list of users */
+.card.list-users-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card.list-users-card li {
+  background: #f5f5f5;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card.list-users-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* Style the table for the list of users */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  text-align: left;
+}
+
+th {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Style table rows */
+tr:nth-child(even) {
+  background-color: #f5f5f5;
+}
+
+tr:hover {
+  background-color: #e0e0e0;
+}
+

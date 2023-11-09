@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import Header from './Header/Header-Emp';
 import { ProductsContext } from '../context/ProductsContext';
+import TheFooter from '../components/Footer/Thefooter';
+
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -296,7 +298,10 @@ function CrudOperations() {
         </div>
         {renderBox()}
       </div>
+      <TheFooter />
+
     </div>
+    
   );
   }  
 

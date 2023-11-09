@@ -31,6 +31,11 @@ function AvatarButton() {
     handleClose();
   };
 
+  const handleProfile = () => {
+    navigate('/profile'); // Navigate to the CrudProduct.js page
+    handleClose();
+  };
+
   return (
     <div className="buttonContainer">
       <IconButton
@@ -48,7 +53,7 @@ function AvatarButton() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>My Profile</MenuItem>
+        <MenuItem onClick={handleProfile}>My Profile</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
         <MenuItem onClick={handleManageProduct}>Manage Product</MenuItem> {/* Add the button */}

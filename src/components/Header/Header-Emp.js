@@ -60,7 +60,7 @@ function Header() {
               Home
             </Button>
           </Link>
-          <Link to="/menu" style={linkStyle}>
+          <Link to="/menu-emp" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               Menu
             </Button>

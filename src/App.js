@@ -4,9 +4,11 @@ import SignIn from './components/Login';
 import SignUp from './components/Signup';
 import HomeEmp from './components/Home-Emp';
 import HomeUser from './components/Home-User';
-import Menu from './components/Menu';
+import MenuUser from './components/Menu-User';
+import MenuEmp from './components/Menu-Emp';
 import CrudProduct from './components/CrudProduct';
 import { ProductsProvider } from './context/ProductsContext';
+import Profile from './components/profile/PageProfile';
 
 function App() {
   return (
@@ -18,8 +20,11 @@ function App() {
           <Route path="/sign-up" element={<SignUp />} />
           <Route path="/home-emp" element={<HomeEmp />} />
           <Route path="/home-user" element={<HomeUser />} />
-          <Route path="/menu" element={<Menu />} />
+          <Route path="/menu-user" element={<MenuUser />} />
+          <Route path="/menu-emp" element={<MenuEmp />} />
           <Route path="/crud" element={<CrudProduct />} />
+          <Route path="/profile" element={<Profile />} />
+
         </Routes>
       </ProductsProvider>
     </Router>

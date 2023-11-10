@@ -53,7 +53,7 @@ function AvatarButton() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleProfile}>My Profile</MenuItem>
+        <MenuItem onClick={handleProfile}>Manage Users</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
         <MenuItem onClick={handleManageProduct}>Manage Product</MenuItem> {/* Add the button */}

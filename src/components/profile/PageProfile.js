@@ -28,6 +28,49 @@ const PageProfile = () => {
   const [userList, setUserList] = useState([]);
   const [listError, setListError] = useState('');
 
+  //State for add new users
+  const [addUserError, setAddUserError] = useState('');
+  const [addUserSuccess, setAddUserSuccess] = useState('');
+  //Declare state variables for new user data
+  const [newUsername, setNewUsername] = useState('');
+  const [newEmail, setNewEmail] = useState('');
+  const [newPassword, setNewPassword] = useState('');
+  const [newRole, setNewRole] = useState('');
+
+  const resetForm = () => {
+    setNewUsername('');
+    setNewEmail('');
+    setNewPassword('');
+    setNewRole('');
+  };
+
+  const handleAddNewUser = async (newUserData) => {
+    setAddUserError('');
+    setAddUserSuccess('');
+    try {
+      const response = await fetch(`${backendUrl}/api/profile/`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.e30.EBjxM2QTMEzL3qu-gslV05xyMa1j-YMubrUsvTYm5bg' // Replace with the actual token
+        },
+        body: JSON.stringify(newUserData)
+      });
+      const data = await response.json();
+      if (response.ok) {
+        resetForm();
+        // If the user was successfully added, you can clear the form or perform other success actions
+        setAddUserSuccess('New user added successfully.');
+      } else {
+        // If the server's response was not ok, it means the user wasn't added
+        // You can throw an error with the message returned from the server
+        throw new Error(data.message || 'Error adding new user');
+      }
+    } catch (err) {
+      // Catch any network errors or errors thrown from the server's response
+      setAddUserError(err.message);
+    }
+  };
 
   
   const handleGetProfile = async () => {
@@ -104,11 +147,85 @@ const PageProfile = () => {
     }
   };
 
+  const [deleteError, setDeleteError] = useState('');
+  const [usernameToDelete, setUsernameToDelete] = useState('');
+  const [deleteSuccess, setDeleteSuccess] = useState(''); // State to hold the success message
+
+
+const handleDeleteUser = async (username) => {
+  setDeleteSuccess('');
+  setDeleteError('');
+  try {
+    const response = await fetch(`${backendUrl}/api/profile/${username}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.e30.EBjxM2QTMEzL3qu-gslV05xyMa1j-YMubrUsvTYm5bg' // Replace with your actual token
+      }
+    });
+
+    if (response.ok) {
+      // Assuming you have a state hook for users list called `userList`
+      setUserList(currentList => currentList.filter(user => user.username!== username));
+      setDeleteSuccess(`User "${username}" deleted successfully.`); // Set the success message
+      setUsernameToDelete(''); // Clear the input after deletion
+      
+      // Display a success message or perform other actions as needed
+    } else {
+      const data = await response.json();
+      throw new Error(data.message || 'Error occurred while deleting the user.');
+    }
+  } catch (err) {
+    setDeleteError(err.message);
+  }
+};
+const onDeleteClick = () => {
+  handleDeleteUser(usernameToDelete);
+   // Clear the input after deletion
+};
+
   return (
     <>
       <Header />
       <div className="profile-page">
         <div className="card-container">
+        <div className="card add-new-user-card">
+          <h2>Add New User</h2>
+          <input
+            className="input-field"
+            type="text"
+            value={newUsername}
+            onChange={(e) => setNewUsername(e.target.value)}
+            placeholder="Username"
+          />
+          <input
+            className="input-field"
+            type="email"
+            value={newEmail}
+            onChange={(e) => setNewEmail(e.target.value)}
+            placeholder="Email"
+          />
+          <input
+            className="input-field"
+            type="password"
+            value={newPassword}
+            onChange={(e) => setNewPassword(e.target.value)}
+            placeholder="Password"
+          />
+          <select
+            className="input-field"
+            value={newRole}
+            onChange={(e) => setNewRole(e.target.value)}
+          >
+            <option value="">Select Role</option>
+            <option value="Admin">Admin</option>
+            <option value="Customer">Customer</option>
+          </select>
+          <button className="action-button" onClick={() => handleAddNewUser({ username: newUsername, email: newEmail, password: newPassword, role: newRole })}>
+            Add User
+          </button>
+          {addUserSuccess && <p className="success-message">{addUserSuccess}</p>}
+          {addUserError && <p className="error-message">{addUserError}</p>}
+        </div>
           <div className="card get-profile-card">
             <h2>View Profile User </h2>
             <input
@@ -158,6 +275,21 @@ const PageProfile = () => {
             </ul>
             {listError && <p className="error-message">{listError}</p>}
           </div>
+          <div className="card delete-users-card">
+      <h2>Delete User</h2>
+      {deleteError && <p className="error-message">{deleteError}</p>}
+      {deleteSuccess && <p className="success-message">{deleteSuccess}</p>} {/* Display success message */}
+      <input
+        type="text"
+        placeholder="Enter username"
+        value={usernameToDelete}
+        onChange={(e) => setUsernameToDelete(e.target.value)}
+        className="username-input"
+      />
+      <button className="action-button" onClick={onDeleteClick}>
+        Delete User
+      </button>
+    </div>
         </div>
       </div>
       <TheFooter />

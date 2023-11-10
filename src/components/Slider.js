@@ -92,7 +92,7 @@ function Slider() {
                 <p>{item.description}</p>
               </div>
               <div style={{ height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button variant="contained" color="primary" component={Link} to="/menu">
+                <Button variant="contained" color="primary" component={Link} to="/menu-User">
                   Order
                 </Button>
               </div>

@@ -189,7 +189,7 @@ const onDeleteClick = () => {
       <div className="profile-page">
         <div className="card-container">
         <div className="card add-new-user-card">
-          <h2>Add New User</h2>
+          <h2>Add User</h2>
           <input
             className="input-field"
             type="text"
@@ -227,7 +227,7 @@ const onDeleteClick = () => {
           {addUserError && <p className="error-message">{addUserError}</p>}
         </div>
           <div className="card get-profile-card">
-            <h2>View Profile User </h2>
+            <h2>View User </h2>
             <input
               className="input-field"
               type="text"
@@ -241,7 +241,7 @@ const onDeleteClick = () => {
           </div>
 
           <div className="card update-profile-card">
-            <h2>Update Profile User</h2>
+            <h2>Update User</h2>
             <input
               className="input-field"
               type="text"

@@ -54,9 +54,10 @@ function AvatarButton() {
         onClose={handleClose}
       >
         <MenuItem onClick={handleProfile}>Manage Users</MenuItem>
+        <MenuItem onClick={handleManageProduct}>Manage Product</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
-        <MenuItem onClick={handleManageProduct}>Manage Product</MenuItem> {/* Add the button */}
+        
       </Menu>
     </div>
   );

@@ -30,7 +30,7 @@ const HeroSection = () => {
               </p>
 
               <Link 
-              to="/menu"
+              to="/menu-user"
               className={classes.order_button}
                spy={true}
                smooth={true}

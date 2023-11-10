@@ -9,9 +9,8 @@
 
 .card-container {
   display: flex;
-  flex-wrap: wrap; /* Allows cards to wrap to the next line on smaller screens */
-  justify-content: center;
-  gap: 20px; /* Provides consistent spacing between cards */
+  justify-content: space-between;
+  padding: 1px;
 }
 
 .card {
@@ -19,10 +18,8 @@
   border-radius: 8px;
   padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-basis: calc(33.33% - 20px); /* Adjust width to fit 3 cards with spacing */
-  flex-grow: 1;
-  max-width: calc(33.33% - 20px); /* Ensure the card doesn't grow beyond this max-width */
-  margin-bottom: 20px; /* Add spacing below each card */
+  width: calc(33.33% - 20px); /* Adjust width to fit 3 cards with spacing */
+  margin: 0 10px; /* Add spacing between cards */
 }
 
 .input-field {
@@ -48,52 +45,65 @@
   background-color: #0056b3;
 }
 
-.error-message, .success-message {
-  text-align: center;
-  padding: 10px;
-  border-radius: 4px;
-  margin-top: 10px;
-}
-
 .error-message {
-  background-color: #ffdede;
   color: #ff3860;
 }
 
 .success-message {
-  background-color: #d4edda;
   color: #2c9e54;
 }
 
-/* Add New User Card Specific Styles */
-.card.add-new-user-card select {
+.card.list-users-card {
+  margin-bottom: 0; /* Remove excessive margin */
+}
+
+.card.list-users-card button {
+  margin-bottom: 10px; /* Add some spacing below the "List Users" button */
+}
+
+/* Style the list of users */
+.card.list-users-card ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.card.list-users-card li {
+  background: #f5f5f5;
+  border-radius: 4px;
   padding: 10px;
   margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card.list-users-card li:last-child {
+  margin-bottom: 0;
+}
+
+/* Style the table for the list of users */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  background-color: white;
+  text-align: left;
 }
 
-.card.add-new-user-card .action-button {
-  margin-top: 10px; /* Provide spacing between the last input and the button */
+th {
+  background-color: #007bff;
+  color: white;
 }
 
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .card-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .card {
-    flex-basis: 80%; /* Adjust card width for tablet and smaller desktop screens */
-    max-width: 80%; /* Ensure the card doesn't grow beyond this max-width on smaller screens */
-  }
+/* Style table rows */
+tr:nth-child(even) {
+  background-color: #f5f5f5;
 }
 
-@media (max-width: 768px) {
-  .card {
-    flex-basis: 90%; /* Adjust card width for mobile screens */
-    max-width: 90%; /* Ensure the card doesn't grow beyond this max-width on mobile screens */
-  }
+tr:hover {
+  background-color: #e0e0e0;
 }
+

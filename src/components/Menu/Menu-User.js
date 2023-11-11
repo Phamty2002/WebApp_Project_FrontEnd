@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
+import { OrderCartContext } from '../../context/OrderCartContext';
 import Header from '../Header/Header-User';
-
 
 import {
   Card,
@@ -16,9 +16,14 @@ import Pagination from '@mui/material/Pagination';
 
 function Menu() {
   const { products } = useContext(ProductsContext);
+  const { addToOrder, finalizeOrder } = useContext(OrderCartContext);
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
+
+  // Dummy user ID and address - replace with actual data from your application's state or user session
+  const userId = 15; // Example user ID
+  const addressShipping = '123 Main Street'; // Example shipping address
 
   const filteredItems = products.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -28,7 +33,12 @@ function Menu() {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handleOrder = (item) => {
-    console.log("Ordering", item);
+    addToOrder(item);
+    console.log("Added to order:", item);
+  };
+
+  const handleFinalizeOrder = () => {
+    finalizeOrder(userId, addressShipping);
   };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
@@ -36,26 +46,14 @@ function Menu() {
   const itemsToDisplay = filteredItems.slice(startIndex, endIndex);
 
   const handleChangePage = (event, page) => {
-    if (page === 1) {
-      setCurrentPage(1);
-    } else if (page <= totalPages) {
-      setCurrentPage(page);
-    }
+    setCurrentPage(page);
   };
-
-  /* const cardStyle = {
-    marginLeft: '25px', // Adjust the margin value as needed
-  }; */
 
   const imageStyle = {
-    maxWidth: '150%', // Limit the image width to the container's width
-    maxHeight: '180px', // Limit the image height
-    objectFit: 'cover', // Maintain the aspect ratio and cover the entire container
+    maxWidth: '150%',
+    maxHeight: '180px',
+    objectFit: 'cover',
   };
-
-  /* const searchInputStyle = {
-    marginTop: '20px', // Add margin to the top and bottom of the search bar
-  }; */
 
   return (
     <div>
@@ -77,9 +75,9 @@ function Menu() {
                   src={item.image_path || item.image}
                   alt={item.name}
                   className="menu-item-image"
-                  styles={imageStyle}
+                  style={imageStyle}
                   onError={(e) => {
-                    e.target.src = 'path_to_placeholder_image.jpg';
+                    e.target.src = 'path_to_placeholder_image.jpg'; // Replace with actual placeholder image path
                   }}
                   loading="lazy"
                 />
@@ -106,12 +104,21 @@ function Menu() {
           </Grid>
         ))}
       </Grid>
-      <div>
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
         <Pagination
           count={totalPages}
           page={currentPage}
           onChange={handleChangePage}
         />
+      </div>
+      <div style={{ marginTop: '20px', textAlign: 'center' }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleFinalizeOrder}
+        >
+          Finalize Order
+        </Button>
       </div>
     </div>
   );

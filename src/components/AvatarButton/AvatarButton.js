@@ -60,9 +60,9 @@ function AvatarButton() {
       >
         <MenuItem onClick={handleProfile}>Manage Users</MenuItem>
         <MenuItem onClick={handleManageProduct}>Manage Product</MenuItem>
+        <MenuItem onClick={handleOrders}>Manage Orders</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
-        <MenuItem onClick={handleOrders}>Manage Orders</MenuItem>
         
       </Menu>
     </div>

@@ -49,6 +49,7 @@ const GetOrder = () => {
                         <p><strong>Username:</strong> {orderDetails.order.username}</p>
                         <p><strong>Email:</strong> {orderDetails.order.email}</p>
                         <p><strong>Address Shipping:</strong> {orderDetails.order.addressShipping}</p>
+                        <p><strong>Status:</strong> {orderDetails.order.status}</p>
                         <p><strong>Total Amount: $</strong> {orderDetails.order.total_amount}</p>
                     </div>
                     <div className="order-items">

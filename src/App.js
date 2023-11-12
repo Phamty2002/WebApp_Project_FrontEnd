@@ -7,10 +7,11 @@ import HomeUser from './components/HomePage/Home-User';
 import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CrudProduct';
-import Profile from './components/Profile/PageProfile';
+import Profile from './components/profile/PageProfile';
 import OrderPage from './components/OrderPage/OrderPage';
+import Aboutus from './components/About/AboutUs';
 import { ProductsProvider } from './context/ProductsContext';
-import { OrderCartContextProvider } from './context/CartContext'; // Assuming this is the correct path
+import { OrderCartContextProvider } from './context/CartContext'; 
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/menu-user" element={<MenuUser />} />
             <Route path="/menu-emp" element={<MenuEmp />} />
             <Route path="/crud" element={<CrudProduct />} />
+            <Route path="/about" element={<Aboutus />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/order" element={<OrderPage />} />
           </Routes>

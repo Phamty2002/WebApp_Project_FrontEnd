@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
-import { useCart } from '../../context/CartContext'; // Import the Cart Context
 import Header from '../Header/Header-User';
 
 import {
@@ -16,7 +15,6 @@ import Pagination from '@mui/material/Pagination';
 
 function Menu() {
   const { products } = useContext(ProductsContext);
-  const { addToCart } = useCart(); // Use the addToCart function from Cart Context
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
@@ -84,7 +82,6 @@ function Menu() {
                 <Button
                   variant="contained"
                   className="order-button"
-                  onClick={() => addToCart(item)} // Add item to cart when button is clicked
                 >
                   Order
                 </Button>

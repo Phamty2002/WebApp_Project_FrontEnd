@@ -48,5 +48,6 @@ const CartProvider = ({ children }) => {
         </CartContext.Provider>
     );
 };
+export { CartProvider as OrderCartContextProvider };
 
 export default CartProvider;

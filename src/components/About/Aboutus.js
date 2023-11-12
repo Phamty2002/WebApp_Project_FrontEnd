@@ -1,16 +1,16 @@
 // src/components/AboutUs.js
 import React from 'react';
-import Pizza from './pizza.jpg';
-import Mi from  './mì.jpg';
-import Hamburger from './hamburger.jpg';
-import nhanvien from './nhanvien.jpg';
+import Pizza from '../../images/pizza.jpg';
+import Mi from  '../../images/mì.jpg';
+import Hamburger from '../../images/hamburger.jpg';
+import nhanvien from '../../images/nhanvien.jpg';
 
 const AboutUs = () => {
   return (
     <div style={{ display: 'flex', justifyContent: 'center' }} >
         <div style={{ textAlign: 'center', width: '670', height:'1000', padding: '20px' }}> 
         <div style={{textAlign:'center'}}> <h2>Welcome to Rose Petal Bistro!</h2> </div>
-        <div style={{textAlign:'left', padding:'30px'}}>
+        <div style={{textAlign:'left', padding:'20px'}}>
             <p>We enjoy sharing our passion for food through creating a wonderful online space where people can discover, experience and shop for the best food.</p>
             <p>With the desire to bring everyone the best culinary experience, we are proud to introduce to you quality products, from traditional dishes to new creations, from familiar flavors to unique flavors. delicate blend.</p>
             <p>We are committed to providing quality products, carefully selected from the most reliable sources, helping you confidently choose and enjoy your favorite dishes anytime, anywhere.</p>

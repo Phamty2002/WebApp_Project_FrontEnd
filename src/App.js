@@ -10,7 +10,7 @@ import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CrudProduct';
 import Profile from './components/profile/PageProfile';
-import Aboutus from './components/About/AboutUs';
+import Aboutus from './components/About/Aboutus';
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';

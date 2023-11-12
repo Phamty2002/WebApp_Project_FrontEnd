@@ -8,16 +8,13 @@ import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CrudProduct';
 import Profile from './components/profile/PageProfile';
-import OrderPage from './components/OrderPage/OrderPage';
 import Aboutus from './components/About/AboutUs';
 import { ProductsProvider } from './context/ProductsContext';
-import { OrderCartContextProvider } from './context/CartContext'; 
-
 function App() {
   return (
     <Router>
       <ProductsProvider>
-        <OrderCartContextProvider>
+        
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/sign-in" element={<SignIn />} />
@@ -29,9 +26,8 @@ function App() {
             <Route path="/crud" element={<CrudProduct />} />
             <Route path="/about" element={<Aboutus />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/order" element={<OrderPage />} />
           </Routes>
-        </OrderCartContextProvider>
+       
       </ProductsProvider>
     </Router>
   );

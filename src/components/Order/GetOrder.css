@@ -1,6 +1,6 @@
 /* GetOrder.css */
 .getOrder-container {
-    max-width: 600px;
+    max-width: 750px;
     margin: auto;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -27,29 +27,12 @@
     background-color: #007bff;
     color: white;
     cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .getOrder-form button:hover {
     background-color: #0056b3;
-}
-
-.order-details {
-    border-top: 2px solid #eee;
-    padding-top: 20px;
-}
-
-.order-item {
-    border: 1px solid #ccc;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-
-.order-item img {
-    width: 100%;
-    max-width: 500px;
-    height: auto;
-    display: block;
-    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
 }
 
 .order-error-message {
@@ -62,14 +45,59 @@
     gap: 20px;
 }
 
-.order-details {
+.order-details,
+.order-items {
     flex: 1;
     min-width: 0; /* Prevents flex items from overflowing */
 }
 
-.order-items {
-    flex: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.order-items-list {
+    max-height: 400px; /* Adjust this value as needed */
+    overflow-y: auto; /* Enables vertical scrolling */
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd; /* Optional for styling */
+    border-radius: 4px; /* Optional for styling */
+}
+
+.order-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.order-item:nth-child(odd) {
+    background-color: #f8f9fa;
+}
+
+.order-item img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+
+.order-items-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.order-items-list::-webkit-scrollbar-thumb {
+    background-color: #007bff;
+    border-radius: 4px;
+}
+
+.order-items-list::-webkit-scrollbar-track {
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .order-content {
+        flex-direction: column;
+    }
+
+    .order-items-list {
+        max-height: 300px; /* Adjust height for smaller screens */
+    }
 }

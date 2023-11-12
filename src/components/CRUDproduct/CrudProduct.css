@@ -1,0 +1,72 @@
+/* CrudOperations.css */
+.crudOperations-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px; /* Add space before the footer */
+}
+
+.crudOperations-container .button-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.crudOperations-container .button-group button {
+    padding: 10px 15px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    text-align: center;
+}
+
+.crudOperations-container .button-group button:hover {
+    background-color: #0056b3;
+}
+
+.crudOperations-container .form-group, .crudOperations-container .product-item {
+    margin-bottom: 15px;
+    background-color: white;
+    border-radius: 4px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.crudOperations-container .form-group input, 
+.crudOperations-container .form-group textarea {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+}
+
+.crudOperations-container .form-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.crudOperations-container .product-item img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    display: block;
+    margin-top: 10px;
+}
+.product-list {
+    max-height: 500px; 
+    overflow-y: auto; 
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #ddd; 
+    border-radius: 4px;
+}

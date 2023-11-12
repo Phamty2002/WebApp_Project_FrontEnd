@@ -4,11 +4,16 @@ import Pizza from '../../images/pizza.jpg';
 import Mi from  '../../images/mì.jpg';
 import Hamburger from '../../images/hamburger.jpg';
 import nhanvien from '../../images/nhanvien.jpg';
+import Header from '../Header/Header-User';
+import Thefooter from '../Footer/Thefooter'
 
 const AboutUs = () => {
   return (
+    <>
+      <Header />
+    
     <div style={{ display: 'flex', justifyContent: 'center' }} >
-        <div style={{ textAlign: 'center', width: '670', height:'1000', padding: '20px' }}> 
+        <div style={{ textAlign: 'center', width: '670', height:'1000', padding: '10px' }}> 
         <div style={{textAlign:'center'}}> <h2>Welcome to Rose Petal Bistro!</h2> </div>
         <div style={{textAlign:'left', padding:'20px'}}>
             <p>We enjoy sharing our passion for food through creating a wonderful online space where people can discover, experience and shop for the best food.</p>
@@ -48,7 +53,9 @@ const AboutUs = () => {
       </div>
     </div>
   </div>
-</div>   
+</div> 
+<Thefooter />
+    </>  
   );
 };
 

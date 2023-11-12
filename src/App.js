@@ -8,7 +8,7 @@ import HomeEmp from './components/HomePage/Home-Emp';
 import HomeUser from './components/HomePage/Home-User';
 import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
-import CrudProduct from './components/CrudProduct';
+import CrudProduct from './components/CRUDproduct/CrudProduct';
 import Profile from './components/profile/PageProfile';
 import Aboutus from './components/About/Aboutus';
 

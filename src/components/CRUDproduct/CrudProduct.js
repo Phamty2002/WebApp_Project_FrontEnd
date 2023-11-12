@@ -1,9 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
-import Header from './Header/Header-Emp';
-import { ProductsContext } from '../context/ProductsContext';
-import TheFooter from '../components/Footer/Thefooter';
-import '../styles/styles.css';
-//import '../components/CrudProduct.css';
+import Header from '../Header/Header-Emp';
+import { ProductsContext } from '../../context/ProductsContext';
+import TheFooter from '../Footer/Thefooter';
+import './CrudProduct.css';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -167,57 +166,62 @@ function CrudOperations() {
           </form>
         );
         case 'see':
-  return (
-    <div>
-      <h3>Product List</h3>
-     <div style={{ marginBottom: '20px' }}>
-    <input
-      type="text"
-      placeholder="Enter product name to view"
-      value={specificProductName}
-      onChange={(e) => setSpecificProductName(e.target.value)}
-    />
-    <button
-      onClick={() => fetchSpecificProduct(specificProductName)}
-      style={{ marginTop: '15px' }}
-    >
-      Get Specific Product
-     </button>
-      </div>
-      {/* Display the specific product */}
-      {specificProduct && (
-       <div style={{ border: '1px solid #ccc', padding: '10px', marginTop: '10px' }}>
-       <p><strong>ID:</strong> {specificProduct.id}</p>
-       <p><strong>Name:</strong> {specificProduct.name}</p>
-       <p><strong>Price:</strong> {specificProduct.price}</p>
-       <p><strong>Description:</strong> {specificProduct.description}</p>
-       {specificProduct.image_path && (
-          <img src={specificProduct.image_path} alt={specificProduct.name} style={{ width: '50%', height: 'auto', display: 'block', marginBottom: '10px' }} />
-       )}
+          case 'see':
+            return (
+              <div>
+                <h3>Product List</h3>
+                <div style={{ marginBottom: '20px' }}>
+                  <input
+                    type="text"
+                    placeholder="Enter product name to view"
+                    value={specificProductName}
+                    onChange={(e) => setSpecificProductName(e.target.value)}
+                  />
+                  <button
+                    onClick={() => fetchSpecificProduct(specificProductName)}
+                    style={{ marginTop: '15px', marginBottom: '40px' }}
+                  >
+                    Get Specific Product
+                  </button>
+                </div>
+                {/* Display the specific product */}
+                {specificProduct && (
+                  <div className="product-item">
+                    <p><strong>ID:</strong> {specificProduct.id}</p>
+                    <p><strong>Name:</strong> {specificProduct.name}</p>
+                    <p><strong>Price:</strong> {specificProduct.price}</p>
+                    <p><strong>Description:</strong> {specificProduct.description}</p>
+                    {specificProduct.image_path && (
+                      <img 
+                        src={specificProduct.image_path} 
+                        alt={specificProduct.name} 
+                        style={{ width: '50%', height: 'auto', display: 'block', marginBottom: '10px' }} 
+                      />
+                    )}
+                  </div>
+                )}
+      <div className="product-list">
+        {products.map((product, index) => (
+          <div key={index} className="product-item">
+            <p><strong>ID:</strong> {product.id}</p>
+            <p><strong>Name:</strong> {product.name}</p>
+            <p><strong>Price:</strong> {product.price}</p>
+            <p><strong>Description:</strong> {product.description}</p>
+            {product.image_path && (
+              <img src={product.image_path} alt={product.name} style={{ width: '500px', height: '200px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
+            )}
+            <div style={{ marginTop: '10px' }}>
+              <button onClick={() => {
+                setCurrentProduct(product);
+                setAction('update');
+              }} style={{ marginRight: '10px' }}>Update</button>
+              <button onClick={() => handleDelete(product.name)}>Delete</button>
+            </div>
           </div>
-      )}
-      {/* List all products */}
-      {products.map((product, index) => (
-        <div key={index} style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
-        <p><strong>ID:</strong> {product.id}</p>
-        <p><strong>Name:</strong> {product.name}</p>
-        <p><strong>Price:</strong> {product.price}</p>
-        <p><strong>Description:</strong> {product.description}</p>
-        {product.image_path && (
-          <img src={product.image_path} alt={product.name} style={{ width: '500px', height: '300px', display: 'block', marginBottom: '15px', marginTop: '10px' }} />
-        )}
-        <div style={{ marginTop: '10px' }}>
-          <button onClick={() => {
-            setCurrentProduct(product);
-            setAction('update');
-          }} style={{ marginRight: '10px' }}>Update</button>
-          <button onClick={() => handleDelete(product.name)}>Delete</button>
-        </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
-
         
       case 'update':
         return (
@@ -273,34 +277,24 @@ function CrudOperations() {
   return (
     <div>
       <Header />
-      <div className="container">
-        <div className="button-group" style={{ display: "flex", gap: "15px" }}>
-          <button
-            onClick={() => setAction("insert")}
-            style={{ padding: "15px" }}
-          >
+      <div className="crudOperations-container">
+        <div className="button-group">
+          <button onClick={() => setAction("insert")} className="crud-button">
             Insert Products
           </button>
-          <button onClick={() => setAction("see")} style={{ padding: "15px" }}>
+          <button onClick={() => setAction("see")} className="crud-button">
             View Products
           </button>
-          <button
-            onClick={() => setAction("update")}
-            style={{ padding: "15px" }}
-          >
+          <button onClick={() => setAction("update")} className="crud-button">
             Update Products
           </button>
-          <button
-            onClick={() => setAction("delete")}
-            style={{ padding: "15px" }}
-          >
+          <button onClick={() => setAction("delete")} className="crud-button">
             Delete Products
           </button>
         </div>
         {renderBox()}
       </div>
-      <TheFooter />
-
+     <TheFooter />
     </div>
     
   );

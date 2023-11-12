@@ -1,41 +1,76 @@
-import React, { useContext } from 'react';
-import { OrderCartContext } from '../../context/OrderCartContext';
-import { Button, List, ListItem, Typography } from '@mui/material';
-
-const { orderItems, removeFromOrder, finalizeOrder } = useContext(OrderCartContext);
+import React, { useState } from 'react';
+import { useCart } from '../../context/CartContext'; // Adjust path as needed
+import { 
+  TextField, 
+  Button, 
+  List, 
+  ListItem, 
+  ListItemText, 
+  Divider,
+  Typography
+} from '@mui/material';
 
 function OrderPage() {
-  const { orderItems, removeFromOrder } = useContext(OrderCartContext);
+    const { cartItems, placeOrder } = useCart();
+    const [userId, setUserId] = useState('');
+    const [address, setAddress] = useState('');
 
-  const handleRemoveItem = (itemId) => {
-    removeFromOrder(itemId);
-  };
+    const handlePlaceOrder = async () => {
+        if (!userId || !address) {
+            alert('Please fill in all fields');
+            return;
+        }
 
-  const handlePlaceOrder = () => {
-    // Example: Finalizing the order
-    finalizeOrder(userId, addressShipping);
-  };
+        try {
+            const response = await placeOrder(userId, address);
+            alert(`Order placed successfully! Order ID: ${response.orderId}`);
+        } catch (error) {
+            alert('Failed to place order. Please try again.');
+            console.error(error);
+        }
+    };
 
-  return (
-    <div>
-      <Typography variant="h4" gutterBottom>
-        Your Order
-      </Typography>
-      <List>
-        {orderItems.map((item) => (
-          <ListItem key={item.id}>
-            <Typography variant="h6">{item.name}</Typography>
-            <Typography variant="body1">Quantity: {item.quantity}</Typography>
-            <Typography variant="body1">Price: ${item.price}</Typography>
-            <Button onClick={() => handleRemoveItem(item.id)}>Remove</Button>
-          </ListItem>
-        ))}
-      </List>
-      <Button variant="contained" color="primary" onClick={handlePlaceOrder}>
-        Place Order
-      </Button>
-    </div>
-  );
+    return (
+        <div>
+            <h2>Your Cart</h2>
+            <List>
+                {cartItems.map((item, index) => (
+                    <React.Fragment key={index}>
+                        <ListItem>
+                            <ListItemText 
+                                primary={item.name} 
+                                secondary={`Quantity: ${item.quantity} | Price: $${item.price}`} 
+                            />
+                        </ListItem>
+                        <Divider />
+                    </React.Fragment>
+                ))}
+            </List>
+            <TextField
+                label="User ID"
+                value={userId}
+                onChange={(e) => setUserId(e.target.value)}
+                margin="normal"
+                fullWidth
+            />
+            <TextField
+                label="Shipping Address"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+                margin="normal"
+                fullWidth
+                multiline
+            />
+            <Button 
+                variant="contained" 
+                color="primary" 
+                onClick={handlePlaceOrder}
+                style={{ marginTop: '20px' }}
+            >
+                Place Order
+            </Button>
+        </div>
+    );
 }
 
 export default OrderPage;

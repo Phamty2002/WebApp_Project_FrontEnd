@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import SignIn from './components/Authentication/Login';
 import SignUp from './components/Authentication/Signup';
 import HomeEmp from './components/HomePage/Home-Emp';
@@ -7,16 +7,16 @@ import HomeUser from './components/HomePage/Home-User';
 import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CrudProduct';
-import { ProductsProvider } from './context/ProductsContext';
-import { OrderCartContextProvider } from './context/OrderCartContext'; // Corrected import
-import Profile from './components/profile/PageProfile';
+import Profile from './components/Profile/PageProfile';
 import OrderPage from './components/OrderPage/OrderPage';
+import { ProductsProvider } from './context/ProductsContext';
+import { OrderCartContextProvider } from './context/CartContext'; // Assuming this is the correct path
 
 function App() {
   return (
     <Router>
       <ProductsProvider>
-        <OrderCartContextProvider> {/* Corrected Provider */}
+        <OrderCartContextProvider>
           <Routes>
             <Route path="/" element={<SignIn />} />
             <Route path="/sign-in" element={<SignIn />} />

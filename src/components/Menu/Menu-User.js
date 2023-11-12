@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
-import { OrderCartContext } from '../../context/OrderCartContext';
+import { useCart } from '../../context/CartContext'; // Import the Cart Context
 import Header from '../Header/Header-User';
 
 import {
@@ -16,14 +16,11 @@ import Pagination from '@mui/material/Pagination';
 
 function Menu() {
   const { products } = useContext(ProductsContext);
-  const { addToOrder, finalizeOrder } = useContext(OrderCartContext);
+  const { addToCart } = useCart(); // Use the addToCart function from Cart Context
   const [searchTerm, setSearchTerm] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 8;
 
-  // Dummy user ID and address - replace with actual data from your application's state or user session
-  const userId = 15; // Example user ID
-  const addressShipping = '123 Main Street'; // Example shipping address
 
   const filteredItems = products.filter((item) =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -32,14 +29,6 @@ function Menu() {
   const totalItems = filteredItems.length;
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
-  const handleOrder = (item) => {
-    addToOrder(item);
-    console.log("Added to order:", item);
-  };
-
-  const handleFinalizeOrder = () => {
-    finalizeOrder(userId, addressShipping);
-  };
 
   const startIndex = (currentPage - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
@@ -95,7 +84,7 @@ function Menu() {
                 <Button
                   variant="contained"
                   className="order-button"
-                  onClick={() => handleOrder(item)}
+                  onClick={() => addToCart(item)} // Add item to cart when button is clicked
                 >
                   Order
                 </Button>
@@ -110,15 +99,6 @@ function Menu() {
           page={currentPage}
           onChange={handleChangePage}
         />
-      </div>
-      <div style={{ marginTop: '20px', textAlign: 'center' }}>
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleFinalizeOrder}
-        >
-          Finalize Order
-        </Button>
       </div>
     </div>
   );

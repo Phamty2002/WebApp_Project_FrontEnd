@@ -1,0 +1,44 @@
+/* DeleteOrder.css */
+.deleteOrder-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.deleteOrder-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+}
+
+.deleteOrder-input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    width: 100%;
+}
+
+.deleteOrder-button {
+    padding: 10px 15px;
+    border-radius: 4px;
+    border: none;
+    background-color: #dc3545; /* Bootstrap danger color */
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.deleteOrder-button:hover {
+    background-color: #c82333;
+}
+
+.deleteOrder-message {
+    margin-top: 20px;
+    font-size: 18px;
+}

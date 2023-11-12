@@ -1,6 +1,8 @@
 import React, { useContext, useState } from 'react';
 import { ProductsContext } from '../../context/ProductsContext';
 import Header from '../Header/Header-User';
+import PlaceOrder from '../Order/PlaceOrder1';
+import TheFooter from '../Footer/Thefooter';
 
 import {
   Card,
@@ -97,6 +99,8 @@ function Menu() {
           onChange={handleChangePage}
         />
       </div>
+      <PlaceOrder ></PlaceOrder>
+      <TheFooter ></TheFooter>
     </div>
   );
 }

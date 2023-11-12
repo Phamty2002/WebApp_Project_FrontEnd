@@ -1,0 +1,71 @@
+/* PlaceOrder.css */
+.placeOrder-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+}
+
+.placeOrder-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.placeOrder-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.placeOrder-form-group label {
+    font-weight: bold;
+}
+
+.placeOrder-form-group input, 
+.placeOrder-form-group button {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.placeOrder-form-group button {
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+.placeOrder-form-group button:hover {
+    background-color: #0056b3;
+}
+
+.placeOrder-item-row {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.placeOrder-add-item-btn {
+    background-color: #28a745;
+}
+
+.placeOrder-add-item-btn:hover {
+    background-color: #218838;
+}
+
+.placeOrder-remove-item-btn {
+    background-color: #dc3545;
+}
+
+.placeOrder-remove-item-btn:hover {
+    background-color: #c82333;
+}
+
+.placeOrder-message {
+    text-align: center;
+    font-size: 18px;
+}
+

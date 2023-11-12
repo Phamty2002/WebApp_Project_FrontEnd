@@ -36,6 +36,11 @@ function AvatarButton() {
     handleClose();
   };
 
+  const handleOrders = () => {
+    navigate('/orders-emp');
+    handleClose();
+  }
+
   return (
     <div className="buttonContainer">
       <IconButton
@@ -57,6 +62,7 @@ function AvatarButton() {
         <MenuItem onClick={handleManageProduct}>Manage Product</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+        <MenuItem onClick={handleOrders}>Manage Orders</MenuItem>
         
       </Menu>
     </div>

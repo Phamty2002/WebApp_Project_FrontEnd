@@ -1,0 +1,55 @@
+/* UpdateOrder.css */
+.updateOrder-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 8px;
+}
+
+.updateOrder-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.updateOrder-form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.updateOrder-form-group label {
+    font-weight: bold;
+}
+
+.updateOrder-form-group input,
+.updateOrder-form-group select {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    appearance: none; /* Removes default styles from select dropdown */
+}
+
+.updateOrder-button {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    background-color: #007bff;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.updateOrder-button:hover {
+    background-color: #0056b3;
+}
+
+.updateOrder-message {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 18px;
+    color: #28a745; /* Success color */
+}

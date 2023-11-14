@@ -65,6 +65,9 @@
     padding: 10px;
     margin-bottom: 10px;
     background-color: #fff;
+    /* Roll animation */
+    transform: translateX(100%);
+    animation: rollIn 0.6s forwards;
 }
 
 .order-item:nth-child(odd) {
@@ -77,6 +80,17 @@
     height: auto;
     display: block;
     margin-top: 10px;
+}
+
+@keyframes rollIn {
+    from {
+        transform: translateX(100%) rotate(-120deg);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0) rotate(0deg);
+        opacity: 1;
+    }
 }
 
 .order-items-list::-webkit-scrollbar {

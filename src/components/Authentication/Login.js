@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
+import { useUser } from '../../context/UserContext'; // Import the useUser hook
 import '../../styles/styles.css';
 
 function Modal({ message, onClose }) {
-  // Log to see if this component renders
   console.log('Modal rendering with message:', message);
 
-  // Now, the modal visibility is controlled by inline style based on the `message`.
   return (
     <div className="modal" style={{ display: message ? 'flex' : 'none' }}>
       <div className="modal-content">
@@ -21,14 +20,14 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const { setUserId } = useUser(); // Use the setUserId function from context
 
-  // Construct the URL from the environment variable or default to a local URL
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   async function handleLogin(event) {
     event.preventDefault();
     console.log('Handle login called');
-  
+
     try {
       const response = await fetch(`${backendUrl}/api/login/login`, {
         method: 'POST',
@@ -37,29 +36,27 @@ function Login() {
         },
         body: JSON.stringify({ username, password }),
       });
-  
+
       const data = await response.json();
-  
+
       if (response.ok) {
         console.log('Login successful, setting message');
         setMessage('Login successful! Redirecting...');
-  
-        // Save the token to localStorage or sessionStorage
+
         localStorage.setItem('token', data.token);
-  
-        // Redirect to the home page after a delay
+        setUserId(data.user.id); // Set the user ID in context
+
         setTimeout(() => {
           setMessage('');
-  
-          // Redirect based on the user's role
+
           const userRole = data.user.role;
           if (userRole === 'admin') {
-            window.location.href = '/home-emp'; // Redirect to the employee homepage
+            window.location.href = '/home-emp';
           } else {
-            window.location.href = '/home-user'; // Redirect to the customer homepage
+            window.location.href = '/home-user';
           }
         }, 3000);
-  
+
       } else {
         console.log('Login failed, setting error message');
         let errorMessage = data.message || 'Login Failed: username or password is not correct';
@@ -72,6 +69,7 @@ function Login() {
       setMessage('An error occurred: ' + error.message);
     }
   }
+
   
 
   return (

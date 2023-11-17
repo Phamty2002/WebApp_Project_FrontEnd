@@ -5,7 +5,8 @@ import Mi from  '../../images/mì.jpg';
 import Hamburger from '../../images/hamburger.jpg';
 import nhanvien from '../../images/nhanvien.jpg';
 import Header from '../Header/Header-User';
-import Thefooter from '../Footer/Thefooter'
+import Thefooter from '../Footer/Thefooter';
+import '../About/Aboutus.css';
 
 const AboutUs = () => {
   return (

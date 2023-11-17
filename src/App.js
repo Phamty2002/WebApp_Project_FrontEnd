@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { UserProvider } from './context/UserContext';
 
 // Importing existing components
 import SignIn from './components/Authentication/Login';
@@ -23,8 +24,9 @@ import { ProductsProvider } from './context/ProductsContext';
 
 function App() {
   return (
-    <Router>
-      <ProductsProvider>
+    <UserProvider> 
+      <Router>
+        <ProductsProvider>
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/sign-in" element={<SignIn />} />
@@ -45,8 +47,9 @@ function App() {
           <Route path="/delete-order" element={<DeleteOrder />} />
           <Route path="/orders-emp" element={<ManageOrder />} />
         </Routes>
-      </ProductsProvider>
-    </Router>
+        </ProductsProvider>
+      </Router>
+    </UserProvider>
   );
 }
 

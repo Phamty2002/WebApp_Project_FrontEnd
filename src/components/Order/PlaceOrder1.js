@@ -8,6 +8,7 @@ const PlaceOrder = () => {
     const [items, setItems] = useState([{ productId: '', quantity: 1 }]);
     const [addressShipping, setAddressShipping] = useState('');
     const [message, setMessage] = useState('');
+    const [orderId, setOrderId] = useState(null);
 
     const handleItemChange = (index, field, value) => {
         const newItems = [...items];
@@ -31,6 +32,7 @@ const PlaceOrder = () => {
             const response = await placeOrder(userId, items, addressShipping);
             console.log(response.data);
             setMessage('Order placed successfully!');
+            setOrderId(response.data.orderId);  
         } catch (error) {
             console.error(error);
             setMessage('Error placing order. Please check your input.');
@@ -87,8 +89,9 @@ const PlaceOrder = () => {
                 <button type="submit" className="placeOrder-form-group">Add to Cart</button>
             </form>
             {message && <p className="placeOrder-message">{message}</p>}
+            {orderId && <p className="placeOrder-message">Order ID: {orderId}</p>}  {/* Display the order ID */}
         </div>
     );
-                }    
+};   
 
 export default PlaceOrder;

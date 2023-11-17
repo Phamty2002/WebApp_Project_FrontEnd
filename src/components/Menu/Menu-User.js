@@ -39,9 +39,10 @@ function Menu() {
   };
 
   const imageStyle = {
-    maxWidth: '150%',
-    maxHeight: '180px',
-    objectFit: 'cover',
+    width: '100%', 
+    height: '180px', 
+    objectFit: 'cover', 
+    objectPosition: 'center',
   };
 
   return (
@@ -56,41 +57,44 @@ function Menu() {
         className="search-input"
       />
       <Grid container className="menu-items">
-        {itemsToDisplay.map((item) => (
-          <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
-            <Card className="menu-item-card">
-              <CardContent>
-                <img
-                  src={item.image_path || item.image}
-                  alt={item.name}
-                  className="menu-item-image"
-                  style={imageStyle}
-                  onError={(e) => {
-                    e.target.src = 'path_to_placeholder_image.jpg'; // Replace with actual placeholder image path
-                  }}
-                  loading="lazy"
-                />
-                <Typography variant="h6" className="menu-item-name">
-                  {item.name}
-                </Typography>
-                <Typography className="menu-item-description">
-                  {item.description}
-                </Typography>
-                <Typography className="menu-item-price">
-                  Price: ${item.price}
-                </Typography>
-              </CardContent>
-              <CardActions>
-                <Button
-                  variant="contained"
-                  className="order-button"
-                >
-                  Order
-                </Button>
-              </CardActions>
-            </Card>
-          </Grid>
-        ))}
+      {itemsToDisplay.map((item) => (
+  <Grid item key={item.id} xs={12} sm={6} md={4} lg={3}>
+    <Card className="menu-item-card">
+      <CardContent>
+        <img
+          src={item.image_path || item.image}
+          alt={item.name}
+          className="menu-item-image"
+          style={imageStyle}
+          onError={(e) => {
+            e.target.src = 'path_to_placeholder_image.jpg'; // Replace with actual placeholder image path
+          }}
+          loading="lazy"
+        />
+        <Typography variant="subtitle1" className="menu-item-id">
+          ID: {item.id}
+        </Typography>
+        <Typography variant="h6" className="menu-item-name">
+          {item.name}
+        </Typography>
+        <Typography className="menu-item-description">
+          {item.description}
+        </Typography>
+        <Typography className="menu-item-price">
+          Price: ${item.price}
+        </Typography>
+      </CardContent>
+      <CardActions>
+        <Button
+          variant="contained"
+          className="order-button"
+        >
+          Order
+        </Button>
+      </CardActions>
+    </Card>
+  </Grid>
+))}
       </Grid>
       <div style={{ marginTop: '20px', textAlign: 'center' }}>
         <Pagination

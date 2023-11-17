@@ -7,27 +7,28 @@ import Box from '@mui/material/Box';
 import avatar from '../../images/logo.jpg';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { useUser } from '../../context/UserContext';
 
 function Header() {
+  const { userId } = useUser(); // Use the useUser hook to get the userId
   const linkStyle = {
-    textDecoration: 'none', // Prevents the default underline
-    color: 'inherit', // Keeps the default text color
+    textDecoration: 'none',
+    color: 'inherit',
   };
 
   const appBarStyle = {
     backgroundColor: '#D4B487',
-    marginTop: '0px', // Add margin to the top of the AppBar
+    marginTop: '0px',
   };
 
   const buttonStyle = {
-    fontWeight: 'bold', // Makes the button text bold
-    transition: 'background-color 0.3s ease', // Smooth background-color transition for hover effect
+    fontWeight: 'bold',
+    transition: 'background-color 0.3s ease',
     '&:hover': {
-      backgroundColor: 'rgba(255, 255, 255, 0.2)', // Slightly changes the background color on hover
+      backgroundColor: 'rgba(255, 255, 255, 0.2)',
     },
-    margin: '8px 16px', // Adjusted spacing around buttons
-    // If you need to increase the size of the buttons
-    padding: '6px 16px', // Optional: Increases the padding inside the buttons for a larger hit area
+    margin: '8px 16px',
+    padding: '6px 16px',
   };
 
   return (
@@ -37,24 +38,29 @@ function Header() {
           <Link to="/home-user" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
             <img src={avatar} alt="Logo" width="70" height="70" />
             <Typography
-  variant="h6"
-  sx={{
-    marginLeft: 2,
-    color: '#FFFFFF',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // This should be the font-family you desire
-    fontWeight: 'bold', // Making the text bold
-    textShadow: '1px 1px 2px rgba(0,0,0,0.1)', // Optional: Adds a slight shadow for a smooth look
-    WebkitFontSmoothing: 'antialiased', // Smoothing for WebKit browsers
-    MozOsxFontSmoothing: 'grayscale', // Smoothing for Firefox on Mac
-    transition: 'color 0.3s ease', // Smooth color transition for hover effects
-  }}
->
-  Rose Petal Bistro
-</Typography>
-
+              variant="h6"
+              sx={{
+                marginLeft: 2,
+                color: '#FFFFFF',
+                fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                transition: 'color 0.3s ease',
+              }}
+            >
+              Rose Petal Bistro
+            </Typography>
           </Link>
         </Box>
         <Box display="flex" flexGrow={1} justifyContent="flex-end">
+          {/* Display User ID if available */}
+          {userId && (
+            <Typography sx={{ marginRight: 2, color: 'white' }}>
+              User ID: {userId}
+            </Typography>
+          )}
           <Link to="/home-user" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               Home

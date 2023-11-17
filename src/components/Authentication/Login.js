@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useUser } from '../../context/UserContext'; // Import the useUser hook
+import { useUser } from '../../context/UserContext';
 import '../../styles/styles.css';
 
 function Modal({ message, onClose }) {
@@ -20,7 +20,6 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const { setUserId } = useUser(); // Use the setUserId function from context
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -29,46 +28,45 @@ function Login() {
     console.log('Handle login called');
 
     try {
-      const response = await fetch(`${backendUrl}/api/login/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+        const response = await fetch(`${backendUrl}/api/login/login`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ username, password }),
+        });
 
-      const data = await response.json();
+        const data = await response.json();
 
-      if (response.ok) {
-        console.log('Login successful, setting message');
-        setMessage('Login successful! Redirecting...');
+        if (response.ok) {
+            console.log('Login successful, setting message');
+            const userId = data.user.id;
+            setMessage(<span>Login successful! Your User ID: <strong> {userId} </strong>. Redirecting...</span>);
 
-        localStorage.setItem('token', data.token);
-        setUserId(data.user.id); // Set the user ID in context
+            localStorage.setItem('token', data.token);
+            
 
-        setTimeout(() => {
-          setMessage('');
-
-          const userRole = data.user.role;
-          if (userRole === 'admin') {
-            window.location.href = '/home-emp';
-          } else {
-            window.location.href = '/home-user';
-          }
-        }, 3000);
-
-      } else {
-        console.log('Login failed, setting error message');
-        let errorMessage = data.message || 'Login Failed: username or password is not correct';
-        setError(errorMessage);
-        setMessage(errorMessage);
-      }
+            setTimeout(() => {
+                setMessage('');
+                const userRole = data.user.role;
+                if (userRole === 'admin') {
+                    window.location.href = '/home-emp';
+                } else {
+                    window.location.href = '/home-user';
+                }
+            }, 3000);
+        } else {
+            console.log('Login failed, setting error message');
+            let errorMessage = data.message || 'Login Failed: username or password is not correct';
+            setError(errorMessage);
+            setMessage(errorMessage);
+        }
     } catch (error) {
-      console.error('An error occurred:', error);
-      setError('An error occurred');
-      setMessage('An error occurred: ' + error.message);
+        console.error('An error occurred:', error);
+        setError('An error occurred');
+        setMessage('An error occurred: ' + error.message);
     }
-  }
+}
 
   
 

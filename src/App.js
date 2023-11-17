@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { UserProvider } from './context/UserContext';
 
 // Importing existing components
 import SignIn from './components/Authentication/Login';
@@ -24,7 +23,7 @@ import { ProductsProvider } from './context/ProductsContext';
 
 function App() {
   return (
-    <UserProvider> 
+     
       <Router>
         <ProductsProvider>
         <Routes>
@@ -49,7 +48,7 @@ function App() {
         </Routes>
         </ProductsProvider>
       </Router>
-    </UserProvider>
+    
   );
 }
 

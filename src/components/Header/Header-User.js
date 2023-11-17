@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -7,10 +7,12 @@ import Box from '@mui/material/Box';
 import avatar from '../../images/logo.jpg';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
-import { useUser } from '../../context/UserContext';
+import { fetchOrderHistory } from '../../Services/orderService';
+import { IconButton, Dialog, DialogContent, DialogTitle, TextField, DialogActions, } from '@mui/material';
+import HistoryIcon from '@mui/icons-material/History';
 
 function Header() {
-  const { userId } = useUser(); // Use the useUser hook to get the userId
+  
   const linkStyle = {
     textDecoration: 'none',
     color: 'inherit',
@@ -29,6 +31,40 @@ function Header() {
     },
     margin: '8px 16px',
     padding: '6px 16px',
+  };
+
+  const [open, setOpen] = useState(false);
+  const [userId, setUserId] = useState('');
+  const [orderHistory, setOrderHistory] = useState([]);
+  const [selectedOrder, setSelectedOrder] = useState(null);
+
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
+  const handleFetchOrderHistory = async () => {
+    try {
+      const response = await fetchOrderHistory(userId);
+      setOrderHistory(response.data);
+      
+      handleClose();
+    } catch (error) {
+      console.error('Error fetching order history:', error);
+      // Handle error (e.g., show a notification)
+    }
+
+  };
+
+  const handleViewOrderDetails = (order) => {
+    setSelectedOrder(order);
+  };
+
+  const handleCloseOrderDetails = () => {
+    setSelectedOrder(null);
+  };
+
+  const handleCloseOrderHistory = () => {
+    setOrderHistory([]);
   };
 
   return (
@@ -55,12 +91,7 @@ function Header() {
           </Link>
         </Box>
         <Box display="flex" flexGrow={1} justifyContent="flex-end">
-          {/* Display User ID if available */}
-          {userId && (
-            <Typography sx={{ marginRight: 2, color: 'white' }}>
-              User ID: {userId}
-            </Typography>
-          )}
+          
           <Link to="/home-user" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               Home
@@ -99,7 +130,84 @@ function Header() {
             </Button>
           </Link>
         </Box>
+        <IconButton color="inherit" onClick={handleOpen}>
+          <HistoryIcon />
+        </IconButton>
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Enter User ID</DialogTitle>
+          <DialogContent>
+            <TextField
+              autoFocus
+              margin="dense"
+              id="userId"
+              label="User ID"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={userId}
+              onChange={(e) => setUserId(e.target.value)}
+            />
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose}>Cancel</Button>
+            <Button onClick={handleFetchOrderHistory}>Fetch Order History</Button>
+          </DialogActions>
+        </Dialog>
       </Toolbar>
+
+      {/* Display order history in a virtual box using Box component */}
+      {orderHistory.length > 0 && (
+        <Box
+          sx={{
+            position: 'absolute',
+            top: '80px',
+            right: '20px',
+            padding: '20px',
+            zIndex: 1000,
+            backgroundColor: 'grey', // Updated background color
+            borderRadius: '8px', // Updated border radius
+            boxShadow: '0px 0px 10px rgba(0, 0, 0, 0.1)', // Updated box shadow
+          }}
+        >
+          <Typography variant="h6">Order History:</Typography>
+          <ul>
+            {orderHistory.map((order) => (
+              <li key={order.orderId}>
+                {order.username}'s order {order.id}{' '}
+                <Button
+                  onClick={() => handleViewOrderDetails(order)}
+                  sx={{ color: 'orange' }}
+                >
+                  View Details
+                </Button>
+              </li>
+            ))}
+          </ul>
+          <Button onClick={handleCloseOrderHistory} sx={{ color: 'white', marginTop: '10px', }}>
+            Close
+          </Button>
+        </Box>
+      )}
+
+      {/* Display selected order details in a dialog */}
+      <Dialog open={selectedOrder !== null} onClose={handleCloseOrderDetails}>
+        <DialogTitle>Order Details</DialogTitle>
+        <DialogContent>
+          {selectedOrder && (
+            <div>
+              <Typography variant="h6">Items:</Typography>
+              <ul>
+                {selectedOrder.items.map((item) => (
+                  <li key={item.product_id}>{item.name} - Quantity: {item.quantity}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseOrderDetails}>Close</Button>
+        </DialogActions>
+      </Dialog>
     </AppBar>
   );
 }

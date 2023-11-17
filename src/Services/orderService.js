@@ -18,3 +18,7 @@ export const updateOrder = (orderId, updates) => {
 export const deleteOrder = (orderId) => {
     return axios.delete(`${API_URL}/api/orders/${orderId}`);
 };
+
+export const fetchOrderHistory = (userId) => {
+    return axios.get(`${API_URL}/api/orders/user/${userId}`);
+};

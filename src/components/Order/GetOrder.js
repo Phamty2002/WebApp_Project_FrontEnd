@@ -3,6 +3,7 @@ import { getOrder } from '../../Services/orderService';
 import './GetOrder.css';
 import Header from '../Header/Header-Emp';
 import TheFooter from '../Footer/Thefooter';
+import Sidebar from '../Header/SideBar';
 
 const GetOrder = () => {
     const [orderId, setOrderId] = useState('');
@@ -24,6 +25,7 @@ const GetOrder = () => {
 
     return (
         <div>
+            <Sidebar/>
             <div className="getOrder-container">
                 <form onSubmit={handleSubmit} className="getOrder-form">
                     <input

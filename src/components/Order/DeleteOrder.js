@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { deleteOrder } from '../../Services/orderService';
 import './DeleteOrder.css';
+import Sidebar from '../Header/SideBar';
 
 
 const DeleteOrder = () => {
@@ -20,6 +21,8 @@ const DeleteOrder = () => {
     };
 
     return (
+        <div>
+            <Sidebar/>
         <div className="deleteOrder-container">
             <form onSubmit={handleSubmit} className="deleteOrder-form">
                 <input
@@ -33,6 +36,7 @@ const DeleteOrder = () => {
                 <button type="submit" className="deleteOrder-button">Delete Order</button>
             </form>
             {message && <p className="deleteOrder-message">{message}</p>}
+        </div>
         </div>
     );
 }

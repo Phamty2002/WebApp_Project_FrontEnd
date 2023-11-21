@@ -4,6 +4,7 @@ import Header from '../Header/Header-Emp';
 import Contact from '../contact';
 import TheFooter from '../Footer/Thefooter';
 import Sections from '../Sections/Sections';
+import Sidebar from '../Header/SideBar';
 
 function Home() {
   const containerStyle = {
@@ -12,9 +13,7 @@ function Home() {
 
   return (
     <div style={containerStyle}>
-      <Header />
-      <Sections />
-      <TheFooter />
+      <Sidebar />
     </div>
   );
 }

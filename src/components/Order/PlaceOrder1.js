@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { placeOrder } from '../../Services/orderService';
 import './PlaceOrder.css';
+import Sidebar from '../Header/SideBar';
 
 const PlaceOrder = () => {
     const [userId, setUserId] = useState('');
@@ -40,6 +41,8 @@ const PlaceOrder = () => {
     };
 
     return (
+        <div>
+            <Sidebar/>
         <div className="placeOrder-container">
             <form onSubmit={handleSubmit} className="placeOrder-form">
                 <div className="placeOrder-form-group">
@@ -90,6 +93,7 @@ const PlaceOrder = () => {
             </form>
             {message && <p className="placeOrder-message">{message}</p>}
             {orderId && <p className="placeOrder-message">Order ID: {orderId}</p>}  {/* Display the order ID */}
+        </div>
         </div>
     );
 };   

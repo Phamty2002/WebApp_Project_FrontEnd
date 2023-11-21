@@ -1,0 +1,95 @@
+/* Base styling for the sidebar */
+.sidebar {
+    background-color: #2C3E50; /* Dark blue background */
+    color: white;
+    width: 250px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+    position: fixed;
+    overflow-y: auto;
+}
+
+/* Styling for the header in the sidebar */
+.sidebar h2 {
+    color: #ECF0F1; /* Light grey color */
+    margin-bottom: 30px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* Unordered list styling */
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* List item styling */
+.sidebar li {
+    margin-bottom: 10px;
+}
+
+/* Link styling */
+.sidebar a, .sidebar button {
+    color: #ECF0F1;
+    text-decoration: none;
+    font-size: 18px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    cursor: pointer;
+}
+
+.sidebar a:hover, .sidebar button:hover {
+    background-color: #34495E; /* Slightly lighter blue */
+}
+
+/* Dropdown content styling */
+.dropdown ul {
+    display: none;
+    padding-left: 20px;
+}
+
+.dropdown ul li {
+    padding-left: 10px;
+}
+
+/* Show dropdown content when visible */
+.dropdown ul {
+    display: block;
+}
+
+.sidebar button {
+    font-weight: normal;
+}
+.dropdown label {
+    position: relative;
+    display: inline-block;
+    padding-right: 20px;
+}
+
+.dropdown label::after {
+    content: "\f0d7"; /* Font Awesome caret-down icon */
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 12px;
+}
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+    .sidebar h2 {
+        margin-top: 20px;
+    }
+}

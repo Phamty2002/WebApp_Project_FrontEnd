@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { updateOrder } from '../../Services/orderService';
 import './UpdateOrder.css';
+import Sidebar from '../Header/SideBar';
 
 
 const UpdateOrder = () => {
@@ -23,6 +24,8 @@ const UpdateOrder = () => {
     };
 
     return (
+        <div>
+            <Sidebar/>
         <div className="updateOrder-container">
             <h2>Update Order</h2>
             <form onSubmit={handleSubmit} className="updateOrder-form">
@@ -76,6 +79,7 @@ const UpdateOrder = () => {
                 <button type="submit" className="updateOrder-button">Update Order</button>
             </form>
             {message && <p className="updateOrder-message">{message}</p>}
+        </div>
         </div>
     );
     }

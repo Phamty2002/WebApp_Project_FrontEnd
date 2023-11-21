@@ -3,6 +3,7 @@ import Header from '../Header/Header-Emp';
 import { ProductsContext } from '../../context/ProductsContext';
 import TheFooter from '../Footer/Thefooter';
 import './CrudProduct.css';
+import Sidebar from '../Header/SideBar';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -276,7 +277,7 @@ function CrudOperations() {
 
   return (
     <div>
-      <Header />
+      <Sidebar />
       <div className="crudOperations-container">
         <div className="button-group">
           <button onClick={() => setAction("insert")} className="crud-button">
@@ -294,7 +295,7 @@ function CrudOperations() {
         </div>
         {renderBox()}
       </div>
-     <TheFooter />
+     
     </div>
     
   );

@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import Header from '../Header/Header-Emp';
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 import TheFooter from '../Footer/Thefooter';
+import Sidebar from '../Header/SideBar';
 
 // Modal component
 const Modal = ({ show, children, onClose }) => {
@@ -185,7 +186,7 @@ const onDeleteClick = () => {
 
   return (
     <>
-      <Header />
+      <Sidebar/>
       <div className="profile-page">
         <div className="card-container">
         <div className="card add-new-user-card">
@@ -292,7 +293,7 @@ const onDeleteClick = () => {
     </div>
         </div>
       </div>
-      <TheFooter />
+     
     </>
   );
 };

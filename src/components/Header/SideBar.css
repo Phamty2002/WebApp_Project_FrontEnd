@@ -68,19 +68,16 @@
 .sidebar button {
     font-weight: normal;
 }
-.dropdown label {
-    position: relative;
-    display: inline-block;
-    padding-right: 20px;
+.dropdown-icon {
+    margin-left: 10px; /* Adjust as needed */
 }
 
-.dropdown label::after {
-    content: "\f0d7"; /* Font Awesome caret-down icon */
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 12px;
+/* Adjust button styling to accommodate icon */
+.dropdown button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    /* Other existing styles... */
 }
 /* Responsive design for smaller screens */
 @media (max-width: 768px) {

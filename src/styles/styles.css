@@ -748,6 +748,35 @@ button:hover {
   background-color: #0056b3;
 }
 
+body {
+  background-color: white;
+  color: black;
+  /* ... other light mode styles ... */
+}
+
+/* Dark mode styles */
+.dark-mode {
+  background-color: black;
+  color: white;
+  /* ... other dark mode styles ... */
+}
+
+.dark-mode button {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #d6cbcb;
+}
+
+/* Adjusting navbar, sidebar, headers, etc. */
+.dark-mode .navbar, .dark-mode .sidebar {
+  background-color: #1f1f1f;
+  border-bottom: 1px solid #333;
+}
+
+
+
+
+
 
 
 

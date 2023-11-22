@@ -1,11 +1,13 @@
 /* GetOrder.css */
 .getOrder-container {
     max-width: 750px;
-    margin: auto;
+    margin: auto ;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;
     border-radius: 8px;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .getOrder-form {
@@ -80,11 +82,12 @@
     height: auto;
     display: block;
     margin-top: 10px;
+    animation: rollIn 0.6s forwards;
 }
 
 @keyframes rollIn {
     from {
-        transform: translateX(100%) rotate(-120deg);
+        transform: translateX(-100%) rotate(-120deg);
         opacity: 0;
     }
     to {
@@ -112,6 +115,62 @@
     }
 
     .order-items-list {
-        max-height: 300px; /* Adjust height for smaller screens */
+        max-height: 400px; /* Adjust height for smaller screens */
     }
+}
+
+
+
+
+.getOrder-button {
+    background-color: #4CAF50; /* A pleasant green */
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%; /* Full-width buttons */
+}
+
+.getOrder-button:hover {
+    background-color: #45a049; /* A darker shade of green for hover */
+}
+
+.payment-form-container {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: opacity 0.3s ease, max-height 0.3s ease;
+}
+
+.payment-form-container.open {
+    opacity: 1;
+    max-height: 1000px; /* Adjust as needed for your form */
+}
+
+.toast-notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1050;
+    display: flex;
+    align-items: center;
+    background-color: #28a745; /* Bootstrap success color */
+    color: white;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    transform: translateY(-100%);
+    opacity: 0;
+}
+
+.toast-notification.show {
+    transform: translateY(0);
+    opacity: 1;
 }

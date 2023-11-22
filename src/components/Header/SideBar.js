@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './SideBar.css';
 import { ThemeContext } from '../../context/ThemeContext'; // Make sure the path is correct
+import logo from "../../images/logo.jpg";
 
 function Dropdown({ label, children }) {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,6 +22,7 @@ function Sidebar() {
     const { theme, toggleTheme } = useContext(ThemeContext);
 
     return (
+        
         <div className={`sidebar ${theme === 'dark' ? 'dark-mode' : ''}`}>
             <h2>Dashboard</h2>
             <ul>

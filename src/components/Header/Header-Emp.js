@@ -15,7 +15,7 @@ function Header() {
   };
 
   const appBarStyle = {
-    backgroundColor: '#D4B487',
+    backgroundColor: '#455769',
     marginTop: '0px', // Add margin to the top of the AppBar
   };
 
@@ -32,60 +32,31 @@ function Header() {
 
   return (
     <AppBar position="static" sx={appBarStyle}>
-      <Toolbar>
+      <Toolbar sx={{ justifyContent: 'center' }}> {/* Center content horizontally */}
         <Box display="flex" alignItems="center">
-          <Link to="/home-emp" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
-            <img src={avatar} alt="Logo" width="70" height="70" />
+          <Link to="/home-emp" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginLeft: '190px' }}>
+            <img src={avatar} alt="Logo" width="100" height="100" />
             <Typography
-  variant="h6"
-  sx={{
-    marginLeft: 2,
-    color: '#FFFFFF',
-    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif', // This should be the font-family you desire
-    fontWeight: 'bold', // Making the text bold
-    textShadow: '1px 1px 2px rgba(0,0,0,0.1)', // Optional: Adds a slight shadow for a smooth look
-    WebkitFontSmoothing: 'antialiased', // Smoothing for WebKit browsers
-    MozOsxFontSmoothing: 'grayscale', // Smoothing for Firefox on Mac
-    transition: 'color 0.3s ease', // Smooth color transition for hover effects
-  }}
->
-  Rose Petal Bistro
-</Typography>
-
+              variant="h6"
+              sx={{
+                marginLeft: 5,
+                color: '#FFFFFF',
+                fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+                fontWeight: 'bold',
+                textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
+                WebkitFontSmoothing: 'antialiased',
+                MozOsxFontSmoothing: 'grayscale',
+                transition: 'color 0.3s ease',
+              }}
+            >
+              Rose Petal Bistro
+            </Typography>
           </Link>
-        </Box>
-        <Box display="flex" flexGrow={1} justifyContent="flex-end">
-          <Link to="/home-emp" style={linkStyle}>
-            <Button color="inherit" sx={buttonStyle}>
-              Home
-            </Button>
-          </Link>
-          <Link to="/menu-emp" style={linkStyle}>
-            <Button color="inherit" sx={buttonStyle}>
-              Menu
-            </Button>
-          </Link>
-          <Link to="/about" style={linkStyle}>
-            <Button color="inherit" sx={buttonStyle}>
-              About Us
-            </Button>
-          </Link>
-          {/* Added Contact link */}
-          <Link to="/contact" style={linkStyle}>
-            <Button color="inherit" sx={buttonStyle}>
-              Contact
-            </Button>
-          </Link>
-          <Link to="/Testimonials" style={linkStyle}>
-            <Button color="inherit" sx={buttonStyle}>
-              Testimontials
-            </Button>
-          </Link>
-          <AvatarButton />
         </Box>
       </Toolbar>
     </AppBar>
   );
+  
 }
 
 export default Header;

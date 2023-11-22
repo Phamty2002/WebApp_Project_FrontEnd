@@ -5,7 +5,6 @@
   align-items: center;
   padding: 20px;
   gap: 20px;
-  
 }
 
 .card-container {
@@ -77,6 +76,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  word-wrap: break-word; /* Ensure long text like emails wraps */
 }
 
 .card.list-users-card li:last-child {
@@ -87,17 +87,24 @@
 table {
   width: 100%;
   border-collapse: collapse;
+  table-layout: fixed; /* Fixed table layout for better control */
 }
 
 th, td {
   padding: 10px;
   border: 1px solid #ccc;
   text-align: left;
+  word-wrap: break-word; /* Ensure text in table cells wraps */
 }
 
 th {
   background-color: #007bff;
   color: white;
+}
+
+/* Optional: specific column width adjustments */
+.email-column {
+  width: 200px; /* Adjust as needed for email column */
 }
 
 /* Style table rows */
@@ -108,4 +115,3 @@ tr:nth-child(even) {
 tr:hover {
   background-color: #e0e0e0;
 }
-

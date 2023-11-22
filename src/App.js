@@ -16,12 +16,16 @@ import Aboutus from './components/About/Aboutus';
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';
+import PlaceOrderEmp from './components/Order/PlaceOrder-emp';
 import GetOrder from './components/Order/GetOrder';
 import UpdateOrder from './components/Order/UpdateOrder';
 import DeleteOrder from './components/Order/DeleteOrder';
 import ManageOrder from './components/Order/ManageOrder-emp';
 import GetOrderUser from './components/Order/GetOrder-users';
 import { ProductsProvider } from './context/ProductsContext';
+
+//import for payment
+import PaymentRefund from './components/Payment/payment-refund';
 
 
 
@@ -56,9 +60,12 @@ function App() {
             <Route path="/crud" element={<CrudProduct />} />
             <Route path="/about" element={<Aboutus />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/payment-refund" element={<PaymentRefund />} />
+
 
             {/* Routes for order management */}
             <Route path="/place-order" element={<PlaceOrder />} />
+            <Route path="/place-order-emp" element={<PlaceOrderEmp />} />
             <Route path="/get-order" element={<GetOrder />} />
             <Route path="/get-order-users" element={<GetOrderUser />} />
             <Route path="/update-order" element={<UpdateOrder />} />

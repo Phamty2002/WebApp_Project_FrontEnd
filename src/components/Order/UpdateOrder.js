@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { updateOrder } from '../../Services/orderService';
 import './UpdateOrder.css';
 import Sidebar from '../Header/SideBar';
+import Header from '../Header/Header-Emp';
 
 
 const UpdateOrder = () => {
@@ -26,6 +27,7 @@ const UpdateOrder = () => {
     return (
         <div>
             <Sidebar/>
+            <Header/>
         <div className="updateOrder-container">
             <h2>Update Order</h2>
             <form onSubmit={handleSubmit} className="updateOrder-form">

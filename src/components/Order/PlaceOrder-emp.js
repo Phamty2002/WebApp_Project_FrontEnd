@@ -1,8 +1,9 @@
 // src/components/PlaceOrder.js
 import React, { useState } from 'react';
 import { placeOrder } from '../../Services/orderService';
-import './PlaceOrder.css';
+import './PlaceOrder-emp.css';
 import Sidebar from '../Header/SideBar';
+import Header from '../Header/Header-Emp';
 
 const PlaceOrder = () => {
     const [userId, setUserId] = useState('');
@@ -42,8 +43,10 @@ const PlaceOrder = () => {
 
     return (
         <div>
-            
+            <Sidebar/>
+            <Header/>
         <div className="placeOrder-container">
+        <h2>Add Order</h2>
             <form onSubmit={handleSubmit} className="placeOrder-form">
                 <div className="placeOrder-form-group">
                     <label>UserID:</label>

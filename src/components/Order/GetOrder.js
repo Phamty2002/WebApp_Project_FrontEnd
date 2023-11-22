@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { getOrder } from '../../Services/orderService';
-import './GetOrder.css';
 import Header from '../Header/Header-Emp';
 import TheFooter from '../Footer/Thefooter';
 import Sidebar from '../Header/SideBar';
+import './GetOrder.css'
 
 const GetOrder = () => {
     const [orderId, setOrderId] = useState('');
@@ -25,8 +25,11 @@ const GetOrder = () => {
 
     return (
         <div>
+            
             <Sidebar/>
+            <Header/>
             <div className="getOrder-container">
+            <h2>Retrieve Order</h2>
                 <form onSubmit={handleSubmit} className="getOrder-form">
                     <input
                         type="text"
@@ -74,6 +77,7 @@ const GetOrder = () => {
                     </div>
                 )}
             </div>
+            
         </div>
     );
 };

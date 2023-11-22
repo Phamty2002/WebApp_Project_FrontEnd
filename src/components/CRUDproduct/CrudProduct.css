@@ -2,11 +2,12 @@
 .crudOperations-container {
     max-width: 1000px;
     margin: auto;
-    margin-left: 350px;
+    margin-left: 450px;
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 50px;
 }
 
 .crudOperations-container .button-group {
@@ -19,7 +20,7 @@
 
 .crudOperations-container .button-group button {
     padding: 10px 15px;
-    background-color: #007bff;
+    background-color: #b300ff;
     color: white;
     border: none;
     border-radius: 4px;
@@ -29,7 +30,7 @@
 }
 
 .crudOperations-container .button-group button:hover {
-    background-color: #0056b3;
+    background-color: #b3005a;
 }
 
 .crudOperations-container .form-group, .crudOperations-container .product-item {

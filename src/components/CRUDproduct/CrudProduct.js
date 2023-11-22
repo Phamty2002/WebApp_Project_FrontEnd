@@ -278,6 +278,7 @@ function CrudOperations() {
   return (
     <div>
       <Sidebar />
+      <Header/>
       <div className="crudOperations-container">
         <div className="button-group">
           <button onClick={() => setAction("insert")} className="crud-button">

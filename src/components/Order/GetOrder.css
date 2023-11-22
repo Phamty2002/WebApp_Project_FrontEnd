@@ -1,7 +1,7 @@
 /* GetOrder.css */
 .getOrder-container {
-    max-width: 750px;
-    margin: auto ;
+    max-width: 800px;
+    margin-left: 580px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;

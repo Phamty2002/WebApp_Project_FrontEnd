@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { deleteOrder } from '../../Services/orderService';
 import './DeleteOrder.css';
 import Sidebar from '../Header/SideBar';
+import Header from '../Header/Header-Emp';
 
 
 const DeleteOrder = () => {
@@ -23,7 +24,9 @@ const DeleteOrder = () => {
     return (
         <div>
             <Sidebar/>
+            <Header/>
         <div className="deleteOrder-container">
+        <h2>Delete Order</h2>
             <form onSubmit={handleSubmit} className="deleteOrder-form">
                 <input
                     type="text"

@@ -187,6 +187,7 @@ const onDeleteClick = () => {
   return (
     <>
       <Sidebar/>
+      <Header/>
       <div className="profile-page">
         <div className="card-container">
         <div className="card add-new-user-card">

@@ -1,8 +1,9 @@
-/* DeleteOrder.css */
-.deleteOrder-container {
-    max-width: 400px;
+/* RefundOrder.css */
+.refundOrder-container {
+    max-width: 630px;
     margin: auto;
-    margin-left: 630px;
+    margin-left: 615px; /* Adjust this as needed to align with your layout */
+    margin-top: 50px;
     padding: 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     background-color: white;
@@ -10,14 +11,14 @@
     text-align: center;
 }
 
-.deleteOrder-form {
+.refundOrder-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
     align-items: center;
 }
 
-.deleteOrder-input {
+.refundOrder-input {
     padding: 10px;
     border-radius: 4px;
     border: 1px solid #ddd;
@@ -25,21 +26,21 @@
     width: 100%;
 }
 
-.deleteOrder-button {
+.refundOrder-button {
     padding: 10px 15px;
     border-radius: 4px;
     border: none;
-    background-color: #dc3545; /* Bootstrap danger color */
+    background-color: #28a745; /* A green color to indicate a refund action */
     color: white;
     font-size: 16px;
     cursor: pointer;
 }
 
-.deleteOrder-button:hover {
-    background-color: #c82333;
+.refundOrder-button:hover {
+    background-color: #218838; /* A darker shade of green for hover */
 }
 
-.deleteOrder-message {
+.refundOrder-message {
     margin-top: 20px;
     font-size: 18px;
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { processRefund } from '../../Services/payment-refundService';
 import './payment-refund.css';
 import Sidebar from '../Header/SideBar';
@@ -6,43 +6,24 @@ import Header from '../Header/Header-Emp';
 
 function RefundComponent() {
     const [orderId, setOrderId] = useState('');
-    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
-    const [notifyText, setNotifyText] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
 
     const handleRefund = async () => {
         try {
             const refundResponse = await processRefund(orderId);
             console.log(refundResponse);
 
-            // Show the success message after successful refund
-            setShowSuccessMessage(true);
-
-            // Set notify text based on refund response
-            const refundStatus = refundResponse.status;
-            if (refundStatus === 'success') {
-                setNotifyText('Refund Successfully');
-            } else {
-                setNotifyText('Refund Failed');
-            }
-
-            // Hide the success message after 3 seconds
-            setTimeout(() => {
-                setShowSuccessMessage(false);
-                // You can clear the input field or perform any other actions here
+            if (refundResponse.status === 'success') {
+                setSuccessMessage('Refund processed successfully.');
                 setOrderId('');
-            }, 3000);
+            } else {
+                setSuccessMessage('Refund processed successfully.');
+            }
         } catch (error) {
             console.error(error);
-            setNotifyText('Refund Failed');
+            setSuccessMessage('Refund failed. Please try again.');
         }
     };
-
-    useEffect(() => {
-        // Clear notify text when success message is hidden
-        if (!showSuccessMessage) {
-            setNotifyText('');
-        }
-    }, [showSuccessMessage]);
 
     return (
         <div>
@@ -57,14 +38,11 @@ function RefundComponent() {
                         placeholder="Enter Order ID for refund"
                         className="refundOrder-input"
                     />
-                    <button onClick={handleRefund} className="refundOrder-button">
+                    <button type="button" onClick={handleRefund} className="refundOrder-button">
                         Process Refund
                     </button>
-                    {notifyText}
+                    {successMessage && <div className="success-message">{successMessage}</div>}
                 </form>
-                {showSuccessMessage && (
-                    <div className="success-message">{notifyText}</div>
-                )}
             </div>
         </div>
     );

@@ -199,9 +199,9 @@ function Header() {
                   <strong>Order ID:</strong> {selectedOrder.id}<br />
                   <strong>Date:</strong> {new Date(selectedOrder.order_date).toLocaleDateString()}<br />
                   <strong>Shipping Address:</strong> {selectedOrder.addressShipping}<br />
-                  <strong>Total Amount:</strong> ${selectedOrder.total_amount}<br />
                   <strong>Payment Status:</strong> {selectedOrder.payment_status}<br />
-                  <strong>Payment Method:</strong> {selectedOrder.payment_method}
+                  <strong>Payment Method:</strong> {selectedOrder.payment_method}<br />
+                  <strong>Total Amount:</strong> ${selectedOrder.total_amount}<br />
                 </Typography>
                 <Typography variant="h6" sx={{ marginTop: 2 }}>Items:</Typography>
                 <ul>

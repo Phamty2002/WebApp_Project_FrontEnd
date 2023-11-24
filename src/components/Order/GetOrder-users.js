@@ -108,6 +108,8 @@ const [toastMessage, setToastMessage] = useState('');
                                 <p><strong>Email:</strong> {orderDetails.order.email}</p>
                                 <p><strong>Address Shipping:</strong> {orderDetails.order.addressShipping}</p>
                                 <p><strong>Status:</strong> {orderDetails.order.status}</p>
+                                <p><strong>Payment Status:</strong> {orderDetails.order.payment_status}</p>
+                                <p><strong>Payment Method:</strong> {orderDetails.order.payment_method}</p>
                                 <p><strong>Total Amount: $</strong> {orderDetails.order.total_amount}</p>
                             </div>
                             <div className="order-items">

@@ -150,7 +150,7 @@ function Header() {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleFetchOrderHistory}>Fetch Order History</Button>
+            <Button onClick={handleFetchOrderHistory}>Get Order History</Button>
           </DialogActions>
         </Dialog>
       </Toolbar>
@@ -191,22 +191,30 @@ function Header() {
 
       {/* Display selected order details in a dialog */}
       <Dialog open={selectedOrder !== null} onClose={handleCloseOrderDetails}>
-        <DialogTitle>Order Details</DialogTitle>
-        <DialogContent>
-          {selectedOrder && (
-            <div>
-              <Typography variant="h6">Items:</Typography>
-              <ul>
-                {selectedOrder.items.map((item) => (
-                  <li key={item.product_id}>{item.name} - Quantity: {item.quantity}</li>
-                ))}
-              </ul>
-            </div>
-          )}
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseOrderDetails}>Close</Button>
-        </DialogActions>
+          <DialogTitle>Order Details</DialogTitle>
+          <DialogContent>
+            {selectedOrder && (
+              <div>
+                <Typography variant="subtitle1">
+                  <strong>Order ID:</strong> {selectedOrder.id}<br />
+                  <strong>Date:</strong> {new Date(selectedOrder.order_date).toLocaleDateString()}<br />
+                  <strong>Shipping Address:</strong> {selectedOrder.addressShipping}<br />
+                  <strong>Total Amount:</strong> ${selectedOrder.total_amount}<br />
+                  <strong>Payment Status:</strong> {selectedOrder.payment_status}<br />
+                  <strong>Payment Method:</strong> {selectedOrder.payment_method}
+                </Typography>
+                <Typography variant="h6" sx={{ marginTop: 2 }}>Items:</Typography>
+                <ul>
+                  {selectedOrder.items.map((item) => (
+                    <li key={item.product_id}>{item.name} - Quantity: {item.quantity}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseOrderDetails}>Close</Button>
+          </DialogActions>
       </Dialog>
     </AppBar>
   );

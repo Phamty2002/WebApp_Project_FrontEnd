@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useUser } from '../../context/UserContext';
 import '../../styles/styles.css';
+import Footer from '../Footer/Thefooter';
 
 function Modal({ message, onClose }) {
   console.log('Modal rendering with message:', message);
@@ -71,6 +72,7 @@ function Login() {
   
 
   return (
+    <div>
     <div className="login-container">
       <Modal message={message} onClose={() => setMessage('')} />
       <form className="login-form" onSubmit={handleLogin}>
@@ -108,6 +110,9 @@ function Login() {
           Don't have an account? <a href="/sign-up">Sign-Up</a>
         </p>
       </form>
+      
+    </div>
+    <Footer/>
     </div>
   );
 }

@@ -41,6 +41,11 @@ function AvatarButton() {
     handleClose();
   }
 
+  const handleUsers = () => {
+    navigate('/saveprofile');
+    handleClose();
+  }
+
   return (
     <div className="buttonContainer">
       <IconButton
@@ -63,6 +68,7 @@ function AvatarButton() {
         <MenuItem onClick={handleOrders}>Manage Orders</MenuItem>
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <MenuItem onClick={handleSignOut}>Sign Out</MenuItem>
+        <MenuItem onClick={handleUsers}>Profile</MenuItem>
         
       </Menu>
     </div>

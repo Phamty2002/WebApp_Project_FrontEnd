@@ -124,6 +124,11 @@ function Header() {
               Order Cart
             </Button>
           </Link>
+          <Link to="/saveprofile" style={linkStyle}>
+            <Button color="inherit" sx={buttonStyle}>
+              Profile
+            </Button>
+          </Link>
           <Link to="/sign-in" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               Sign Out

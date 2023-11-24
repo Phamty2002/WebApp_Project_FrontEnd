@@ -1,19 +1,26 @@
- // src/context/UserContext.js
-import React, { createContext, useState, useContext } from 'react';
+// UserContext.js
+import { createContext, useContext, useState } from 'react';
 
 const UserContext = createContext();
 
-export const UserProvider = ({ children }) => {
-    const [userId, setUserId] = useState(null);
+export function useUser() {
+  return useContext(UserContext);
+}
 
-    return (
-        <UserContext.Provider value={{ userId, setUserId }}>
-            {children}
-        </UserContext.Provider>
-    );
-};
+export function UserProvider({ children }) {
+  const [user, setUser] = useState(null);
 
-// Create and export useUser hook for easy access to UserContext
-export const useUser = () => useContext(UserContext);
+  const login = (userData) => {
+    setUser(userData);
+  };
 
-export default UserContext;
+  const logout = () => {
+    setUser(null);
+  };
+
+  return (
+    <UserContext.Provider value={{ user, login, logout }}>
+      {children}
+    </UserContext.Provider>
+  );
+}

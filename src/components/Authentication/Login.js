@@ -21,53 +21,67 @@ function Login() {
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check if user is already logged in
+  React.useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setIsLoggedIn(true);
+      window.location.href = user.role === 'admin' ? '/home-emp' : '/home-user';
+    }
+  }, []);
+
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   async function handleLogin(event) {
     event.preventDefault();
     console.log('Handle login called');
-
+  
     try {
-        const response = await fetch(`${backendUrl}/api/login/login`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ username, password }),
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            console.log('Login successful, setting message');
-            const userId = data.user.id;
-            setMessage(<span>Login successful! Your User ID: <strong> {userId} </strong>. Redirecting...</span>);
-
-            localStorage.setItem('token', data.token);
-            
-
-            setTimeout(() => {
-                setMessage('');
-                const userRole = data.user.role;
-                if (userRole === 'admin') {
-                    window.location.href = '/home-emp';
-                } else {
-                    window.location.href = '/home-user';
-                }
-            }, 3000);
-        } else {
-            console.log('Login failed, setting error message');
-            let errorMessage = data.message || 'Login Failed: username or password is not correct';
-            setError(errorMessage);
-            setMessage(errorMessage);
-        }
+      const response = await fetch(`${backendUrl}/api/login/login`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ username, password }),
+      });
+  
+      const data = await response.json();
+      
+      
+  
+      if (response.ok) {
+        console.log('Login successful, setting message');
+        const userId = data.user.id;
+        setMessage(<span>Login successful! Your User ID: <strong> {userId} </strong>. Redirecting...</span>);
+        setIsLoggedIn(true); // Set the isLoggedIn state to true
+        
+        // Store user data in localStorage
+        localStorage.setItem('user', JSON.stringify(data.user));p
+  
+        setTimeout(() => {
+          setMessage('');
+          const userRole = data.user.role;
+          if (userRole === 'admin') {
+            window.location.href = '/home-emp';
+          } else {
+            window.location.href = '/home-user';
+          }
+        }, 3000);
+      } else {
+        console.log('Login failed, setting error message');
+        let errorMessage = data.message || 'Login Failed: username or password is not correct';
+        setError(errorMessage);
+        setMessage(errorMessage);
+      }
     } catch (error) {
-        console.error('An error occurred:', error);
-        setError('An error occurred');
-        setMessage('An error occurred: ' + error.message);
+      console.error('An error occurred:', error);
+      setError('An error occurred');
+      setMessage('An error occurred: ' + error.message);
     }
-}
+  }
 
   
 

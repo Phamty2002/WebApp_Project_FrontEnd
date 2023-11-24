@@ -13,6 +13,7 @@ import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CRUDproduct/CrudProduct';
 import Profile from './components/profile/PageProfile';
 import Aboutus from './components/About/Aboutus';
+import SaveProfile from './components/Save-Profile/Profile-User';
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';
@@ -61,6 +62,7 @@ function App() {
             <Route path="/about" element={<Aboutus />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/payment-refund" element={<PaymentRefund />} />
+            <Route path="/saveprofile" element={<SaveProfile />} />
 
 
             {/* Routes for order management */}

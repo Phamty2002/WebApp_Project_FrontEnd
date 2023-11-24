@@ -4,10 +4,11 @@ function SignUp() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
+  const [phone_number, setPhone] = useState(''); // Add phone state
   const [error, setError] = useState('');
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
-  // Construct the URL from the environment variable or default to a local URL
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
   async function handleSignUp(event) {
@@ -19,28 +20,27 @@ function SignUp() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ username, password, email }),
+        body: JSON.stringify({ username, password, email, phone_number }), // Include phone_number in the request body
       });
 
       if (response.ok) {
-        setIsModalOpen(true); // Open the modal on successful sign-up
+        const successData = await response.json();
+        setSuccessMessage(successData.message); // Set the success message
+        setIsModalOpen(true);
       } else {
-        // Handle sign-up failure, show an error message
         const errorData = await response.json();
         setError(errorData.message);
         console.error('Sign Up failed');
       }
     } catch (error) {
-      // Handle network errors, request failures, etc.
       setError('An error occurred');
       console.error('An error occurred', error);
     }
   }
 
-  // Function to close the modal and redirect to sign-in page
   const closeModal = () => {
     setIsModalOpen(false);
-    window.location.href = '/sign-in'; // Redirect to the sign-in page
+    window.location.href = '/sign-in';
   };
 
   return (
@@ -48,6 +48,7 @@ function SignUp() {
       <form className="signup-form" onSubmit={handleSignUp}>
         <h2>Sign Up</h2>
         {error && <div className="error">{error}</div>}
+        {successMessage && <div className="success">{successMessage}</div>} {/* Display success message */}
         <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
@@ -73,17 +74,27 @@ function SignUp() {
         <div className="form-group">
           <label htmlFor="email">Email</label>
           <input
-          type="email"
-          id="email"
-          name="email"
-          required
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-         />
+            type="email"
+            id="email"
+            name="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
         </div>
-        <button type="submit">
-          Sign Up
-        </button>
+        {/* Add a phone_number input field */}
+        <div className="form-group">
+          <label htmlFor="phone_number">Phone Number</label>
+          <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            required
+            value={phone_number}
+            onChange={(e) => setPhone(e.target.value)}
+          />
+        </div>
+        <button type="submit">Sign Up</button>
         <p className="login-link">
           Already have an account? <a href="/sign-in">Log In</a>
         </p>

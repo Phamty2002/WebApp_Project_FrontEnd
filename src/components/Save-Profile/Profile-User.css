@@ -1,0 +1,56 @@
+.profile-page {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* Adjust space between profile box and change password box */
+  }
+  
+  .change-password-box {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px; /* Adjust width as needed */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .change-password-box input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+  }
+  
+  .change-password-box button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .content-container {
+    display: flex;
+    justify-content: space-around; /* Adjust as needed for spacing */
+    padding: 20px;
+  }
+  
+  .change-password-box, .profile-container {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Adjust width as needed */
+  }
+
+  .update-info-box {
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Adjust width as needed */
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }

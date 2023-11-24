@@ -23,15 +23,6 @@ function Login() {
   const [message, setMessage] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  // Check if user is already logged in
-  React.useEffect(() => {
-    const user = localStorage.getItem('user');
-    if (user) {
-      setIsLoggedIn(true);
-      window.location.href = user.role === 'admin' ? '/home-emp' : '/home-user';
-    }
-  }, []);
-
 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -57,9 +48,10 @@ function Login() {
         const userId = data.user.id;
         setMessage(<span>Login successful! Your User ID: <strong> {userId} </strong>. Redirecting...</span>);
         setIsLoggedIn(true); // Set the isLoggedIn state to true
-        
+
         // Store user data in localStorage
-        localStorage.setItem('user', JSON.stringify(data.user));p
+        localStorage.setItem('user', JSON.stringify(data.user));
+        
   
         setTimeout(() => {
           setMessage('');

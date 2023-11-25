@@ -8,7 +8,7 @@ import avatar from '../../images/logo.jpg';
 import { Link } from 'react-router-dom';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { fetchOrderHistory } from '../../Services/orderService';
-import { IconButton, Dialog, DialogContent, DialogTitle, TextField, DialogActions, } from '@mui/material';
+import { IconButton, Dialog, DialogContent, DialogTitle, TextField, DialogActions } from '@mui/material';
 import HistoryIcon from '@mui/icons-material/History';
 
 function Header() {
@@ -34,26 +34,29 @@ function Header() {
   };
 
   const [open, setOpen] = useState(false);
-  const [userId, setUserId] = useState('');
   const [orderHistory, setOrderHistory] = useState([]);
   const [selectedOrder, setSelectedOrder] = useState(null);
 
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handleFetchOrderHistory = async () => {
-    try {
-      const response = await fetchOrderHistory(userId);
-      setOrderHistory(response.data);
-      
-      handleClose();
-    } catch (error) {
-      console.error('Error fetching order history:', error);
-      // Handle error (e.g., show a notification)
-    }
-
+  // Function to retrieve user data from localStorage
+  const getUserFromLocalStorage = () => {
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
   };
+
+  const handleOpen = async () => {
+    const user = getUserFromLocalStorage();
+    if (user && user.id) {
+      try {
+        const response = await fetchOrderHistory(user.id);
+        setOrderHistory(response.data);
+      } catch (error) {
+        console.error('Error fetching order history:', error);
+      }
+    }
+    setOpen(true);
+  };
+
+  const handleClose = () => setOpen(false);
 
   const handleViewOrderDetails = (order) => {
     setSelectedOrder(order);
@@ -134,30 +137,10 @@ function Header() {
               Sign Out
             </Button>
           </Link>
-        </Box>
+          </Box>
         <IconButton color="inherit" onClick={handleOpen}>
           <HistoryIcon />
         </IconButton>
-        <Dialog open={open} onClose={handleClose}>
-          <DialogTitle>Enter User ID</DialogTitle>
-          <DialogContent>
-            <TextField
-              autoFocus
-              margin="dense"
-              id="userId"
-              label="User ID"
-              type="text"
-              fullWidth
-              variant="standard"
-              value={userId}
-              onChange={(e) => setUserId(e.target.value)}
-            />
-          </DialogContent>
-          <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleFetchOrderHistory}>Get Order History</Button>
-          </DialogActions>
-        </Dialog>
       </Toolbar>
 
       {/* Display order history in a virtual box using Box component */}
@@ -201,12 +184,13 @@ function Header() {
             {selectedOrder && (
               <div>
                 <Typography variant="subtitle1">
-                  <strong>Order ID:</strong> {selectedOrder.id}<br />
-                  <strong>Date:</strong> {new Date(selectedOrder.order_date).toLocaleDateString()}<br />
-                  <strong>Shipping Address:</strong> {selectedOrder.addressShipping}<br />
-                  <strong>Payment Status:</strong> {selectedOrder.payment_status}<br />
-                  <strong>Payment Method:</strong> {selectedOrder.payment_method}<br />
-                  <strong>Total Amount:</strong> ${selectedOrder.total_amount}<br />
+                  <strong>Order ID: </strong> {selectedOrder.id}<br />
+                  <strong>Date: </strong> {new Date(selectedOrder.order_date).toLocaleDateString()}<br />
+                  <strong>Shipping Address: </strong> {selectedOrder.addressShipping}<br />
+                  <strong>Order Status: </strong> {selectedOrder.status}<br />
+                  <strong>Payment Status: </strong> {selectedOrder.payment_status}<br />
+                  <strong>Payment Method: </strong> {selectedOrder.payment_method}<br />
+                  <strong>Total Amount :</strong> ${selectedOrder.total_amount}<br />
                 </Typography>
                 <Typography variant="h6" sx={{ marginTop: 2 }}>Items:</Typography>
                 <ul>

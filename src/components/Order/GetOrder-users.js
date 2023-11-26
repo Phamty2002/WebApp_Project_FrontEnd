@@ -32,52 +32,90 @@ const [toastMessage, setToastMessage] = useState('');
 
 
     const handlePayment = async (e) => {
-    e.preventDefault();
-    try {
-        const paymentData = {
-            orderId: Number(orderId), // Convert orderId to Number
-            amount: parseFloat(paymentAmount), // Ensure amount is a float
-            paymentMethod: paymentMethod
-        };
-
-        console.log('Sending payment data:', paymentData); // Log data being sent
-
-        const response = await processPayment(paymentData);
-        console.log('API response:', response); // Log API response
-
-        // Only reset form states after a successful API response
-        setPaymentAmount('');
-        setPaymentMethod('');
-        setShowPaymentForm(false);
-
-        setToastMessage('Payment processed successfully. Order status updated to Delivering.');
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
-
-        setOrderDetails(prevDetails => ({
-            ...prevDetails,
-            order: {
-              ...prevDetails.order,
-              status: 'Delivering' // Update the status in your state
+        e.preventDefault();
+        try {
+            const paymentData = {
+                orderId: Number(orderId), // Convert orderId to Number
+                amount: parseFloat(paymentAmount), // Ensure amount is a float
+                paymentMethod: paymentMethod
+            };
+    
+            console.log('Sending payment data:', paymentData); // Log data being sent
+    
+            const response = await processPayment(paymentData);
+            console.log('API response:', response); // Log API response
+    
+            // Only reset form states after a successful API response
+            setPaymentAmount('');
+            setPaymentMethod('');
+            setShowPaymentForm(false);
+    
+            // Create and download the invoice PDF
+            const downloadInvoice = async () => {
+                try {
+                    // Use the correct URL for creating the invoice
+                    const createInvoiceResponse = await fetch('http://localhost:3001/api/invoice/create', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({ orderId: paymentData.orderId }),
+                    });
+    
+                    if (createInvoiceResponse.ok) {
+                        // Use the correct URL for downloading the invoice
+                        const invoiceResponse = await fetch(`http://localhost:3001/api/invoice/download/${paymentData.orderId}`);
+                        if (invoiceResponse.ok) {
+                            const blob = await invoiceResponse.blob();
+                            const url = window.URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = `invoice-${paymentData.orderId}.pdf`;
+                            a.click();
+                            window.URL.revokeObjectURL(url);
+                        } else {
+                            console.error('Failed to download invoice:', invoiceResponse.statusText);
+                            // Handle the error, e.g., show an error message to the user
+                        }
+                    } else {
+                        console.error('Failed to create invoice:', createInvoiceResponse.statusText);
+                        // Handle the error, e.g., show an error message to the user
+                    }
+                } catch (error) {
+                    console.error('Error processing invoice:', error);
+                    // Handle the error, e.g., show an error message to the user
+                }
+            };
+    
+            downloadInvoice();
+    
+            setToastMessage('Payment processed successfully. Order status updated to Delivering.');
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 3000);
+    
+            setOrderDetails(prevDetails => ({
+                ...prevDetails,
+                order: {
+                    ...prevDetails.order,
+                    status: 'Delivering' // Update the status in your state
+                }
+            }));
+            // Additional logic after successful payment
+        } catch (error) {
+            console.error('Payment processing error:', error);
+            let errorMessage = 'Failed to process payment.';
+            if (error.response && error.response.headers.get('Content-Type').includes('application/json')) {
+                // Only parse as JSON if the content type is correct
+                errorMessage += ` ${await error.response.json().then(data => data.error)}`;
+            } else {
+                // Handle non-JSON responses or other errors
+                errorMessage += ` ${error.message}`;
             }
-          }));
-        // Additional logic after successful payment
-    } catch (error) {
-        console.error('Payment processing error:', error);
-        let errorMessage = 'Failed to process payment.';
-        if (error.response && error.response.headers.get('Content-Type').includes('application/json')) {
-            // Only parse as JSON if the content type is correct
-            errorMessage += ` ${await error.response.json().then(data => data.error)}`;
-        } else {
-            // Handle non-JSON responses or other errors
-            errorMessage += ` ${error.message}`;
+            setToastMessage('The Payment Amount is not correct. Please ensure and fill again');
+            setShowToast(true);
+            setTimeout(() => setShowToast(false), 3000);
         }
-        setToastMessage('The Payment Amount is not correct. Please ensure and fill again');
-        setShowToast(true);
-        setTimeout(() => setShowToast(false), 3000);
-    }
-};
-
+    };
 
 
     return (

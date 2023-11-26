@@ -30,6 +30,8 @@ const GetOrder = () => {
         }
     };
 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 
     const handlePayment = async (e) => {
         e.preventDefault();
@@ -54,7 +56,7 @@ const GetOrder = () => {
             const downloadInvoice = async () => {
                 try {
                     // Use the correct URL for creating the invoice
-                    const createInvoiceResponse = await fetch('http://localhost:3001/api/invoice/create', {
+                    const createInvoiceResponse = await fetch(`${backendUrl}/api/invoice/create`, {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -64,7 +66,7 @@ const GetOrder = () => {
     
                     if (createInvoiceResponse.ok) {
                         // Use the correct URL for downloading the invoice
-                        const invoiceResponse = await fetch(`http://localhost:3001/api/invoice/download/${paymentData.orderId}`);
+                        const invoiceResponse = await fetch(`${backendUrl}/api/invoice/download/${paymentData.orderId}`);
                         if (invoiceResponse.ok) {
                             const blob = await invoiceResponse.blob();
                             const url = window.URL.createObjectURL(blob);

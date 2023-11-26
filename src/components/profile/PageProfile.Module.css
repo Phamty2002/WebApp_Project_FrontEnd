@@ -5,41 +5,46 @@
   align-items: center;
   padding: 20px;
   gap: 20px;
+  background-color: #f8f9fa; /* Light background for better readability */
 }
 
 .card-container {
   display: flex;
-  justify-content: space-between;
-  padding: 1px;
-  margin-left: 240px;
+  flex-wrap: wrap; /* Wrap cards for better responsiveness */
+  justify-content: center; /* Center cards for a balanced look */
+  gap: 20px; /* Uniform gap for consistency */
+  padding: 20px;
+  margin-top: 20px; /* Additional margin for better spacing */
 }
 
 .card {
   background: #fff;
   border-radius: 8px;
   padding: 20px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: calc(33.33% - 20px); /* Adjust width to fit 3 cards with spacing */
-  margin: 0 10px; /* Add spacing between cards */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Enhance shadow for depth */
+  width: 100%; /* Full width for smaller screens */
+  max-width: 300px; /* Maximum width for larger screens */
+  margin: 10px; /* Uniform margin */
 }
 
 .input-field {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd; /* Lighter border for softer look */
+  border-radius: 6px;
+  background-color: #fafafa; /* Light background for input fields */
 }
 
 .action-button {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   background-color: #007bff;
   color: white;
   cursor: pointer;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 .action-button:hover {
@@ -48,53 +53,44 @@
 
 .error-message {
   color: #ff3860;
+  font-size: 0.9rem; /* Smaller font size for error message */
 }
 
 .success-message {
-  color: #2c9e54;
+  color: #28a745; /* More vibrant green for success message */
+  font-size: 0.9rem; /* Smaller font size for success message */
 }
 
-.card.list-users-card {
-  margin-bottom: 0; /* Remove excessive margin */
-}
-
-.card.list-users-card button {
-  margin-bottom: 10px; /* Add some spacing below the "List Users" button */
-}
-
-/* Style the list of users */
 .card.list-users-card ul {
   list-style-type: none;
   padding: 0;
 }
 
 .card.list-users-card li {
-  background: #f5f5f5;
-  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid #ddd; /* Light border for list items */
+  border-radius: 6px;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  word-wrap: break-word; /* Ensure long text like emails wraps */
 }
 
 .card.list-users-card li:last-child {
   margin-bottom: 0;
 }
 
-/* Style the table for the list of users */
 table {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed; /* Fixed table layout for better control */
+  table-layout: fixed;
 }
 
 th, td {
-  padding: 10px;
-  border: 1px solid #ccc;
+  padding: 12px;
+  border: 1px solid #ddd;
   text-align: left;
-  word-wrap: break-word; /* Ensure text in table cells wraps */
 }
 
 th {
@@ -102,12 +98,10 @@ th {
   color: white;
 }
 
-/* Optional: specific column width adjustments */
 .email-column {
-  width: 200px; /* Adjust as needed for email column */
+  width: 200px;
 }
 
-/* Style table rows */
 tr:nth-child(even) {
   background-color: #f5f5f5;
 }

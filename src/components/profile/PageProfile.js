@@ -24,10 +24,14 @@ const PageProfile = () => {
   const [email, setEmail] = useState('');
   const [updateMessage, setUpdateMessage] = useState('');
   const [updateError, setUpdateError] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
+
 
   // State for listing users
   const [userList, setUserList] = useState([]);
   const [listError, setListError] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
+
 
   //State for add new users
   const [addUserError, setAddUserError] = useState('');
@@ -37,6 +41,7 @@ const PageProfile = () => {
   const [newEmail, setNewEmail] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [newRole, setNewRole] = useState('');
+  const [newPhoneNumber, setNewPhoneNumber] = useState('');
 
   const resetForm = () => {
     setNewUsername('');
@@ -105,7 +110,7 @@ const PageProfile = () => {
           'Content-Type': 'application/json',
           'Authorization': 'Bearer eyJhbGciOiJIUzI1NiJ9.e30.EBjxM2QTMEzL3qu-gslV05xyMa1j-YMubrUsvTYm5bg'
         },
-        body: JSON.stringify({ email: email })
+        body: JSON.stringify({ email: email, phone_number: phoneNumber })
       });
   
       if (response.ok) {
@@ -191,43 +196,63 @@ const onDeleteClick = () => {
       <div className="profile-page">
         <div className="card-container">
         <div className="card add-new-user-card">
-          <h2>Add User</h2>
-          <input
-            className="input-field"
-            type="text"
-            value={newUsername}
-            onChange={(e) => setNewUsername(e.target.value)}
-            placeholder="Username"
-          />
-          <input
-            className="input-field"
-            type="email"
-            value={newEmail}
-            onChange={(e) => setNewEmail(e.target.value)}
-            placeholder="Email"
-          />
-          <input
-            className="input-field"
-            type="password"
-            value={newPassword}
-            onChange={(e) => setNewPassword(e.target.value)}
-            placeholder="Password"
-          />
-          <select
-            className="input-field"
-            value={newRole}
-            onChange={(e) => setNewRole(e.target.value)}
-          >
-            <option value="">Select Role</option>
-            <option value="Admin">Admin</option>
-            <option value="Customer">Customer</option>
-          </select>
-          <button className="action-button" onClick={() => handleAddNewUser({ username: newUsername, email: newEmail, password: newPassword, role: newRole })}>
-            Add User
-          </button>
-          {addUserSuccess && <p className="success-message">{addUserSuccess}</p>}
-          {addUserError && <p className="error-message">{addUserError}</p>}
-        </div>
+  <h2>Add User</h2>
+  <input
+    className="input-field"
+    type="text"
+    value={newUsername}
+    onChange={(e) => setNewUsername(e.target.value)}
+    placeholder="Username"
+  />
+  <input
+    className="input-field"
+    type="email"
+    value={newEmail}
+    onChange={(e) => setNewEmail(e.target.value)}
+    placeholder="Email"
+  />
+  <input
+    className="input-field"
+    type="text" // Change the input type to text for the phone number
+    value={newPhoneNumber} // Create a state variable for the phone number
+    onChange={(e) => setNewPhoneNumber(e.target.value)} // Update the state variable
+    placeholder="Phone Number" // Add a placeholder for the phone number
+  />
+  <input
+    className="input-field"
+    type="password"
+    value={newPassword}
+    onChange={(e) => setNewPassword(e.target.value)}
+    placeholder="Password"
+  />
+  <select
+    className="input-field"
+    value={newRole}
+    onChange={(e) => setNewRole(e.target.value)}
+  >
+    <option value="">Select Role</option>
+    <option value="Admin">Admin</option>
+    <option value="Customer">Customer</option>
+  </select>
+  <button
+    className="action-button"
+    onClick={() =>
+      handleAddNewUser({
+        username: newUsername,
+        email: newEmail,
+        password: newPassword,
+        role: newRole,
+        phone_number: newPhoneNumber, // Pass the phone number to the handleAddNewUser function
+      })
+    }
+  >
+    Add User
+  </button>
+  {addUserSuccess && <p className="success-message">{addUserSuccess}</p>}
+  {addUserError && <p className="error-message">{addUserError}</p>}
+</div>
+        
+
           <div className="card get-profile-card">
             <h2>View User </h2>
             <input
@@ -258,21 +283,37 @@ const onDeleteClick = () => {
               onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter new email"
             />
+            <input
+              className="input-field"
+              type="tel"
+              value={phoneNumber}
+              onChange={(e) => setPhoneNumber(e.target.value)}
+              placeholder="Enter new phone number"
+            />
             <button className="action-button" onClick={handleUpdateProfile}>Update Profile</button>
             {updateMessage && <p className="success-message">{updateMessage}</p>}
             {updateError && <p className="error-message">{updateError}</p>}
           </div>
 
           <div className="card list-users-card">
-            <h2>List Users</h2>
+          <h2>List Users</h2>
+            <input
+              className="input-field"
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search by username"
+            />
             <button className="action-button" onClick={handleListUsers}>List Users</button>
             <ul>
-              {userList.map(user => (
-                <li key={user.id}>
-                  Username: {user.username}<br />
-                  Email: {user.email}<br />
-                  Role: {user.role}
-                </li>
+              {userList
+                .filter(user => user.username.toLowerCase().includes(searchQuery.toLowerCase()))
+                .map(user => (
+                  <li key={user.id}>
+                    Username: {user.username}<br />
+                    Email: {user.email}<br />
+                    Role: {user.role}
+                  </li>
               ))}
             </ul>
             {listError && <p className="error-message">{listError}</p>}

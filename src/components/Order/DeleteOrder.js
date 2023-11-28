@@ -1,9 +1,10 @@
 // src/components/DeleteOrder.js
 import React, { useState } from 'react';
 import { deleteOrder } from '../../Services/orderService';
-import './DeleteOrder.css';
 import Sidebar from '../Header/SideBar';
 import Header from '../Header/Header-Emp';
+import './DeleteOrder.css';
+
 
 
 const DeleteOrder = () => {

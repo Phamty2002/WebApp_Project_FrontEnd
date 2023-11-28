@@ -1,46 +1,51 @@
-/* RefundOrder.css */
-.refundOrder-container {
-    max-width: 630px;
-    margin: auto;
-    margin-left: 615px; /* Adjust this as needed to align with your layout */
-    margin-top: 50px;
-    padding: 20px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+/* DeleteOrder.css */
+.deleteOrder-container {
+    max-width: 400px;
+    margin: 50px auto; /* Center the card with top margin */
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for card effect */
     background-color: white;
-    border-radius: 8px;
+    border-radius: 10px;
     text-align: center;
 }
 
-.refundOrder-form {
+.deleteOrder-form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
+    gap: 20px;
     align-items: center;
 }
 
-.refundOrder-input {
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    font-size: 16px;
+.deleteOrder-input {
+    padding: 12px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
     width: 100%;
+    font-size: 16px;
 }
 
-.refundOrder-button {
-    padding: 10px 15px;
-    border-radius: 4px;
+.deleteOrder-button {
+    padding: 12px 20px;
+    border-radius: 5px;
     border: none;
-    background-color: #28a745; /* A green color to indicate a refund action */
+    background-color: #dc3545; /* Red color for delete action */
     color: white;
     font-size: 16px;
     cursor: pointer;
+    width: 100%;
 }
 
-.refundOrder-button:hover {
-    background-color: #218838; /* A darker shade of green for hover */
+.deleteOrder-button:hover {
+    background-color: #c82333; /* Darker shade for hover */
 }
 
-.refundOrder-message {
+.deleteOrder-message {
     margin-top: 20px;
-    font-size: 18px;
+    font-size: 16px;
+    color: #333; /* Dark text for better readability */
+}
+
+h2 {
+    color: #333; /* Dark text for the title */
+    margin-bottom: 20px;
 }

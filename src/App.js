@@ -12,7 +12,7 @@ import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
 import CrudProduct from './components/CRUDproduct/CrudProduct';
 import Profile from './components/profile/PageProfile';
-import Aboutus from './components/About/Aboutus';
+import Aboutus from './components/About/About-us';
 import SaveProfile from './components/Save-Profile/Profile-User';
 
 // Importing order management components

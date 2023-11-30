@@ -43,6 +43,6 @@
   },
   "browserslist": [
     "last 2 Chrome versions"
-  ],
-  "proxy": "http://localhost:3001"
+  ]
+  
 }

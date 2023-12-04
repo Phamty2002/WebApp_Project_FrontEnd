@@ -1,54 +1,77 @@
+/* Invoice-emp.css */
+
 .container {
-    display: flex;
-    justify-content: center;
-    flex-direction: column; /* Stack children vertically */
-    align-items: center;
-    height: 50vh; /* Use full viewport height */
-    padding: 20px; /* Add padding to prevent content from touching the edges */
-    margin-right: 30px;
-  }
-  
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto; /* Center container */
+}
+
+.cards-container {
+  display: flex;
+  flex-wrap: wrap; /* Cards will wrap on smaller screens */
+  gap: 20px; /* Space between cards */
+  justify-content: center; /* Center cards in the container */
+}
+
+.card {
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px;
+  width: calc(50% - 40px); /* Subtract margin from width for proper spacing */
+  box-sizing: border-box; /* Include padding and border in the width */
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+.card label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.card input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.card button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.card button:hover {
+  background-color: #0056b3;
+}
+
+.card p {
+  color: #333;
+}
+
+iframe {
+  width: 100%;
+  border: none;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
   .cards-container {
-    width: 100%; /* Set to the full width of the container */
-    max-width: 960px; /* Maximum width of the cards container */
-    margin: 0 auto; /* Center the cards container */
-    display: flex;
-    justify-content: space-around; /* Distribute space evenly around the card elements */
-    flex-wrap: wrap; /* Allow cards to wrap on smaller screens */
-  }
-  
-  .card {
-    background: #fff; /* Assuming cards have a white background */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-    border-radius: 8px; /* Optional: rounded corners for the cards */
-    overflow: hidden; /* Ensure contents don't overflow */
-    display: flex;
     flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    margin: 20px; /* Add margin to create space between cards */
-    width: calc(50% - 40px); /* Width is half of the container minus the margin */
-    box-sizing: border-box; /* Include padding and border in the element's width and height */
   }
-  
-  /* Responsive iframe container */
-  .pdf-container {
-    width: 100%; /* Full width of the card */
-    height: 500px; /* Fixed height, adjust as needed */
-    overflow: hidden; /* Hide the overflow */
-    margin-top: 20px; /* Add some space above the PDF viewer */
+
+  .card {
+    width: 100%; /* Full width on smaller screens */
   }
-  
-  iframe {
-    width: 100%; /* Full width of its container */
-    height: 100%; /* Full height of its container */
-    border: none; /* Remove border around iframe */
-  }
-  
-  /* Add responsiveness to iframe for smaller screens */
-  @media (max-width: 768px) {
-    .card {
-      width: 100%; /* Full width of the container */
-    }
-  }
-  
+}

@@ -112,7 +112,7 @@ function ProfileUser() {
           <h2>Change Password</h2>
           <input type="password" placeholder="Old Password" value={oldPassword} onChange={e => setOldPassword(e.target.value)} />
           <input type="password" placeholder="New Password" value={newPassword} onChange={e => setNewPassword(e.target.value)} />
-          <button onClick={handleChangePassword}>Change Password</button>
+          <button onClick={handleChangePassword}>Save Changed </button>
         </div>
         <div className="profile-container">
         <div className="profile-box">

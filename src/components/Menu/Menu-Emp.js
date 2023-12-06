@@ -104,7 +104,7 @@ function Menu() {
         />
       </div>
       
-      <TheFooter ></TheFooter>
+      
     </div>
   );
 }

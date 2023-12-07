@@ -5,6 +5,7 @@ import './GetOrder-users.css';
 import Header from '../Header/Header-User';
 import TheFooter from '../Footer/Thefooter';
 import { processPayment } from '../../Services/paymentService';
+import qrCodeImage from '../../images/qrCode.png';
 
 const GetOrder = () => {
     const [orderId, setOrderId] = useState(''); // State to store Order ID
@@ -15,6 +16,7 @@ const GetOrder = () => {
     const [error, setError] = useState('');
     const [showToast, setShowToast] = useState(false);
     const [toastMessage, setToastMessage] = useState('');
+    const [showQRCode, setShowQRCode] = useState(false);
 
 
     const handleSubmit = async (e) => {
@@ -35,6 +37,13 @@ const GetOrder = () => {
 
     const handlePayment = async (e) => {
         e.preventDefault();
+
+        if (paymentMethod === "Internet Banking") {
+            setShowQRCode(true); // Show QR Code for Internet Banking
+        } else {
+            setShowQRCode(false); // Hide QR Code for other methods
+        }
+
         try {
             const paymentData = {
                 orderId: Number(orderId), // Convert orderId to Number
@@ -119,12 +128,18 @@ const GetOrder = () => {
         }
     };
 
+    const handlePaymentMethodChange = (e) => {
+        const selectedMethod = e.target.value;
+        setPaymentMethod(selectedMethod);
+        setShowQRCode(selectedMethod === 'Internet Banking');
+    };
+
 
     return (
         <div>
             <Header />
             <div className="getOrder-container">
-                <form onSubmit={handleSubmit} className="getOrder-form">
+            <form onSubmit={handleSubmit} className="getOrder-form">
                     <input
                         type="text"
                         className="getOrder-input"
@@ -201,28 +216,36 @@ const GetOrder = () => {
                         required
                     />
                     <select 
-                        className="getOrder-input"
-                        value={paymentMethod} 
-                        onChange={(e) => setPaymentMethod(e.target.value)}
-                        required
-                    >
-                        <option value="">Select Payment Method</option>
-                        <option value="Credit Card">Credit Card</option>
-                        <option value="Cash">Cash</option>
-                        <option value="Internet Banking">Internet Banking</option>
-                    </select>
+                            className="getOrder-input"
+                            value={paymentMethod} 
+                            onChange={handlePaymentMethodChange}
+                            required
+                        >
+                            <option value="">Select Payment Method</option>
+                            <option value="Credit Card">Credit Card</option>
+                            <option value="Cash">Cash</option>
+                            <option value="Internet Banking">Internet Banking</option>
+                        </select>
                     <button type="submit" className="getOrder-button">Confirm Payment</button>
                 </form>
             )}
-               {showToast && (
-    <div className={`toast-notification ${showToast ? 'show' : ''}`}>
-        {toastMessage}
+            {showQRCode && (
+    <div className="qr-code-container">
+        <img src={qrCodeImage} alt="QR Code for Payment" />
+        <p>Scan to pay via Internet Banking</p>
+        <p>Pham Phuoc Ty</p>
     </div>
 )}
+            
+                {showToast && (
+                    <div className={`toast-notification ${showToast ? 'show' : ''}`}>
+                        {toastMessage}
+                    </div>
+                )}
+            </div>
+            <TheFooter />
         </div>
-        <TheFooter />
-    </div>
-);
-              };
+    );
+};
 
 export default GetOrder;

@@ -8,13 +8,13 @@
     border-radius: 8px;
     margin-top: 20px;
     margin-bottom: 20px;
+    align-items: center;
 }
 
 .getOrder-form {
     display: flex;
     flex-direction: column;
     gap: 15px;
-    margin-bottom: 20px;
 }
 
 .getOrder-form input,
@@ -141,11 +141,16 @@
     background-color: #45a049; /* A darker shade of green for hover */
 }
 
+.payment-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Aligns items to the top */
+    margin-top: 20px; /* Add some space at the top */
+}
+
 .payment-form-container {
-    opacity: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: opacity 0.3s ease, max-height 0.3s ease;
+    flex-basis: 50%; /* Takes up half of the container's width */
+    padding-left: 20px; /* Add some space between QR code and form */
 }
 
 .payment-form-container.open {
@@ -174,3 +179,32 @@
     transform: translateY(0);
     opacity: 1;
 }
+
+.qr-code-container {
+    flex-basis: 50%; /* Takes up the other half */
+    padding: 10px;
+    padding-right: 20px;
+    text-align: center;
+    margin-top: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    display: inline-block; /* Center QR code in its container */
+    margin-bottom: 10px; /* Space below the container */
+    margin-left: 188px;
+}
+
+.qr-code-container img {
+    
+    max-width: 300px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+.qr-code-container p {
+    margin-top: 10px;
+    font-size: 14px;
+    margin-bottom: 0; /* Remove extra space below the last paragraph */
+}
+

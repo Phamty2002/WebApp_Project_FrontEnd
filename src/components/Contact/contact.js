@@ -1,4 +1,6 @@
 import React, { useContext, useState } from 'react';
+import Header from '../Header/Header-Emp';
+import TheFooter from '../Footer/Thefooter';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -31,8 +33,12 @@ const ContactForm = () => {
   };
 
   return (
+    <div>
+    <Header/>
     <div className="contact-form">
-      <h2>Contact Us</h2>
+      
+      <div style={{ display: 'flex', justifyContent: 'center' }}> 
+      <h2>Contact Us</h2> </div>
       <form>
         <label htmlFor="name">Name:</label>
         <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
@@ -46,8 +52,11 @@ const ContactForm = () => {
         <label htmlFor="message">Message:</label>
         <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
 
-        <button type="button" onClick={handleSubmit}>Submit</button>
+        <div style={{ display: 'flex', justifyContent: 'center' }}> 
+        <button type="button" onClick={handleSubmit}>Submit</button> </div>
       </form>
+    </div> 
+    <TheFooter > </TheFooter>
     </div>
   );
 };

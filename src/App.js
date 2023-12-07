@@ -64,7 +64,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/payment-refund" element={<PaymentRefund />} />
             <Route path="/saveprofile" element={<SaveProfile />} />
-            <Route path="/contactForm" element={<ContactForm />} />
+            <Route path="/contact" element={<ContactForm />} />
 
 
             {/* Routes for order management */}

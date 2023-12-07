@@ -35,6 +35,7 @@ function Sidebar() {
                     <Link to="/update-order">Update Order</Link>
                     <Link to="/delete-order">Delete Order</Link>
                 </Dropdown>
+                <li><Link to="/invoice-emp">Invoice Management</Link></li>
                 <li><Link to="/payment-refund">Payment Management</Link></li>
                 <li><Link to="/sign-in"><strong>Sign Out</strong></Link></li>
             </ul>

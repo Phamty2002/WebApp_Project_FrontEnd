@@ -14,7 +14,7 @@ import CrudProduct from './components/CRUDproduct/CrudProduct';
 import Profile from './components/profile/PageProfile';
 import Aboutus from './components/About/About-us';
 import SaveProfile from './components/Save-Profile/Profile-User';
-import contact from './components/Contact/contact';
+import ContactForm from './components/Contact/contact';
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';
@@ -64,7 +64,7 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/payment-refund" element={<PaymentRefund />} />
             <Route path="/saveprofile" element={<SaveProfile />} />
-            <Route path="/contact" element={<contact />} />
+            <Route path="/contactForm" element={<ContactForm />} />
 
 
             {/* Routes for order management */}

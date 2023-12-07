@@ -116,11 +116,6 @@ function Header() {
               Contact
             </Button>
           </Link>
-          <Link to="/Testimonials" style={linkStyle}>
-            <Button color="inherit" sx={buttonStyle}>
-              Testimontials
-            </Button>
-          </Link>
           <Link to="/get-order-users" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               <ShoppingCartIcon /> {/* Display cart icon */}

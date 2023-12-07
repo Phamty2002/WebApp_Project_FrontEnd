@@ -1,62 +1,79 @@
-import React, { useContext, useState } from 'react';
-import Header from '../Header/Header-Emp';
-import TheFooter from '../Footer/Thefooter';
+import React, { useState } from 'react';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import axios from 'axios';
+import './contact.css';
+import Header from '../Header/Header-User';
+import Footer from '../Footer/Thefooter';
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
+    phone_number: '',
     message: ''
   });
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-  const handleSubmit = () => {
-    // Perform input validation (you can customize this according to your needs)
-    if (formData.name === '' || formData.email === '' || formData.phone === '' || formData.message === '') {
-      alert('Please fill in all fields');
-      return;
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(`${backendUrl}/api/contact/contact`, formData);
+      toast.success('Message sent successfully');
+      setFormData({ name: '', email: '', phone_number: '', message: '' });
+    } catch (error) {
+      console.error('Error submitting form', error);
+      alert('Error submitting form');
+      toast.error('Error submitting form'); 
     }
-
-    // If all fields are filled, you can proceed with sending the form data
-    // For now, we'll just log the data to the console as an example
-    console.log('Name: ' + formData.name);
-    console.log('Email: ' + formData.email);
-    console.log('Phone: ' + formData.phone);
-    console.log('Message: ' + formData.message);
-
-    // You can add code here to send the form data to your server or perform other actions
   };
 
   return (
     <div>
-    <Header/>
-    <div className="contact-form">
-      
-      <div style={{ display: 'flex', justifyContent: 'center' }}> 
-      <h2>Contact Us</h2> </div>
-      <form>
-        <label htmlFor="name">Name:</label>
-        <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required />
-
-        <label htmlFor="email">Email:</label>
-        <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required />
-
-        <label htmlFor="phone">Phone:</label>
-        <input type="tel" id="phone" name="phone" value={formData.phone} onChange={handleChange} required />
-
-        <label htmlFor="message">Message:</label>
-        <textarea id="message" name="message" value={formData.message} onChange={handleChange} required></textarea>
-
-        <div style={{ display: 'flex', justifyContent: 'center' }}> 
-        <button type="button" onClick={handleSubmit}>Submit</button> </div>
+      <Header></Header>
+    <div className="contact-form-container">
+      <form onSubmit={handleSubmit}>
+        <h2>Contact Us</h2>
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Your Name"
+          required
+        />
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Your Email"
+          required
+        />
+        <input
+          type="text"
+          name="phone_number"
+          value={formData.phone_number}
+          onChange={handleChange}
+          placeholder="Your Phone Number"
+        />
+        <textarea
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          placeholder="Your Message"
+          required
+        />
+        <button type="submit">Send Message</button>
       </form>
-    </div> 
-    <TheFooter > </TheFooter>
+    </div>
+    <Footer></Footer>
+    <ToastContainer />
     </div>
   );
 };

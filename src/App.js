@@ -17,6 +17,7 @@ import SaveProfile from './components/Save-Profile/Profile-User';
 import ContactForm from './components/Contact/contact';
 import Invoice from './components/Invoice-emp/Invoice-emp';
 import ContactEmp from './components/Contact/contact-emp';
+import ForgotPassword from './components/Authentication/ForgotPassword';
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';
@@ -27,6 +28,7 @@ import DeleteOrder from './components/Order/DeleteOrder';
 import ManageOrder from './components/Order/ManageOrder-emp';
 import GetOrderUser from './components/Order/GetOrder-users';
 import { ProductsProvider } from './context/ProductsContext';
+
 
 //import for payment
 import PaymentRefund from './components/Payment/payment-refund';
@@ -69,6 +71,7 @@ function App() {
             <Route path="/contact" element={<ContactForm />} />
             <Route path="/invoice-emp" element={<Invoice />} />
             <Route path="/contact-emp" element={<ContactEmp />} />
+            <Route path="/forgot-password" element={<ForgotPassword />} />
 
 
 

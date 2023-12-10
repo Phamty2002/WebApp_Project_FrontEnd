@@ -15,6 +15,8 @@ import Profile from './components/profile/PageProfile';
 import Aboutus from './components/About/About-us';
 import SaveProfile from './components/Save-Profile/Profile-User';
 import ContactForm from './components/Contact/contact';
+import Invoice from './components/Invoice-emp/Invoice-emp';
+import ContactEmp from './components/Contact/contact-emp';
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';
@@ -65,6 +67,9 @@ function App() {
             <Route path="/payment-refund" element={<PaymentRefund />} />
             <Route path="/saveprofile" element={<SaveProfile />} />
             <Route path="/contact" element={<ContactForm />} />
+            <Route path="/invoice-emp" element={<Invoice />} />
+            <Route path="/contact-emp" element={<ContactEmp />} />
+
 
 
             {/* Routes for order management */}

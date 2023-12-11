@@ -6,7 +6,8 @@ import Header from '../Header/Header-Emp';
 import Sidebar from '../Header/SideBar';
 
 const ContactManagement = () => {
-    const backendUrl = 'http://localhost:3001/api/contact'; // Adjusted backend URL
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+
 
     // State for listing contacts
     const [contacts, setContacts] = useState([]);
@@ -25,7 +26,7 @@ const ContactManagement = () => {
 
     // Fetch all contacts
     useEffect(() => {
-        axios.get(`${backendUrl}/contactlist`)
+        axios.get(`${backendUrl}/api/contactcontactlist`)
             .then(response => setContacts(response.data.contacts))
             .catch(error => console.error('Error fetching contacts:', error));
     }, []);
@@ -33,7 +34,7 @@ const ContactManagement = () => {
     // Fetch specific contact details
     useEffect(() => {
         if (selectedContactId) {
-            axios.get(`${backendUrl}/contactbyId/${selectedContactId}`)
+            axios.get(`${backendUrl}/api/contact/contactbyId/${selectedContactId}`)
                 .then(response => setSelectedContact(response.data.contact))
                 .catch(error => console.error('Error fetching contact details:', error));
         }
@@ -42,7 +43,7 @@ const ContactManagement = () => {
     // Handle new contact submission
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post(`${backendUrl}/contact`, newContact)
+        axios.post(`${backendUrl}/api/contact/contact`, newContact)
             .then(response => {
                 console.log('Contact created:', response.data);
                 // Reset form or update state as needed

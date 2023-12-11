@@ -23,7 +23,7 @@ const ContactForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${backendUrl}/api/contact/contactlist`, formData);
+      const response = await axios.post(`${backendUrl}/api/contact/contact`, formData);
       toast.success('Message sent successfully');
       setFormData({ name: '', email: '', phone_number: '', message: '' });
     } catch (error) {

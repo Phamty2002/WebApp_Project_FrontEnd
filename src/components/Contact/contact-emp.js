@@ -16,17 +16,9 @@ const ContactManagement = () => {
     const [selectedContactId, setSelectedContactId] = useState(null);
     const [selectedContact, setSelectedContact] = useState(null);
 
-    // State for creating a new contact
-    const [newContact, setNewContact] = useState({
-        name: '',
-        email: '',
-        phone_number: '',
-        message: ''
-    });
-
     // Fetch all contacts
     useEffect(() => {
-        axios.get(`${backendUrl}/api/contactcontactlist`)
+        axios.get(`${backendUrl}/api/contact/contactlist`)
             .then(response => setContacts(response.data.contacts))
             .catch(error => console.error('Error fetching contacts:', error));
     }, []);
@@ -39,22 +31,6 @@ const ContactManagement = () => {
                 .catch(error => console.error('Error fetching contact details:', error));
         }
     }, [selectedContactId]);
-
-    // Handle new contact submission
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post(`${backendUrl}/api/contact/contact`, newContact)
-            .then(response => {
-                console.log('Contact created:', response.data);
-                // Reset form or update state as needed
-            })
-            .catch(error => console.error('Error creating contact:', error));
-    };
-
-    // Handle change in form fields
-    const handleChange = (e) => {
-        setNewContact({ ...newContact, [e.target.name]: e.target.value });
-    };
 
     // State to control the visibility of the contact details modal
     const [isModalOpen, setIsModalOpen] = useState(false);

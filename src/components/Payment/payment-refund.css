@@ -1,79 +1,60 @@
-/* General Styles */
-.refundOrder-container {
+/* payment-refund.css */
+
+/* Style for the entire card container */
+.card-refund-container {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    min-height: 50vh;
+    background-color: #f0f0f0; /* Background color for the entire page */
+    margin-left: 240px;
+  }
+  
+  /* Style for the card */
+  .card-refund {
+    text-align: center;
+    width: 300px;
     padding: 20px;
-}
-
-/* Refund Order Form Styles */
-.refundOrder-form {
-    margin-bottom: 20px;
-}
-
-.refundOrder-input {
-    padding: 10px;
-    margin-right: 10px;
-    border-radius: 5px;
+    background-color: #fff;
     border: 1px solid #ccc;
-}
-
-.refundOrder-button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-.refundOrder-button:hover {
-    background-color: #45a049;
-}
-
-.success-message {
-    color: green;
-    margin-top: 10px;
-}
-
-/* Order List Container Styles */
-.order-list-container {
-    margin-top: 20px;
+    border-radius: 10px; /* Rounded corners for the card */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Box shadow for a subtle elevation effect */
+  }
+  
+  /* Style for the form elements */
+  .card-refund label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold; /* Make labels bold for better readability */
+  }
+  
+  .card-refund input[type="text"] {
     width: 100%;
-}
-
-.order-list-container ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.order-list-container li {
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    margin-top: 5px;
-    padding: 8px;
-    border-radius: 5px;
-}
-
-.list-orders-button {
-    padding: 5px 10px;
-    margin-left: 20px;
-    border-radius: 5px;
-    background-color: #008CBA;
-    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 1rem;
+  }
+  
+  /* Style for the submit button */
+  .card-refund button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    padding: 12px 20px;
     border: none;
+    border-radius: 3px;
+    font-size: 1rem;
     cursor: pointer;
-}
-
-.list-orders-button:hover {
-    background-color: #007ba7;
-}
-
-/* Order Details Container Styles */
-.order-details-container {
+  }
+  
+  .card-refund button[type="submit"]:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Style for the response message */
+  .card-refund .message {
     margin-top: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    background-color: #f2f2f2;
-}
+    color: #333;
+  }
+  

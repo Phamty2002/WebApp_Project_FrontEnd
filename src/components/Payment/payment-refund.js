@@ -1,77 +1,66 @@
-import React, { useState, useEffect } from 'react';
-import { processRefund, listAllOrders, getOrderById } from '../../Services/payment-refundService';
-import './payment-refund.css';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Sidebar from '../Header/SideBar';
 import Header from '../Header/Header-Emp';
+import './payment-refund.css';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-function RefundComponent() {
-    const [orderId, setOrderId] = useState('');
-    const [successMessage, setSuccessMessage] = useState('');
-    const [orders, setOrders] = useState([]);
-    const [selectedOrder, setSelectedOrder] = useState(null);
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
-    useEffect(() => {
-        // Load the list of all orders when the component mounts
-        loadAllOrders();
-    }, []);
 
-    const loadAllOrders = async () => {
-        try {
-            const ordersResponse = await listAllOrders();
-            setOrders(ordersResponse.orders);
-        } catch (error) {
-            console.error(error);
-        }
-    };
+function RefundForm() {
+  const [orderId, setOrderId] = useState('');
+  const [message, setMessage] = useState('');
 
-    const handleRefund = async () => {
-        try {
-            const refundResponse = await processRefund(orderId);
-            console.log(refundResponse);
+  const handleOrderIdChange = (event) => {
+    setOrderId(event.target.value);
+  };
 
-            if (refundResponse.status === 'success') {
-                setSuccessMessage('Refund processed successfully.');
-                setOrderId('');
-            }
-        } catch (error) {
-            console.error(error);
-            setSuccessMessage('Refund processed successfully.');
-        }
-    };
+  const handleSubmit = (event) => {
+    event.preventDefault();
 
-    const handleViewOrderDetails = async (orderId) => {
-        try {
-            const orderResponse = await getOrderById(orderId);
-            setSelectedOrder(orderResponse.order);
-        } catch (error) {
-            console.error(error);
-            setSelectedOrder(null);
-        }
-    };
+    // Make a POST request to your API to process the refund
+    axios.post(`${backendUrl}/api/payment/refund`, { orderId })
+      .then((response) => {
+        setMessage(response.data);
+        toast.success('Order refunded successfully.');
 
-    return (
+      })
+      .catch((error) => {
+        setMessage(`Error: ${error.response ? error.response.data : error.message}`);
+      });
+  };
+
+  return (
+    <div>
+        <Sidebar/>
+        <Header/>
+
+    <div className="card-refund-container">
+      <div className="card-refund">
+        <h2>Refund Processing</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label htmlFor="orderId">Order ID:</label>
+            <input
+              type="text"
+              id="orderId"
+              value={orderId}
+              onChange={handleOrderIdChange}
+              required
+            />
+          </div>
+          <button type="submit">Process Refund</button>
+        </form>
         <div>
-            <Sidebar />
-            <Header />
-            <div className="refundOrder-container">
-                <form className="refundOrder-form">
-                    <input
-                        type="text"
-                        value={orderId}
-                        onChange={(e) => setOrderId(e.target.value)}
-                        placeholder="Enter Order ID for refund"
-                        className="refundOrder-input"
-                    />
-                    <button type="button" onClick={handleRefund} className="refundOrder-button">
-                        Process Refund
-                    </button>
-                    {successMessage && <div className="success-message">{successMessage}</div>}
-                </form>
-                
-                
-            </div>
+          <p>{message}</p>
         </div>
-    );
+      </div>
+    </div>
+    <ToastContainer />
+    </div>
+  );
 }
 
-export default RefundComponent;
+export default RefundForm;

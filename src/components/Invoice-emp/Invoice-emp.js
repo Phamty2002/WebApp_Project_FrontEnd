@@ -7,7 +7,7 @@ import './Invoice-emp.css'
 const InvoiceManagement = () => {
   const [orderId, setOrderId] = useState('');
   const [message, setMessage] = useState('');
-  const [pdfUrl, setPdfUrl] = useState(''); // State to hold the PDF file URL
+  const [pdfUrl, setPdfUrl] = useState(''); 
   const backendUrl = process.env.REACT_APP_BACKEND_URL;
   const [retrieveMessage, setRetrieveMessage] = useState('');
   const [deleteMessage, setDeleteMessage] = useState('');

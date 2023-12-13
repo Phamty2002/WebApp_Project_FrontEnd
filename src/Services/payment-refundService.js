@@ -3,8 +3,8 @@
 import axios from 'axios';
 
 export const processRefund = async (orderId) => {
-    const backendUrl = process.env.REACT_APP_BACKEND_URL; 
-    const endpoint = `${backendUrl}/api/payment/refund`; 
+    const backendUrl = process.env.REACT_APP_BACKEND_URL;
+    const endpoint = `${backendUrl}/api/payment/refund`;
 
     try {
         const response = await fetch(endpoint, {
@@ -12,7 +12,7 @@ export const processRefund = async (orderId) => {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ orderId })
+            body: JSON.stringify({ orderId }),
         });
 
         if (!response.ok) {
@@ -21,7 +21,7 @@ export const processRefund = async (orderId) => {
             throw new Error(errorData.message || 'Failed to process the refund');
         }
 
-        return await response.json(); 
+        return response.json();
     } catch (error) {
         // Handle any exceptions during the request
         console.error('Error processing refund:', error);
@@ -29,15 +29,7 @@ export const processRefund = async (orderId) => {
     }
 };
 
-// Function to get an order by orderId
-export const getOrderById = async (orderId) => {
-    try {
-        const response = await axios.get(`${backendUrl}/api/payment/orderId/${orderId}`); 
-        return response.data;
-    } catch (error) {
-        throw error;
-    }
-};
+
 
 // Function to list all orders
 export const listAllOrders = async () => {

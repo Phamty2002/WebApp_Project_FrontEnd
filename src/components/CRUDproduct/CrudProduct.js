@@ -1,9 +1,12 @@
+
 import React, { useState, useEffect, useContext } from 'react';
 import Header from '../Header/Header-Emp';
 import { ProductsContext } from '../../context/ProductsContext';
 import TheFooter from '../Footer/Thefooter';
 import './CrudProduct.css';
 import Sidebar from '../Header/SideBar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 
@@ -48,6 +51,14 @@ function CrudOperations() {
     }
   };
 
+  const notifySuccess = (message) => {
+    toast.success(message);
+  };
+
+  const notifyError = (message) => {
+    toast.error(message);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     fetch(`${backendUrl}/api/products`, {
@@ -60,9 +71,13 @@ function CrudOperations() {
     .then(response => response.json())
     .then(data => {
       setProducts([...products, data]);
-      setProduct({ id: '', name: '', price: '', description: '', image_path: '' }); // Reset form
+      setProduct({ id: '', name: '', price: '', description: '', image_path: '' });
+      notifySuccess('Product created successfully!');
     })
-    .catch(error => console.error('Error creating product:', error));
+    .catch(error => {
+      console.error('Error creating product:', error);
+      notifyError('Error creating product');
+    });
   };
 
   const handleUpdateSubmit = (e) => {
@@ -94,11 +109,12 @@ function CrudOperations() {
     .then(data => {
       // Assuming the response contains the updated product data
       setProducts(products.map(p => (p.id === currentProduct.id ? { ...p, ...data } : p)));
-      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' }); // Reset the form
+      setCurrentProduct({ id: '', name: '', price: '', description: '', image_path: '' });
+      notifySuccess('Product updated successfully!');
     })
     .catch(error => {
       console.error('Error updating product:', error);
-      // Handle the error, e.g., display an error message to the user
+      notifyError('Error updating product');
     });
   };
   
@@ -110,8 +126,14 @@ function CrudOperations() {
     .then(response => response.json())
     .then(data => {
       setProducts(products.filter(product => product.name !== productName));
+      notifySuccess('Product deleted successfully!');
+
     })
-    .catch(error => console.error('Error deleting product:', error));
+    .catch(error => {
+      console.error('Error deleting product:', error);
+      notifyError('Error deleting product');
+    });
+
   };
 
   const fetchSpecificProduct = (productName) => {
@@ -126,10 +148,9 @@ function CrudOperations() {
         setSpecificProduct(data);
       })
       .catch(error => {
-        console.error('Error fetching specific product:', error);
-        setSpecificProduct(null);
+        console.error('Error deleting product:', error);
       });
-  };
+    };
 
   const renderBox = () => {
     switch (action) {
@@ -296,8 +317,9 @@ function CrudOperations() {
         </div>
         {renderBox()}
       </div>
-     
+      <ToastContainer />
     </div>
+    
     
   );
   }  

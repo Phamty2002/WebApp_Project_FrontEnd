@@ -6,6 +6,8 @@ import Header from '../Header/Header-Emp';
 const backendUrl = process.env.REACT_APP_BACKEND_URL;
 import TheFooter from '../Footer/Thefooter';
 import Sidebar from '../Header/SideBar';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Modal component
 const Modal = ({ show, children, onClose }) => {
@@ -66,7 +68,7 @@ const PageProfile = () => {
       if (response.ok) {
         resetForm();
         // If the user was successfully added, you can clear the form or perform other success actions
-        setAddUserSuccess('New user added successfully.');
+        toast.success('New user added successfully.');
       } else {
         // If the server's response was not ok, it means the user wasn't added
         // You can throw an error with the message returned from the server
@@ -74,7 +76,7 @@ const PageProfile = () => {
       }
     } catch (err) {
       // Catch any network errors or errors thrown from the server's response
-      setAddUserError(err.message);
+      toast.error(err.message);
     }
   };
 
@@ -92,11 +94,12 @@ const PageProfile = () => {
       const data = await response.json();
       if (response.ok) {
         setProfile(data);
+        toast.success('User displays successfully.');
       } else {
         throw new Error(data.message || 'Error retrieving profile');
       }
     } catch (err) {
-      setGetError(err.message);
+      toast.error(err.message);
     }
   };
 
@@ -116,6 +119,7 @@ const PageProfile = () => {
       if (response.ok) {
         const data = await response.json();
         setUpdateMessage(data.message);
+        toast.success('User updated successfully.');
       } else {
         // The response was not ok and we assume it might not be JSON
         const text = await response.text(); // Get response text which may not be JSON
@@ -128,7 +132,7 @@ const PageProfile = () => {
         }
       }
     } catch (err) {
-      setUpdateError(err.message);
+      toast.error(err.message);
     }
   };
 
@@ -145,11 +149,12 @@ const PageProfile = () => {
       const data = await response.json();
       if (response.ok) {
         setUserList(data);
+        toast.success('Users list successfully.');
       } else {
         throw new Error(data.message || 'Error listing users');
       }
     } catch (err) {
-      setListError(err.message);
+      toast.error(err.message);
     }
   };
 
@@ -170,10 +175,10 @@ const handleDeleteUser = async (username) => {
     });
 
     if (response.ok) {
-      // Assuming you have a state hook for users list called `userList`
       setUserList(currentList => currentList.filter(user => user.username!== username));
-      setDeleteSuccess(`User "${username}" deleted successfully.`); // Set the success message
-      setUsernameToDelete(''); // Clear the input after deletion
+      setDeleteSuccess(`User "${username}" deleted successfully.`); 
+      setUsernameToDelete(''); 
+      toast.success('Users deleted successfully.');
       
       // Display a success message or perform other actions as needed
     } else {
@@ -181,7 +186,7 @@ const handleDeleteUser = async (username) => {
       throw new Error(data.message || 'Error occurred while deleting the user.');
     }
   } catch (err) {
-    setDeleteError(err.message);
+    toast.error(err.message);
   }
 };
 const onDeleteClick = () => {
@@ -193,6 +198,7 @@ const onDeleteClick = () => {
     <>
       <Sidebar/>
       <Header/>
+      <ToastContainer />
       <div className="profile-page">
         <div className="card-container">
         <div className="card add-new-user-card">

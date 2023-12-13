@@ -7,8 +7,16 @@ import FoodImage from "../../assets/image/FoodImage.webp";
 import { Link } from 'react-router-dom';
 
 
+const scrollToTop = () => {
+  // Scroll to the top of the page smoothly
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth',
+  });
+};
+
 const HeroSection = () => {
-  //Rendering the Hero section(Landing page) on the DOM
+  
   return (
     <section id="hero">
       <Container>
@@ -29,17 +37,18 @@ const HeroSection = () => {
                 anytime on the go
               </p>
 
-              <Link 
-              to="/menu-user"
+              <div
+              
               className={classes.order_button}
                spy={true}
                smooth={true}
                offset={-50}
                duration={500}
+               onClick={scrollToTop}
                   >
                 <TheButton>Order Now</TheButton>
                 
-              </Link>
+              </div>
             </div>
           </Col>
           <Col lg={6} className="p-0">

@@ -1,12 +1,13 @@
 /* DeleteOrder.css */
 .deleteOrder-container {
-    max-width: 400px;
-    margin: 50px auto; /* Center the card with top margin */
+    max-width: 500px;
+    margin: 50px auto; 
     padding: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for card effect */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     background-color: white;
     border-radius: 10px;
     text-align: center;
+    
 }
 
 .deleteOrder-form {
@@ -28,7 +29,7 @@
     padding: 12px 20px;
     border-radius: 5px;
     border: none;
-    background-color: #dc3545; /* Red color for delete action */
+    background-color: #dc3545;
     color: white;
     font-size: 16px;
     cursor: pointer;

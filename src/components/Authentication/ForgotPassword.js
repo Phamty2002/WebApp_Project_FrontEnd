@@ -103,7 +103,7 @@ function ForgotPassword() {
           )}
           <div className="message">{message}</div>
           <div className="back-to-login-button">
-        <Link to="/">
+        <Link to="/sign-in">
           <button>Back to Login</button>
         </Link>
       </div>

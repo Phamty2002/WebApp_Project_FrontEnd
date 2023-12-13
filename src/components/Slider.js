@@ -14,6 +14,14 @@ import noodlesImage from '../images/noodles.jpg';
 function Slider() {
   const [selectedSlide, setSelectedSlide] = useState(0);
 
+  const scrollToTop = () => {
+    // Scroll to the top of the page smoothly
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
+
   const items = [
     {
       name: 'Pizza',
@@ -92,9 +100,13 @@ function Slider() {
                 <p>{item.description}</p>
               </div>
               <div style={{ height: '50px', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <Button variant="contained" color="primary" component={Link} to="/menu-User">
-                  Order
-                </Button>
+              <button
+          variant="contained"
+          color="primary"
+          onClick={scrollToTop}
+        >
+          Order Now
+        </button>
               </div>
             </div>
           </Paper>

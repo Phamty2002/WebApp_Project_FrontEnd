@@ -8,16 +8,21 @@ import SignIn from './components/Authentication/Login';
 import SignUp from './components/Authentication/Signup';
 import HomeEmp from './components/HomePage/Home-Emp';
 import HomeUser from './components/HomePage/Home-User';
+import HomeDefault from './components/HomePage/Home-Default';
 import MenuUser from './components/Menu/Menu-User';
 import MenuEmp from './components/Menu/Menu-Emp';
+import MenuDefault from './components/Menu/Menu-Default';
 import CrudProduct from './components/CRUDproduct/CrudProduct';
 import Profile from './components/profile/PageProfile';
 import Aboutus from './components/About/About-us';
+import AboutusDefault from './components/About/About-us-Default';
 import SaveProfile from './components/Save-Profile/Profile-User';
 import ContactForm from './components/Contact/contact';
+import ContactFormDefault from './components/Contact/contact-default';
 import Invoice from './components/Invoice-emp/Invoice-emp';
 import ContactEmp from './components/Contact/contact-emp';
 import ForgotPassword from './components/Authentication/ForgotPassword';
+
 
 // Importing order management components
 import PlaceOrder from './components/Order/PlaceOrder1';
@@ -56,19 +61,23 @@ function App() {
       <Router>
         <ProductsProvider>
           <Routes>
-            <Route path="/" element={<SignIn />} />
+            <Route path="/" element={<HomeDefault />} />
             <Route path="/sign-in" element={<SignIn />} />
             <Route path="/sign-up" element={<SignUp />} />
             <Route path="/home-emp" element={<HomeEmp />} />
             <Route path="/home-user" element={<HomeUser />} />
+            <Route path="/home-default" element={<HomeDefault />} />
             <Route path="/menu-user" element={<MenuUser />} />
             <Route path="/menu-emp" element={<MenuEmp />} />
+            <Route path="/menu-default" element={<MenuDefault />} />
             <Route path="/crud" element={<CrudProduct />} />
             <Route path="/about" element={<Aboutus />} />
+            <Route path="/about-default" element={<AboutusDefault />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/payment-refund" element={<PaymentRefund />} />
             <Route path="/saveprofile" element={<SaveProfile />} />
             <Route path="/contact" element={<ContactForm />} />
+            <Route path="/contact-default" element={<ContactFormDefault />} />
             <Route path="/invoice-emp" element={<Invoice />} />
             <Route path="/contact-emp" element={<ContactEmp />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />

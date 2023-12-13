@@ -77,10 +77,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  
 }
 
 .card.list-users-card li:last-child {
   margin-bottom: 0;
+}
+
+.card.list-users-card {
+  max-height: 500px; 
+  overflow-y: auto;
 }
 
 table {

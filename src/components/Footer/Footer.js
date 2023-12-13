@@ -92,7 +92,7 @@ const Footer = () => {
                 </p>
               </a>
               <a
-                href="https://www.linkedin.com/in/eni-ola/"
+                href="https://www.facebook.com/ddanthiee/"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -101,6 +101,7 @@ const Footer = () => {
                     src={fb}
                     alt="facebook"
                     className={classes.social_icon}
+          
                   ></img>
                 </p>
               </a>

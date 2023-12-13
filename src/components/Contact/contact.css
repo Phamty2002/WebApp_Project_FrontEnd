@@ -1,0 +1,33 @@
+.contact-form-container {
+    max-width: 500px;
+    margin: 50px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-form-container form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .contact-form-container input,
+  .contact-form-container textarea {
+    margin-bottom: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .contact-form-container button {
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: rgb(13, 89, 22);
+    color: white;
+    cursor: pointer;
+  }
+  
+  .contact-form-container button:hover {
+    background-color: rgb(88, 158, 115);
+  }
+  

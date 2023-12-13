@@ -1,39 +1,30 @@
+/* General Styles */
 .refundOrder-container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     padding: 20px;
 }
 
+/* Refund Order Form Styles */
 .refundOrder-form {
-    max-width: 400px;
-    width: 100%;
-    margin: 0 auto;
-    padding: 20px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    background: #f9f9f9;
-    border-radius: 8px;
+    margin-bottom: 20px;
 }
 
 .refundOrder-input {
-    width: 100%;
-    padding: 10px 15px;
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    box-sizing: border-box;
+    padding: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
 }
 
 .refundOrder-button {
-    width: 100%;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
+    padding: 10px 20px;
+    border-radius: 5px;
     background-color: #4CAF50;
     color: white;
-    font-size: 16px;
+    border: none;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 .refundOrder-button:hover {
@@ -41,17 +32,48 @@
 }
 
 .success-message {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #dff0d8;
-    color: #3c763d;
-    border-radius: 4px;
-    text-align: center;
+    color: green;
+    margin-top: 10px;
 }
 
-/* Responsive adjustments */
-@media (max-width: 600px) {
-    .refundOrder-form {
-        padding: 10px;
-    }
+/* Order List Container Styles */
+.order-list-container {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.order-list-container ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.order-list-container li {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.list-orders-button {
+    padding: 5px 10px;
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: #008CBA;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.list-orders-button:hover {
+    background-color: #007ba7;
+}
+
+/* Order Details Container Styles */
+.order-details-container {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    background-color: #f2f2f2;
 }

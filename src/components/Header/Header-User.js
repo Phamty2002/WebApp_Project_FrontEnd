@@ -127,7 +127,7 @@ function Header() {
               Profile
             </Button>
           </Link>
-          <Link to="/sign-in" style={linkStyle}>
+          <Link to="/home-default" style={linkStyle}>
             <Button color="inherit" sx={buttonStyle}>
               Sign Out
             </Button>

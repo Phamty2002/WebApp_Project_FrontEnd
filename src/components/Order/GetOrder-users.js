@@ -7,6 +7,9 @@ import TheFooter from '../Footer/Thefooter';
 import { processPayment } from '../../Services/paymentService';
 import qrCodeImage from '../../images/qrCode.png';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const GetOrder = () => {
     const [orderId, setOrderId] = useState(''); // State to store Order ID
     const [orderDetails, setOrderDetails] = useState(null);
@@ -18,17 +21,25 @@ const GetOrder = () => {
     const [toastMessage, setToastMessage] = useState('');
     const [showQRCode, setShowQRCode] = useState(false);
 
+    const showToastMessage = (message) => {
+        setToastMessage(message);
+        setShowToast(true);
+        setTimeout(() => setShowToast(false), 3000); 
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setError('');
         try {
             const response = await getOrder(Number(orderId));
-            console.log('Order Details:', response.data); // Debugging
+            console.log('Order Details:', response.data); 
             setOrderDetails(response.data);
+            showToastMessage('Order details fetched successfully.');
         } catch (error) {
-            setError('Failed to fetch order');
+            setError('Failed to place order');
             console.error('Error:', error);
+            showToastMessage('Failed to place order');
         }
     };
 
@@ -244,6 +255,11 @@ const GetOrder = () => {
                 )}
             </div>
             <TheFooter />
+            {showToast && (
+                <div className={`toast-notification ${showToast ? 'show' : ''}`}>
+                    {toastMessage}
+                </div>
+            )}
         </div>
     );
 };

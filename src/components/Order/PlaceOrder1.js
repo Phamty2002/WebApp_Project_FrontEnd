@@ -4,12 +4,17 @@ import { placeOrder } from '../../Services/orderService';
 import './PlaceOrder.css';
 import Sidebar from '../Header/SideBar';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 const PlaceOrder = () => {
     const [user, setUser] = useState(null);
     const [items, setItems] = useState([{ productId: '', quantity: 1 }]);
     const [addressShipping, setAddressShipping] = useState('');
     const [message, setMessage] = useState('');
     const [orderId, setOrderId] = useState(null);
+
+    
 
     useEffect(() => {
         // Fetch user data from localStorage
@@ -42,15 +47,22 @@ const PlaceOrder = () => {
             const response = await placeOrder(userId, items, addressShipping);
             console.log(response.data);
             setMessage('Order placed successfully!');
-            setOrderId(response.data.orderId);  
+            setOrderId(response.data.orderId);
+            toast.success('Order placed successfully!');
+
+            setItems([{ productId: '', quantity: 1 }]); 
+        setAddressShipping('');
+
         } catch (error) {
             console.error(error);
             setMessage('Error placing order. Please check your input.');
+            toast.error(err.message);
         }
     };
 
     return (
         <div>
+            <ToastContainer />
             <div className="placeOrder-container">
                 <form onSubmit={handleSubmit} className="placeOrder-form">
                     {user && (
@@ -102,6 +114,7 @@ const PlaceOrder = () => {
                 {message && <p className="placeOrder-message">{message}</p>}
                 {orderId && <p className="placeOrder-message">Order ID: {orderId}</p>}  {/* Display the order ID */}
             </div>
+
         </div>
     );
 };   

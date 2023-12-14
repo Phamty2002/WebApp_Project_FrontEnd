@@ -40,7 +40,7 @@ const Footer = () => {
                   &copy;2022 Made with <i className="bi bi-heart-fill"></i>{" "}
                   by&nbsp;
                   <a
-                    href="https://github.com/Eniola-Codes"
+                    href="https://github.com/Phamty2002"
                     target="_blank"
                     rel="noreferrer"
                     className={classes.ty_codes}
@@ -66,7 +66,7 @@ const Footer = () => {
             <div className={classes.social}>
               <h3>Social</h3>
               <a
-                href="https://www.instagram.com/code_redex/"
+                href="https://www.instagram.com/ngw.yhtie/?igshid=OGQ5ZDc2ODk2ZA%3D%3D"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -79,7 +79,7 @@ const Footer = () => {
                 </p>
               </a>
               <a
-                href="https://mobile.twitter.com/EniolaCodes/"
+                href="https://twitter.com/typham2002"
                 target="_blank"
                 rel="noreferrer"
               >

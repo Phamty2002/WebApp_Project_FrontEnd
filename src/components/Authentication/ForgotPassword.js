@@ -3,6 +3,10 @@ import Footer from '../Footer/Footer';
 import { Link } from 'react-router-dom';
 import './ForgotPassword.css';
 
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 function ForgotPassword() {
   const [email, setEmail] = useState('');
   const [token, setToken] = useState('');
@@ -42,9 +46,9 @@ function ForgotPassword() {
 
       if (response.status === 200) {
         setShowTokenForm(true);
-        setMessage('');
+        toast.success('Email found. Please check your email for the token.');
       } else {
-        setMessage('Error: Email not found. Please try again.');
+        toast.error('Error: Email not found. Please try again.');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -70,9 +74,9 @@ function ForgotPassword() {
       });
 
       if (response.status === 200) {
-        setMessage('Password reset successful. You can now login with your new password.');
+        toast.success('Password reset successful. You can now login with your new password.');
       } else {
-        setMessage('Error: Could not reset password. Please try again later.');
+        toast.error('Error: Could not reset password. Please try again later.');
       }
     } catch (error) {
       console.error('Error:', error);
@@ -111,6 +115,7 @@ function ForgotPassword() {
         
       </div>
       <Footer />
+      <ToastContainer />
     </div>
   );
 }
